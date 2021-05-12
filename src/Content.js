@@ -9,14 +9,15 @@ import CreateAccessory from './Pages/Items/Accessory/Create';
 import CreateOperation from './Pages/Operations/Create';
 import CreateItem from './Pages/Items/Create';
 
+import FormDialog from '@Components/FormDialog';
+
 /*
 	- Tables: Accessories - Operations - People - Phones - Items.
 	- onRowsPerPage - OnSearchChange - OnFilterChange: setCurrentPage(1).
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).
 	- Log-in page.
-	- Supplier instead of vendor.
-	- In server: Supply order by + Filter + Pagination.
+	- https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object
 */
 
 const CreateVendor = (props) => <CreatePerson isVendor {...props} />;
@@ -36,9 +37,24 @@ const RoutesArr = {
 };
 
 export const Content = () => {
+	const [dialogIsOpen, setDialogIsOpen] = React.useState(true);
+	
+	const handleDialogClose = () => setDialogIsOpen(false);
+	
+	const handleDialogSubmit = () => {
+		alert('Form submited');
+		setDialogIsOpen(false);
+	}
+
     return (
-        <Switch>
-        	{Object.entries(RoutesArr).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
-        </Switch>
+    	<>
+	    	<FormDialog open={dialogIsOpen} title='Some title' handleClose={handleDialogClose} handleSubmit={handleDialogSubmit}>
+	    		<CreateVendor />
+	    	</FormDialog>
+	        
+	        <Switch>
+	        	{Object.entries(RoutesArr).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
+	        </Switch>
+        </>
     );
 }
