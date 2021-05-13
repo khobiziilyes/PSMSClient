@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const Drawer = (props) => {
+export default function Drawer (props) {
     const classes = useStyles(props);
     const { open, handleDrawerClose } = props;
     

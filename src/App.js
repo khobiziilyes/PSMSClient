@@ -1,6 +1,5 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query'
-import clsx from 'clsx';
+import { RecoilRoot } from 'recoil';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
@@ -10,10 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Theme from './Theme';
 
-import { Drawer } from '@Components/Drawer';
-import { MyAppBar } from '@Components/AppBar';
-import { Copyright } from '@Components/Copyright';
-import { Content } from './Content';
+import Drawer from '@Components/Drawer';
+import MyAppBar from '@Components/AppBar';
+import Copyright from '@Components/Copyright';
+import Content from './Content';
 import SpeedDial from '@Components/SpeedDial';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(4)
     }
 }));
-
-const queryClient = new QueryClient()
 
 export const App = ({ drawerWidth }) => {
     const classes = useStyles();
@@ -62,40 +59,40 @@ export const App = ({ drawerWidth }) => {
             <CssBaseline />
 
             <div className={classes.root}>
-                <BrowserRouter>
+                <RecoilRoot>
                     <MyAppBar
                         open={drawerOpened}
                         drawerWidth={drawerWidth}
                         handleDrawerOpen={handleDrawerOpen}
                     />
-                    
-                    <Drawer
-                        open={drawerOpened}
-                        drawerWidth={drawerWidth}
-                        handleDrawerClose={handleDrawerClose}
-                    />
 
-                    <main className={clsx(classes.main)}>
-                        <div className={classes.appBarSpacer} />
-                        
-                        <Container maxWidth='lg' className={clsx(classes.container)}>
-                            <QueryClientProvider client={queryClient}>
+                    <BrowserRouter>    
+                        <Drawer
+                            open={drawerOpened}
+                            drawerWidth={drawerWidth}
+                            handleDrawerClose={handleDrawerClose}
+                        />
+
+                        <main className={classes.main}>
+                            <div className={classes.appBarSpacer} />
+                            
+                            <Container maxWidth='lg' className={classes.container}>
                                 <Content 
                                     dialogIsOpen={dialogIsOpen}
                                     selectedForm={selectedForm}
                                     handleDialogClose={handleDialogClose}
                                     handleDialogSubmit={handleDialogSubmit}
                                 />
-                            </QueryClientProvider>
 
-                            <Box pt={4}>
-                                <Copyright />
-                            </Box>
-                        </Container>
-                    </main>
-                </BrowserRouter>
-
-                <SpeedDial setSelectedForm={setSelectedFormAndOpen} />
+                                <Box pt={4}>
+                                    <Copyright />
+                                </Box>
+                            </Container>
+                        </main>
+                    </BrowserRouter>
+                    
+                    <SpeedDial setSelectedForm={setSelectedFormAndOpen} />
+                </RecoilRoot>
             </div>
         </MuiThemeProvider>
     );

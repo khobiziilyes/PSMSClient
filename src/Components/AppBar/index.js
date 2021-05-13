@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const MyAppBar = (props) => {
+export default function MyAppBar(props) {
     const { open, handleDrawerOpen } = props;
     const classes = useStyles(props);
 
