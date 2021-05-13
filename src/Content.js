@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import FormDialog from '@Components/FormDialog';
 
 import Dashboard from './Pages/Dashboard';
 import Stock from './Pages/Stock';
@@ -9,11 +10,8 @@ import CreateAccessory from './Pages/Items/Accessory/Create';
 import CreateOperation from './Pages/Operations/Create';
 import CreateItem from './Pages/Items/Create';
 
-import FormDialog from '@Components/FormDialog';
-
 /*
 	- Tables: Accessories - Operations - People - Phones - Items.
-	- onRowsPerPage - OnSearchChange - OnFilterChange: setCurrentPage(1).
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).
 	- Log-in page.
@@ -25,36 +23,25 @@ const CreateBuy = (props) => <CreateOperation isBuy {...props} />;
 
 const RoutesArr = {
 	"/dashboard": Dashboard,
-	"/stock": Stock,
-
-	"/vendors/create": CreateVendor,
-	"/customers/create": CreatePerson,
-	"/phones/create": CreatePhone,
-	"/accessories/create": CreateAccessory,
-	"/items/create": CreateItem,
-	"/buy/create": CreateBuy,
-	"/sell/create": CreateOperation
+	"/stock": Stock
 };
 
-export const Content = () => {
-	const [dialogIsOpen, setDialogIsOpen] = React.useState(true);
-	
-	const handleDialogClose = () => setDialogIsOpen(false);
-	
-	const handleDialogSubmit = () => {
-		alert('Form submited');
-		setDialogIsOpen(false);
-	}
-
-    return (
+export const Content = ({ dialogIsOpen,  selectedForm, handleDialogClose, handleDialogSubmit }) => {
+	return (
     	<>
-	    	<FormDialog open={dialogIsOpen} title='Some title' handleClose={handleDialogClose} handleSubmit={handleDialogSubmit}>
-	    		<CreateVendor />
-	    	</FormDialog>
-	        
-	        <Switch>
+    		<FormDialog open={dialogIsOpen} title={'Create new ' + selectedForm} handleClose={handleDialogClose} handleSubmit={handleDialogSubmit}>
+                {selectedForm === 'Customer' && <CreatePerson />}
+                {selectedForm === 'Phone' && <CreatePhone />}
+                {selectedForm === 'Vendor' && <CreateVendor />}
+                {selectedForm === 'Accessory' && <CreateAccessory />}
+                {selectedForm === 'Item' && <CreateItem />}
+                {selectedForm === 'Buy' && <CreateBuy />}
+                {selectedForm === 'Sell' && <CreateOperation />}
+            </FormDialog>
+
+	    	<Switch>
 	        	{Object.entries(RoutesArr).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
 	        </Switch>
-        </>
+	      </>
     );
 }

@@ -1,50 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { CircularProgress, Typography } from '@material-ui/core';
+import { CircularProgress, Typography, Button } from '@material-ui/core';
 import MUIDataTable from "mui-datatables";
 
-const fetchData = (url, page, rowsPerPage) => {
+const fetchData = (url) => {
     return new Promise((resolve, reject) => {
-        fetch(url + '?page=' + page + '&per_page=' + rowsPerPage).then(response => response.json()).then(response => {
+        fetch(url).then(response => response.json()).then(response => {
             resolve({
                 data: response.data,
-                total: response.total,
-                page: response.page - 1,
+                total: response.total
             });
         });
     });
 }
 
-export default function MuiTable({ title, baseUrl, columns, rowsPerPage = 7, moreOptions, ...props}) {
+export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, moreOptions = [], ...props}) {
     const [currentPage, setCurrentPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageDef);
+    const [searchFilter, setSearchFilter] = useState('');
+    const [filterList, setFilterList] = useState([]);
+
+    var delayTimer;
+    function setSearchFilterDelayed(searchText) {
+        clearTimeout(delayTimer);
+        
+        delayTimer = setTimeout(function() {
+            setSearchFilter(searchText);
+        }, 2000);
+    }
+
     const [state, setState] = useState({ isLoading: true, data: [], count: 0 });
 
-    useEffect(() => {
+    const triggerFetch = () => {
         setState({ ...state, isLoading: true });
 
-        fetchData(baseUrl, currentPage + 1, rowsPerPage).then(response => {
+        const fullUrl = baseUrl 
+                        + '?limit=' + rowsPerPage
+                        + '&page=' + (currentPage + 1) 
+                        + (searchFilter ? ('&filter=' + searchFilter) : '')
+                        + filterList.map((a, b) => {
+                            if (!a.length) return '';
+                            return '&' + encodeURIComponent(columns[b].name) + '=' + encodeURIComponent(a[0]);
+                        }).join('');
+
+        fetchData(fullUrl).then(response => {
             setState({
-                ...state,
                 isLoading: false,
                 data: response.data,
                 count: response.total
             });
         });
+    }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage]);
-    
-    const { isLoading, count, data } = state;
+    // eslint-disable-next-line
+    useEffect(() => triggerFetch(), [currentPage]);
+    // eslint-disable-next-line
+    useEffect(() => currentPage === 0 ? triggerFetch() : setCurrentPage(0), [rowsPerPage, searchFilter, filterList]);
 
     const options = {
-        page: currentPage,
-        rowsPerPage,
-        count,
+        count: state.count,
         filter: true,
-        filterType: 'dropdown',
+        filterType: 'textField',
+        confirmFilters: true,
         responsive: 'vertical',
         serverSide: true,
-        rowsPerPageOptions: [],
+        rowsPerPageOptions: [5, 7, 10, 30],
+        page: currentPage,
+        rowsPerPage: rowsPerPage,
         onChangePage: (newPage) => setCurrentPage(newPage),
+        onChangeRowsPerPage: (numberOfRows) => setRowsPerPage(numberOfRows),
+        onSearchChange: (searchText) => setSearchFilterDelayed(searchText),
+        customFilterDialogFooter: (currentFilterList, applyNewFilters) => {
+            return (
+                <div style={{ marginTop: '40px' }}>
+                    <Button variant="contained" onClick={() => applyNewFilters()}>Apply Filters</Button>
+                </div>
+            );
+        },
+        onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
         ...moreOptions
     }
 
@@ -52,12 +84,11 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPage = 7, mor
         <MUIDataTable
             title={
                 <Typography variant="h6">
-                   {title}
-                    {isLoading && <CircularProgress size={24} style={{ marginLeft: 15, position: 'relative', top: 4 }} />}
+                    {title}
+                    {state.isLoading && <CircularProgress size={24} style={{ marginLeft: 15, position: 'relative', top: 4 }} />}
                 </Typography>
             }
-
-            data={data}
+            data={state.data}
             columns={columns}
             options={options}
             {...props}

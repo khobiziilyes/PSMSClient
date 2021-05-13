@@ -2,12 +2,11 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@Components/TextField';
-import Form from '@Components/Form';
 import Notes from '@Components/Notes';
 
-const CreatePerson = ({isVendor}) => {
+const CreatePerson = ({ isVendor }) => {
 	return (
-		<Form title={'Create new ' + (isVendor ? 'vendor' : 'customer')}>
+		<>
 			<input type="hidden" value={isVendor ? '1' : '0'} />
 
             <Typography variant="h6" gutterBottom>
@@ -43,7 +42,7 @@ const CreatePerson = ({isVendor}) => {
                     <Notes />
                 </Grid>
             </Grid>
-		</Form>
+		</>
 	);
 }
 

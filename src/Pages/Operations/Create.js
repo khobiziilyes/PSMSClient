@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from '@Components/Form';
 import { Typography, Grid, Step, Stepper, StepLabel, Button } from '@material-ui/core';
 import TextField from '@Components/TextField';
 import { makeStyles } from '@material-ui/styles';
@@ -72,7 +71,7 @@ const CreateBuy = ({isBuy}) => {
     const classes = useStyles();
 
 	return (
-		<Form title={'Perform new ' + (isBuy ? 'buy' : 'sell')}>
+		<>
             <Stepper activeStep={activeStep}>
                 {
                     steps.map((label) => (
@@ -115,7 +114,7 @@ const CreateBuy = ({isBuy}) => {
                     </>
                 )
             }
-		</Form>
+		</>
 	);
 }
 

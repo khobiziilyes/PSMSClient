@@ -38,25 +38,54 @@ const queryClient = new QueryClient()
 export const App = ({ drawerWidth }) => {
     const classes = useStyles();
 
-    const [open, setOpen] = React.useState(false);
-    const handleDrawerOpen = () => setOpen(true);    
-    const handleDrawerClose = () => setOpen(false);
+    const [drawerOpened, setDrawerOpened] = React.useState(false);
+    const handleDrawerOpen = () => setDrawerOpened(true);    
+    const handleDrawerClose = () => setDrawerOpened(false);
     
+    const [selectedForm, setSelectedForm] = React.useState('Customer');
+    const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
+
+    const setSelectedFormAndOpen = (newSelectedForm) => {
+        setSelectedForm(newSelectedForm);
+        setDialogIsOpen(true);
+    }
+    
+    const handleDialogClose = () => setDialogIsOpen(false);
+    
+    const handleDialogSubmit = () => {
+        alert('Form submited');
+        setDialogIsOpen(false);
+    }
+
     return (
         <MuiThemeProvider theme={Theme}>
             <CssBaseline />
 
             <div className={classes.root}>
                 <BrowserRouter>
-                    <MyAppBar open={open} drawerWidth={drawerWidth} handleDrawerOpen={handleDrawerOpen}/>
-                    <Drawer open={open} drawerWidth={drawerWidth} handleDrawerClose={handleDrawerClose}/>
+                    <MyAppBar
+                        open={drawerOpened}
+                        drawerWidth={drawerWidth}
+                        handleDrawerOpen={handleDrawerOpen}
+                    />
+                    
+                    <Drawer
+                        open={drawerOpened}
+                        drawerWidth={drawerWidth}
+                        handleDrawerClose={handleDrawerClose}
+                    />
 
                     <main className={clsx(classes.main)}>
                         <div className={classes.appBarSpacer} />
                         
                         <Container maxWidth='lg' className={clsx(classes.container)}>
                             <QueryClientProvider client={queryClient}>
-                                <Content />
+                                <Content 
+                                    dialogIsOpen={dialogIsOpen}
+                                    selectedForm={selectedForm}
+                                    handleDialogClose={handleDialogClose}
+                                    handleDialogSubmit={handleDialogSubmit}
+                                />
                             </QueryClientProvider>
 
                             <Box pt={4}>
@@ -65,7 +94,7 @@ export const App = ({ drawerWidth }) => {
                         </Container>
                     </main>
 
-                    <SpeedDial />
+                    <SpeedDial setSelectedForm={setSelectedFormAndOpen}/>
                 </BrowserRouter>
             </div>
         </MuiThemeProvider>

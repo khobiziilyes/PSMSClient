@@ -5,14 +5,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Grid from '@material-ui/core/Grid';
 
 export default function FormDialog({ open, title, children, handleClose, handleSubmit }) {
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>{title}</DialogTitle>
             
-            <DialogContent>
-                {children}
+            <DialogContent style={{ overflow: 'hidden' }}>
+                <Grid container justify="center">
+					<Grid item xs={12}>
+						{children}
+					</Grid>
+				</Grid>
             </DialogContent>
             
             <DialogActions>
@@ -21,7 +26,11 @@ export default function FormDialog({ open, title, children, handleClose, handleS
                 </Button>
                 
                 <Button onClick={handleSubmit} color="primary">
-                    Subscribe
+                    Submit
+                </Button>
+
+                <Button onClick={handleSubmit} color="primary">
+                    Multi Submit
                 </Button>
             </DialogActions>
         </Dialog>

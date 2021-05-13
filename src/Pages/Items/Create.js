@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from '@Components/Form';
 import { Typography, Grid } from '@material-ui/core';
 import TextField from '@Components/TextField';
 import ItemToggle from '@Components/ItemToggle';
@@ -11,7 +10,7 @@ export default function CreateItem() {
 	const callBack = (newItemType) => handleItemTypeChange(newItemType);
 
 	return (
-		<Form title='Create new item'>
+		<>
             <Typography variant="h6" gutterBottom>
                 Basic Informations
             </Typography>
@@ -41,6 +40,6 @@ export default function CreateItem() {
                     <Notes />
                 </Grid>
             </Grid>
-		</Form>
+		</>
 	);
 }

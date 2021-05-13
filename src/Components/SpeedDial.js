@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import MuiSpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -22,19 +21,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const actions = [
-    {icon: <IconShoppingCart />, name: 'Customers'},
-    {icon: <IconLocalShipping />, name: 'Vendors'},
-    {icon: <IconPhoneAndroid />, name: 'Phones'},
-    {icon: <IconEmojiObjects />, name: 'Accessories'},
-    {icon: <IconApps />, name: 'Items'}
+    {icon: <IconShoppingCart />, name: 'Customer'},
+    {icon: <IconLocalShipping />, name: 'Vendor'},
+    {icon: <IconPhoneAndroid />, name: 'Phone'},
+    {icon: <IconEmojiObjects />, name: 'Accessory'},
+    {icon: <IconApps />, name: 'Item'}
 ];
 
-export default function SpeedDial() {
+export default function SpeedDial({ setSelectedForm }) {
 	const classes = useStyles();
 
 	const [speedDialOpen, setSpeedDialOpen] = React.useState(false);
+    
     const handleSpeedDialOpen = () => setSpeedDialOpen(true);
     const handleSpeedDialClose = () => setSpeedDialOpen(false);
+
+    const handleSpeedDialSelect = (name) => {
+        setSelectedForm(name);
+        setSpeedDialOpen(false);
+    }
 
     return (
     	<MuiSpeedDial
@@ -51,9 +56,7 @@ export default function SpeedDial() {
 	                key={action.name + '-SpeedDialItem'}
 	                icon={action.icon}
 	                tooltipTitle={action.name}
-	                onClick={handleSpeedDialClose}
-	                component={NavLink}
-	                to={'/' + action.name.toLowerCase() + '/create'}
+	                onClick={() => handleSpeedDialSelect(action.name)}
 	            />
 	        ).reverse()}
 	    </MuiSpeedDial>

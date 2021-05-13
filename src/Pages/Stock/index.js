@@ -7,21 +7,17 @@ const columns = [
         label: 'ID'
     },
     {
-        name: 'first_name',
-        label: 'First Name'
+        name: 'name',
+        label: 'Name'
     },
     {
-        name: 'last_name',
-        label: 'Last Name'
-    },
-    {
-        name: 'email',
-        label: 'Email'
+        name: 'createdAt',
+        label: 'Created At'
     }
 ];
 
 export default function Stock() {
     return (
-        <MuiTable title="Something" baseUrl="https://reqres.in/api/users" columns={columns} moreOptions={{serverSide: false}}/>
+        <MuiTable title="Something" baseUrl="https://609c739b04bffa001792ceba.mockapi.io/phones" columns={columns} />
     );
 }
