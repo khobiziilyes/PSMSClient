@@ -43,7 +43,8 @@ export default function SpeedDial({ setSelectedForm }) {
 
     return (
     	<MuiSpeedDial
-    		direction="left"
+            FabProps={{ size: "large" }}
+    		direction="up"
 	        ariaLabel="SpeedDial"
 	        className={classes.speedDial}
 	        icon={<SpeedDialIcon />}
@@ -53,9 +54,11 @@ export default function SpeedDial({ setSelectedForm }) {
 
 	        {actions.map(action => 
 	            <SpeedDialAction
+                    FabProps={{size: 'medium'}}
 	                key={action.name + '-SpeedDialItem'}
 	                icon={action.icon}
 	                tooltipTitle={action.name}
+                    tooltipOpen
 	                onClick={() => handleSpeedDialSelect(action.name)}
 	            />
 	        ).reverse()}

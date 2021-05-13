@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Typography, Button } from '@material-ui/core';
-import MUIDataTable from "mui-datatables";
-
-const fetchData = (url) => {
-    return new Promise((resolve, reject) => {
-        fetch(url).then(response => response.json()).then(response => {
-            resolve({
-                data: response.data,
-                total: response.total
-            });
-        });
-    });
-}
+import MUIDataTables from "mui-datatables";
+import { useQuery, useQueryClient } from 'react-query'
 
 export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, moreOptions = [], ...props}) {
+    const queryClient = useQueryClient();
+
     const [currentPage, setCurrentPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageDef);
     const [searchFilter, setSearchFilter] = useState('');
     const [filterList, setFilterList] = useState([]);
     const [columnSort, setColumnSort] = useState({columnName: 'id', direction: 'asc'});
+
+    const fetchData = ({ queryKey }) => {
+        const fullUrl = baseUrl 
+                        + '?page=' + (queryKey[1] + 1)
+                        + '&limit=' + queryKey[2]
+                        + (searchFilter ? ('&filter=' + queryKey[3]) : '')
+                        + queryKey[4].map((idk1, idk2) => {
+                            if (!idk1.length) return '';
+                            return '&' + encodeURIComponent(columns[idk2].name) + '=' + encodeURIComponent(idk1[0]);
+                        }).join('');
+                        /*
+                        + '&sortby=' + queryKey[5].columnName
+                        + '&order=' + queryKey[5].direction
+                        */
+
+        return fetch(fullUrl).then(response => response.json());
+    }
+    
+    const shouldBeMonitored = [rowsPerPage, searchFilter, filterList, columnSort];
+    const { isFetching, isError, data } = useQuery(['anything', currentPage, ...shouldBeMonitored], fetchData, {
+        initialData: [],
+        placeholderData: []
+    });
+    
+    if (isError) setTimeout(() => queryClient.invalidateQueries(), 5000);
+    
+    // eslint-disable-next-line    
+    useEffect(() => queryClient.prefetchQuery(['anything', currentPage + 1, ...shouldBeMonitored], fetchData), [currentPage]);
 
     var delayTimer;
     function setSearchFilterDelayed(searchText) {
@@ -29,43 +49,14 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
         }, 2000);
     }
 
-    const [state, setState] = useState({ isLoading: true, data: [], count: 0 });
-
-    const triggerFetch = () => {
-        setState({ ...state, isLoading: true });
-
-        const fullUrl = baseUrl 
-                        + '?limit=' + rowsPerPage
-                        + '&page=' + (currentPage + 1) 
-                        + (searchFilter ? ('&filter=' + searchFilter) : '')
-                        /*
-                        + '&sortby=' + columnSort.columnName
-                        + '&order=' + columnSort.direction
-                        */
-                        + filterList.map((a, b) => {
-                            if (!a.length) return '';
-                            return '&' + encodeURIComponent(columns[b].name) + '=' + encodeURIComponent(a[0]);
-                        }).join('');
-
-        fetchData(fullUrl).then(response => {
-            setState({
-                isLoading: false,
-                data: response.data,
-                count: response.total
-            });
-        });
-    }
-
     // eslint-disable-next-line
-    useEffect(() => triggerFetch(), [currentPage]);
-    // eslint-disable-next-line
-    useEffect(() => currentPage === 0 ? triggerFetch() : setCurrentPage(0), [rowsPerPage, searchFilter, filterList, columnSort]);
+    useEffect(() => currentPage === 0 ? null : setCurrentPage(0), shouldBeMonitored);
 
     const handleCellClick = (cellMeta) => {
         let col = columns[cellMeta.colIndex];
 
         if (col.isClickable) {
-            let rowData = state.data[cellMeta.dataIndex];
+            // let rowData = state.data[cellMeta.dataIndex];
             // Open dialog of that item
         }
     }
@@ -73,7 +64,7 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
     const options = {
         onCellClick: (cellText, cellMeta) => handleCellClick(cellMeta),
         print: false,
-        count: state.count,
+        count: data === undefined ? 0 : data.total,
         filter: true,
         filterType: 'textField',
         confirmFilters: true,
@@ -100,14 +91,14 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
     }
 
     return (
-        <MUIDataTable
+        <MUIDataTables
             title={
                 <Typography variant="h6">
                     {title}
-                    {state.isLoading && <CircularProgress size={24} style={{ marginLeft: 15, position: 'relative', top: 4 }} />}
+                    {isFetching && <CircularProgress size={24} style={{ marginLeft: 15, position: 'relative', top: 4 }} />}
                 </Typography>
             }
-            data={state.data}
+            data={data === undefined ? [] : data.data}
             columns={columns}
             options={options}
             {...props}
