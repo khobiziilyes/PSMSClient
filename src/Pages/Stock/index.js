@@ -12,7 +12,14 @@ const columns = [
     },
     {
         name: 'createdAt',
-        label: 'Created At'
+        label: 'Created At',
+        
+        /*options: {
+            customBodyRender: (value, tableMeta, updateValue) => {
+                return <p>Something</p>;
+            }
+        }
+        */
     }
 ];
 

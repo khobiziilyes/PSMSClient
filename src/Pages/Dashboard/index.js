@@ -32,7 +32,7 @@ const barOptions = {
 
 const Dashboard = () => {
    return (
-        <Container maxWidth>
+        <Container>
             <Grid container spacing={3}>
                 <Grid item xs>
                     <Budget />

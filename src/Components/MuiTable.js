@@ -18,6 +18,7 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
     const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageDef);
     const [searchFilter, setSearchFilter] = useState('');
     const [filterList, setFilterList] = useState([]);
+    const [columnSort, setColumnSort] = useState({columnName: 'id', direction: 'asc'});
 
     var delayTimer;
     function setSearchFilterDelayed(searchText) {
@@ -37,6 +38,10 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
                         + '?limit=' + rowsPerPage
                         + '&page=' + (currentPage + 1) 
                         + (searchFilter ? ('&filter=' + searchFilter) : '')
+                        /*
+                        + '&sortby=' + columnSort.columnName
+                        + '&order=' + columnSort.direction
+                        */
                         + filterList.map((a, b) => {
                             if (!a.length) return '';
                             return '&' + encodeURIComponent(columns[b].name) + '=' + encodeURIComponent(a[0]);
@@ -54,18 +59,32 @@ export default function MuiTable({ title, baseUrl, columns, rowsPerPageDef = 5, 
     // eslint-disable-next-line
     useEffect(() => triggerFetch(), [currentPage]);
     // eslint-disable-next-line
-    useEffect(() => currentPage === 0 ? triggerFetch() : setCurrentPage(0), [rowsPerPage, searchFilter, filterList]);
+    useEffect(() => currentPage === 0 ? triggerFetch() : setCurrentPage(0), [rowsPerPage, searchFilter, filterList, columnSort]);
+
+    const handleCellClick = (cellMeta) => {
+        let col = columns[cellMeta.colIndex];
+
+        if (col.isClickable) {
+            let rowData = state.data[cellMeta.dataIndex];
+            // Open dialog of that item
+        }
+    }
 
     const options = {
+        onCellClick: (cellText, cellMeta) => handleCellClick(cellMeta),
+        print: false,
         count: state.count,
         filter: true,
         filterType: 'textField',
         confirmFilters: true,
+        selectableRows: 'none',
         responsive: 'vertical',
         serverSide: true,
         rowsPerPageOptions: [5, 7, 10, 30],
         page: currentPage,
         rowsPerPage: rowsPerPage,
+        sortThirdClickReset: true,
+        onColumnSortChange: (columnName, direction) => setColumnSort({columnName, direction}),
         onChangePage: (newPage) => setCurrentPage(newPage),
         onChangeRowsPerPage: (numberOfRows) => setRowsPerPage(numberOfRows),
         onSearchChange: (searchText) => setSearchFilterDelayed(searchText),

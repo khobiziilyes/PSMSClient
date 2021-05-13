@@ -11,6 +11,10 @@ import CreateOperation from './Pages/Operations/Create';
 import CreateItem from './Pages/Items/Create';
 
 /*
+	- Some resources dialog.
+	- Save as pdf.
+	- enableNestedDataAccess
+	- Print full table (Maybe serverside ?).
 	- Tables: Accessories - Operations - People - Phones - Items.
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).

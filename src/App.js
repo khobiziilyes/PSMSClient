@@ -93,9 +93,9 @@ export const App = ({ drawerWidth }) => {
                             </Box>
                         </Container>
                     </main>
-
-                    <SpeedDial setSelectedForm={setSelectedFormAndOpen}/>
                 </BrowserRouter>
+
+                <SpeedDial setSelectedForm={setSelectedFormAndOpen} />
             </div>
         </MuiThemeProvider>
     );

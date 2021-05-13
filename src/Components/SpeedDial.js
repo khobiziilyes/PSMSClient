@@ -38,7 +38,7 @@ export default function SpeedDial({ setSelectedForm }) {
 
     const handleSpeedDialSelect = (name) => {
         setSelectedForm(name);
-        setSpeedDialOpen(false);
+        handleSpeedDialClose();
     }
 
     return (
