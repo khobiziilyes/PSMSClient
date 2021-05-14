@@ -4,6 +4,9 @@ import MuiSpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
+import { useSetRecoilState } from 'recoil';
+import { dialogSelectedFormAtom, dialogIsOpenedAtom } from '@src/Atoms';
+
 import {
     Apps as IconApps,
     ShoppingCart as IconShoppingCart,
@@ -28,8 +31,11 @@ const actions = [
     {icon: <IconApps />, name: 'Item'}
 ];
 
-export default function SpeedDial({ setSelectedForm }) {
-	const classes = useStyles();
+export default function SpeedDial() {
+	const setDialogSelectedForm = useSetRecoilState(dialogSelectedFormAtom);
+    const setDialogIsOpened = useSetRecoilState(dialogIsOpenedAtom);
+
+    const classes = useStyles();
 
 	const [speedDialOpen, setSpeedDialOpen] = React.useState(false);
     
@@ -37,7 +43,8 @@ export default function SpeedDial({ setSelectedForm }) {
     const handleSpeedDialClose = () => setSpeedDialOpen(false);
 
     const handleSpeedDialSelect = (name) => {
-        setSelectedForm(name);
+        setDialogSelectedForm(name);
+        setDialogIsOpened(true);
         handleSpeedDialClose();
     }
 

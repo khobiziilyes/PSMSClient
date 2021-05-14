@@ -7,6 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { DrawerItems } from './DrawerItems';
 
+import { useRecoilState } from 'recoil';
+import { drawerIsOpenedAtom } from '@src/Atoms';
+
 const useStyles = makeStyles(theme => ({
     drawerPaper: {
         position: 'relative',
@@ -35,26 +38,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Drawer (props) {
+    const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
     const classes = useStyles(props);
-    const { open, handleDrawerClose } = props;
-    
+
     return (
         <MuiDrawer
             classes={{
-                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                paper: clsx(classes.drawerPaper, !drawerIsOpened && classes.drawerPaperClose),
             }}
 
             variant="permanent"
-            open={open} >
+            open={drawerIsOpened} >
 
             <div className={classes.toolbarIcon}>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={() => setDrawerIsOpened(false)}>
                     <ChevronLeftIcon />
                 </IconButton>
             </div>
 
             <List>
-                <DrawerItems open={open} />
+                <DrawerItems drawerIsOpened={drawerIsOpened} />
             </List>
         </MuiDrawer>
     );

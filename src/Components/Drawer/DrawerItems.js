@@ -58,9 +58,9 @@ function ListItems(props) {
     );
 }
 
-export const DrawerItems = ({open}) => {
+export const DrawerItems = ({ drawerIsOpened }) => {
     const classes = useStyles();
-    const inset = open && classes.nested;
+    const inset = drawerIsOpened && classes.nested;
 
     return (
         <>

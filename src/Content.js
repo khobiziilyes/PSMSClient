@@ -1,44 +1,60 @@
 import React from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Route, Switch } from 'react-router-dom';
-import FormDialog from '@Components/FormDialog';
+
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { dialogSelectedFormAtom, dialogIsOpenedAtom } from '@src/Atoms';
+
 import * as Pages from './Pages';
+import TestingForm from '@src/Pages/Person/Create/index0.js';
 
-/*
-	- Show resources dialog.
-	- Save as pdf.
-	- enableNestedDataAccess
-	- Print full table (Maybe serverside ?).
-	- Tables: Accessories - Operations - People - Phones - Items.
-	- Main page containing quick actions & Infos.
-	- Flexy page(s).
-	- Log-in page.
-	- https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object
-*/
+const RoutesObj = {
+	'/dashboard': Pages.Dashboard,
+	'/stock': Pages.Stock
+};
 
-const RoutesArr = {
-	"/dashboard": Pages.Dashboard,
-	"/stock": Pages.Stock
+const formsObj = {
+	'Customer': <TestingForm />,
+	'Phone': <Pages.CreatePhone />,
+	'Vendor': <Pages.CreateVendor />,
+	'Accessory': <Pages.CreateAccessory />,
+	'Item': <Pages.CreateItem />
 };
 
 const queryClient = new QueryClient();
 
-export default function Content({ dialogIsOpen,  selectedForm, handleDialogClose, handleDialogSubmit }) {
-	return (
-    	<QueryClientProvider client={queryClient}>
-    		<FormDialog open={dialogIsOpen} title={'Create new ' + selectedForm} handleClose={handleDialogClose} handleSubmit={handleDialogSubmit}>
-                {selectedForm === 'Customer' && <Pages.CreateCustomer />}
-                {selectedForm === 'Phone' && <Pages.CreatePhone />}
-                {selectedForm === 'Vendor' && <Pages.CreateVendor />}
-                {selectedForm === 'Accessory' && <Pages.CreateAccessory />}
-                {selectedForm === 'Item' && <Pages.CreateItem />}
-                {selectedForm === 'Buy' && <Pages.CreateBuy />}
-                {selectedForm === 'Sell' && <Pages.CreateSell />}
-            </FormDialog>
+export default function Content() {
+	const dialogSelectedForm = useRecoilValue(dialogSelectedFormAtom);
+	const [dialogIsOpened, setDialogIsOpened] = useRecoilState(dialogIsOpenedAtom);
+	const handleDialogClose = () => setDialogIsOpened(false);
 
-	    	<Switch>
-	        	{Object.entries(RoutesArr).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
+	return (
+		<>
+	    	<QueryClientProvider client={queryClient}>
+	    		<Dialog open={dialogIsOpened} onClose={handleDialogClose}>
+		            <DialogTitle>{'Create new ' + dialogSelectedForm.toLowerCase()}</DialogTitle>
+		            
+		            <DialogContent style={{ overflow: 'hidden' }}>
+		                {formsObj[dialogSelectedForm]}
+		            </DialogContent>
+		            
+		            <DialogActions>
+		                <Button onClick={handleDialogClose} color="primary">
+		                    Cancel
+		                </Button>
+		                
+		                <Button onClick={() => alert('Submited')} color="primary">
+		                    Submit
+		                </Button>
+		            </DialogActions>
+		        </Dialog>
+		    </QueryClientProvider>
+
+		   	<Switch>
+		    	{Object.entries(RoutesObj).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
 	        </Switch>
-	      </QueryClientProvider>
+	    </>
     );
 }

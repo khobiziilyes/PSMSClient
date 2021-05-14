@@ -7,12 +7,12 @@ import Container from '@material-ui/core/Container';
 import { BrowserRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Theme from './Theme';
+import Theme from '@src/Theme';
+import Content from '@src/Content';
 
 import Drawer from '@Components/Drawer';
 import MyAppBar from '@Components/AppBar';
 import Copyright from '@Components/Copyright';
-import Content from './Content';
 import SpeedDial from '@Components/SpeedDial';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,55 +34,23 @@ const useStyles = makeStyles((theme) => ({
 
 export const App = ({ drawerWidth }) => {
     const classes = useStyles();
-
-    const [drawerOpened, setDrawerOpened] = React.useState(false);
-    const handleDrawerOpen = () => setDrawerOpened(true);    
-    const handleDrawerClose = () => setDrawerOpened(false);
     
-    const [selectedForm, setSelectedForm] = React.useState('Customer');
-    const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
-
-    const setSelectedFormAndOpen = (newSelectedForm) => {
-        setSelectedForm(newSelectedForm);
-        setDialogIsOpen(true);
-    }
-    
-    const handleDialogClose = () => setDialogIsOpen(false);
-    
-    const handleDialogSubmit = () => {
-        alert('Form submited');
-        setDialogIsOpen(false);
-    }
-
     return (
         <MuiThemeProvider theme={Theme}>
             <CssBaseline />
 
             <div className={classes.root}>
                 <RecoilRoot>
-                    <MyAppBar
-                        open={drawerOpened}
-                        drawerWidth={drawerWidth}
-                        handleDrawerOpen={handleDrawerOpen}
-                    />
+                    <MyAppBar drawerWidth={drawerWidth} />
 
                     <BrowserRouter>    
-                        <Drawer
-                            open={drawerOpened}
-                            drawerWidth={drawerWidth}
-                            handleDrawerClose={handleDrawerClose}
-                        />
+                        <Drawer drawerWidth={drawerWidth} />
 
                         <main className={classes.main}>
                             <div className={classes.appBarSpacer} />
                             
                             <Container maxWidth='lg' className={classes.container}>
-                                <Content 
-                                    dialogIsOpen={dialogIsOpen}
-                                    selectedForm={selectedForm}
-                                    handleDialogClose={handleDialogClose}
-                                    handleDialogSubmit={handleDialogSubmit}
-                                />
+                                <Content />
 
                                 <Box pt={4}>
                                     <Copyright />
@@ -91,7 +59,7 @@ export const App = ({ drawerWidth }) => {
                         </main>
                     </BrowserRouter>
                     
-                    <SpeedDial setSelectedForm={setSelectedFormAndOpen} />
+                    <SpeedDial />
                 </RecoilRoot>
             </div>
         </MuiThemeProvider>

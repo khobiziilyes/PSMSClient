@@ -9,6 +9,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
+import { useRecoilState } from 'recoil';
+import { drawerIsOpenedAtom } from '@src/Atoms';
+
 const useStyles = makeStyles((theme) => ({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -39,19 +42,20 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function MyAppBar(props) {
-    const { open, handleDrawerOpen } = props;
-    const classes = useStyles(props);
+export default function MyAppBar() {
+    const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
+    const classes = useStyles();
 
     return (
-        <MuiAppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)} color="inherit">
+        <MuiAppBar position='absolute' className={clsx(classes.appBar, drawerIsOpened && classes.appBarShift)} color="inherit">
             <Toolbar className={classes.toolbar}>
                 <IconButton
                     edge="start"
                     color="inherit"
                     aria-label="open drawer"
-                    onClick={handleDrawerOpen}
-                    className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
+                    onClick={() => setDrawerIsOpened(true)}
+                    className={clsx(classes.menuButton, drawerIsOpened && classes.menuButtonHidden)}
+                >
                     
                     <MenuIcon />
                 </IconButton>
