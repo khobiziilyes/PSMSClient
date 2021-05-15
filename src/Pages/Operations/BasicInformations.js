@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Box } from '@material-ui/core';
-import TextField from '@Components/TextField';
-import Autocomplete from '@Components/Autocomplete';
+import Text from '@Components/Inputs/Text';
+import Autocomplete from '@Components/Inputs/Autocomplete';
 import ItemToggle from '@Components/ItemToggle';
 
 function ComplicatedGrid(props) {
@@ -27,27 +27,27 @@ export default function BasicInformations() {
                 <Grid item xs={12}>
                     <Autocomplete
                         options={['Redmi', 'Samsung', 'Nokia']}
-                        label="Select the item"
-                        required
+                        name="item_id"
+                        label={"Select the " + ''}
                     />
                 </Grid>
 
                 <Grid item xs={12}>
                     <Autocomplete
                         options={['Redmi', 'Samsung', 'Nokia']}
+                        name="Delta"
                         label="Select the quality"
-                        required
                     />
                 </Grid>
             </ComplicatedGrid>
 
             <ComplicatedGrid>
                 <Grid item xs={12}>
-                    <TextField label="Cost per item" required />
+                    <Text name="costPerItem" label="Cost per item" />
                 </Grid>
 
                 <Grid item xs={12}>
-                    <TextField label="Quantity" required />
+                    <Text name="Quantity" label="Quantity" />
                 </Grid>
             </ComplicatedGrid>
             
@@ -56,12 +56,7 @@ export default function BasicInformations() {
                     <Autocomplete
                         options={['Redmi', 'Samsung', 'Nokia']}
                         label="Select the seller"
-                        required
                     />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <TextField label="Default price" required />
                 </Grid>
             </ComplicatedGrid>
         </Grid>

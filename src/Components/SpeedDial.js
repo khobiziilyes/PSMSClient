@@ -28,7 +28,8 @@ const actions = [
     {icon: <IconLocalShipping />, name: 'Vendor'},
     {icon: <IconPhoneAndroid />, name: 'Phone'},
     {icon: <IconEmojiObjects />, name: 'Accessory'},
-    {icon: <IconApps />, name: 'Item'}
+    {icon: <IconApps />, name: 'Item'},
+    {icon: <IconApps />, name: 'Buy'}
 ];
 
 export default function SpeedDial() {
@@ -43,9 +44,9 @@ export default function SpeedDial() {
     const handleSpeedDialClose = () => setSpeedDialOpen(false);
 
     const handleSpeedDialSelect = (name) => {
+        handleSpeedDialClose();
         setDialogSelectedForm(name);
         setDialogIsOpened(true);
-        handleSpeedDialClose();
     }
 
     return (

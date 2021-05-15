@@ -1,11 +1,22 @@
 import React from 'react';
+import * as Yup from 'yup';
+
 import { Typography, Grid, Step, Stepper, StepLabel, Button } from '@material-ui/core';
-import TextField from '@Components/TextField';
+import Text from '@Components/Inputs/Text';
 import { makeStyles } from '@material-ui/styles';
-import Autocomplete from '@Components/Autocomplete';
+import Autocomplete from '@Components/Inputs/Autocomplete';
 import BasicInformations from './BasicInformations';
 
-const steps = ['Basic informations', 'IMEI codes', 'Review operation'];
+const formikParams = {
+    initialValues: {
+        
+    },
+    validationSchema: Yup.object({
+        
+    })
+}
+
+const steps = ['Basic informations', 'Review operation'];
 
 const useStyles = makeStyles((theme) => ({
     buttons: {
@@ -23,69 +34,30 @@ function getStepContent(step) {
         case 0:
             return <BasicInformations />;
         case 1:
-            return <IMEICodes quantity={7} isBu />;
-        case 2:
             return <></>;
         default:
             throw new Error('Unknown step');
     }
 }
 
-function IMEICodes({quantity, isBuy}) {
-    var theInputs = [];
-
-    for (var i = 1; i <= quantity; i++) {
-        const props = {
-            label: "IMEI " + i,
-            name: "IMEI" + i,
-            required: true
-        };
-
-        theInputs.push(
-            <Grid item xs={4}> 
-                { isBuy ? (
-                    <TextField {...props} />
-                ) : (
-                    <Autocomplete {...props} options={['Just', 'For', 'Fun']} />)
-                }
-            </Grid>
-        );
-    }
-
-    return (
-        <Grid container spacing={3}>
-            {theInputs}
-        </Grid>
-    );
-}
-
-const CreateBuy = ({isBuy}) => {
+function TheForm({ isSubmitting, isBuy }) {
     const [activeStep, setActiveStep] = React.useState(0);
-
-    const handleNext = () => 
-        setActiveStep(activeStep + 1);
-
-    const handleBack = () => 
-        setActiveStep(activeStep - 1);
+    const handleNext = () => setActiveStep(activeStep + 1);
+    const handleBack = () => setActiveStep(activeStep - 1);
 
     const classes = useStyles();
 
 	return (
 		<>
             <Stepper activeStep={activeStep}>
-                {
-                    steps.map((label) => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))
-                }
+                {steps.map((label) => (
+                    <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                    </Step>
+                ))}
             </Stepper>
 
-            <Typography variant="h6" gutterBottom>
-                {steps[activeStep]}
-            </Typography>
-
+            <Typography variant="h6" gutterBottom> {steps[activeStep]} </Typography>
             {
                 activeStep === steps.length ? (
                     <>
@@ -98,11 +70,9 @@ const CreateBuy = ({isBuy}) => {
                         {getStepContent(activeStep)}
 
                         <div className={classes.buttons}>
-                            {
-                                activeStep !== 0 && (
-                                    <Button onClick={handleBack} className={classes.button}> Back </Button>
-                                )
-                            }
+                            {activeStep !== 0 && (
+                                <Button onClick={handleBack} className={classes.button}> Back </Button>
+                            )}
 
                             <Button
                                 className={classes.button}
@@ -118,4 +88,7 @@ const CreateBuy = ({isBuy}) => {
 	);
 }
 
-export default CreateBuy;
+export {
+    formikParams,
+    TheForm
+}

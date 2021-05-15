@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import { Formik, Form } from 'formik';
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Route, Switch } from 'react-router-dom';
@@ -8,53 +9,64 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { dialogSelectedFormAtom, dialogIsOpenedAtom } from '@src/Atoms';
 
 import * as Pages from './Pages';
-import TestingForm from '@src/Pages/Person/Create/index0.js';
 
 const RoutesObj = {
 	'/dashboard': Pages.Dashboard,
 	'/stock': Pages.Stock
-};
+}
 
-const formsObj = {
-	'Customer': <TestingForm />,
-	'Phone': <Pages.CreatePhone />,
-	'Vendor': <Pages.CreateVendor />,
-	'Accessory': <Pages.CreateAccessory />,
-	'Item': <Pages.CreateItem />
-};
+const onSubmit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+        setSubmitting(false);
+        alert(JSON.stringify(values, null, 4));
+    }, 4000);
+}
 
 const queryClient = new QueryClient();
 
 export default function Content() {
 	const dialogSelectedForm = useRecoilValue(dialogSelectedFormAtom);
 	const [dialogIsOpened, setDialogIsOpened] = useRecoilState(dialogIsOpenedAtom);
-	const handleDialogClose = () => setDialogIsOpened(false);
 
 	return (
-		<>
-	    	<QueryClientProvider client={queryClient}>
-	    		<Dialog open={dialogIsOpened} onClose={handleDialogClose}>
-		            <DialogTitle>{'Create new ' + dialogSelectedForm.toLowerCase()}</DialogTitle>
+    	<QueryClientProvider client={queryClient}>
+    		<Dialog open={dialogIsOpened} disableBackdropClick disableEscapeKeyDown>
+	            <DialogTitle>{'Create new ' + dialogSelectedForm.toLowerCase()}</DialogTitle>
+
+	            <Formik onSubmit={onSubmit} {...Pages['Create' + dialogSelectedForm].formikParams}>
+		            {({ submitForm, isSubmitting, isValid, errors, touched }) => (
+		                <>
+		                    <DialogContent style={{ overflow: 'hidden' }}>
+		                        <Typography variant="h6" gutterBottom>
+		                            Basic Informations
+		                        </Typography>
+
+		                        <Form>
+		                            {React.createElement(Pages['Create' + dialogSelectedForm].TheForm, {
+		                            	isSubmitting,
+		                            	errors,
+		                            	touched
+		                            })}
+		                        </Form>
+		                    </DialogContent>
 		            
-		            <DialogContent style={{ overflow: 'hidden' }}>
-		                {formsObj[dialogSelectedForm]}
-		            </DialogContent>
-		            
-		            <DialogActions>
-		                <Button onClick={handleDialogClose} color="primary">
-		                    Cancel
-		                </Button>
-		                
-		                <Button onClick={() => alert('Submited')} color="primary">
-		                    Submit
-		                </Button>
-		            </DialogActions>
-		        </Dialog>
-		    </QueryClientProvider>
+		                    <DialogActions>
+		                        <Button onClick={() => setDialogIsOpened(false)} color="primary" disabled={isSubmitting}>
+		                            Cancel
+		                        </Button>
+		                        
+		                        <Button onClick={submitForm} color="primary" disabled={isSubmitting}>
+		                            Submit
+		                        </Button>
+		                    </DialogActions>
+		                </>
+		            )}
+		        </Formik>
+	        </Dialog>
 
 		   	<Switch>
 		    	{Object.entries(RoutesObj).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}
 	        </Switch>
-	    </>
+        </QueryClientProvider>
     );
 }

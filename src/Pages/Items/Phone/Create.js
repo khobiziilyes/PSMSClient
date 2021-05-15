@@ -1,36 +1,47 @@
 import React from 'react';
+import * as Yup from 'yup';
+
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@Components/TextField';
-import Autocomplete from '@Components/Autocomplete';
-import Notes from '@Components/Notes';
+import Autocomplete from '@Components/Inputs/Autocomplete';
+import Notes from '@Components/Inputs/Notes';
+import Text from '@Components/Inputs/Text';
 
-const CreatePhone = () => {
+const formikParams = {
+    initialValues: {
+        name: '',
+        brand: '',
+        notes: ''
+    },
+    validationSchema: Yup.object({
+        name: Yup.string().min(8).required('Required'),
+        brand: Yup.string().required('Required'),
+        notes: Yup.string().min(8)
+    })
+}
+
+function TheForm({ isSubmitting }) {
 	return (
-		<>
-            <Typography variant="h6" gutterBottom>
-                Basic Informations
-            </Typography>
-            
-            <Grid container spacing={3}>
-                <Grid item xs={6}>
-					<Autocomplete
-						options={['Redmi', 'Samsung', 'Nokia']}
-						label="Brand name"
-                        required
-					/>
-                </Grid>
-
-                <Grid item xs={6}>
-                    <TextField label="Phone name" required />
-                </Grid>
-
-                <Grid item xs>
-                    <Notes />
-                </Grid>
+        <Grid container spacing={3}>
+            <Grid item xs={6}>
+				<Autocomplete
+                    name="brand"
+					label="Brand name"
+					options={['Redmi', 'Samsung', 'Nokia']}
+				/>
             </Grid>
-		</>
+
+            <Grid item xs={6}>
+                <Text name="name" label="Phone name" />
+            </Grid>
+
+            <Grid item xs>
+                <Notes />
+            </Grid>
+        </Grid>
 	);
 }
 
-export default CreatePhone;
+export {
+    formikParams,
+    TheForm
+}
