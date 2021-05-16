@@ -1,18 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
-import MuiAppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
+import { makeStyles, fade } from '@material-ui/core/styles';
+
+import { AppBar as MuiAppBar, Toolbar, Typography, IconButton, Badge } from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import { useRecoilState } from 'recoil';
 import { drawerIsOpenedAtom } from '@src/Atoms';
+import BarSearch from '@Components/BarSearch';
 
 const useStyles = makeStyles((theme) => ({
+    grow: {
+        flexGrow: 1,
+    },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
@@ -37,12 +39,24 @@ const useStyles = makeStyles((theme) => ({
     menuButtonHidden: {
         display: 'none'
     },
-    title: {
-        flexGrow: 1,
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25)
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(3),
+            width: 'auto'
+        }
     }
 }));
 
-export default function MyAppBar() {
+export default function AppBar() {
     const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
     const classes = useStyles();
 
@@ -54,9 +68,7 @@ export default function MyAppBar() {
                     color="inherit"
                     aria-label="open drawer"
                     onClick={() => setDrawerIsOpened(true)}
-                    className={clsx(classes.menuButton, drawerIsOpened && classes.menuButtonHidden)}
-                >
-                    
+                    className={clsx(classes.menuButton, drawerIsOpened && classes.menuButtonHidden)}>
                     <MenuIcon />
                 </IconButton>
 
@@ -64,7 +76,13 @@ export default function MyAppBar() {
                     PSMS - Phone Store Management System
                 </Typography>
                 
-                <IconButton color="inherit">
+                <div className={classes.search}>
+                    <BarSearch />
+                </div>
+                
+                <div className={classes.grow} />
+                
+                <IconButton color="inherit" className={classes.notifIcon}>
                     <Badge badgeContent={'99+'} color="secondary">
                         <NotificationsIcon />
                     </Badge>

@@ -4,19 +4,21 @@ import * as CreateAccessory from './Items/Accessory/Create';
 import * as CreatePhone from './Items/Phone/Create';
 import * as CreatePerson from './Person/Create';
 import * as CreateItem from './Items/Create';
-import * as CreateOperation from './Operations/Create';
+import * as CreateTransaction from './Transactions/Create';
 
 const CreateVendorForm = (props) => <CreatePerson.TheForm isVendor {...props} />;
-const CreateBuyForm = (props) => <CreateOperation.TheForm isBuy {...props} />;
+const CreateBuyForm = (props) => <CreateTransaction.TheForm isBuy {...props} />;
 
 const CreateVendor = {
+	...CreatePerson,
 	TheForm: CreateVendorForm,
 	formikProps: CreatePerson.formikParams
 }
 
 const CreateBuy = {
+	...CreateTransaction,
 	TheForm: CreateBuyForm,
-	formikProps: CreateOperation.formikParams
+	formikProps: CreateTransaction.formikParams
 }
 
 export {
@@ -30,6 +32,6 @@ export {
 	CreateAccessory,
 	CreateItem,
 	
-	CreateOperation as CreateSell,
+	CreateTransaction as CreateSell,
 	CreateBuy
 };

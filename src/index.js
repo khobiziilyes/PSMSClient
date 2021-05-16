@@ -7,7 +7,7 @@ import { App } from './App';
 	- Save as pdf.
 	- enableNestedDataAccess
 	- Print full table (Maybe serverside ?).
-	- Tables: Accessories - Operations - People - Phones - Items.
+	- Tables: Accessories - Transactions - People - Phones - Items.
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).
 	- Log-in page.

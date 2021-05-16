@@ -43,9 +43,7 @@ export default function Content() {
 
 		                        <Form>
 		                            {React.createElement(Pages['Create' + dialogSelectedForm].TheForm, {
-		                            	isSubmitting,
-		                            	errors,
-		                            	touched
+		                            	isSubmitting
 		                            })}
 		                        </Form>
 		                    </DialogContent>
