@@ -1,19 +1,13 @@
 import React from 'react';
-import { RecoilRoot } from 'recoil';
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import { BrowserRouter } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, } from '@material-ui/core/styles';
+import { Box, Container, CssBaseline } from '@material-ui/core';
 
-import Theme from '@src/Theme';
 import Content from '@src/Content';
 
+import AppBar from '@Components/AppBar';
 import Drawer from '@Components/Drawer';
-import MyAppBar from '@Components/AppBar';
-import Copyright from '@Components/Copyright';
 import SpeedDial from '@Components/SpeedDial';
+import Copyright from '@Components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,32 +30,27 @@ export const App = ({ drawerWidth }) => {
     const classes = useStyles();
     
     return (
-        <MuiThemeProvider theme={Theme}>
+        <>
             <CssBaseline />
 
             <div className={classes.root}>
-                <RecoilRoot>
-                    <MyAppBar drawerWidth={drawerWidth} />
+                <AppBar drawerWidth={drawerWidth} />
+                <Drawer drawerWidth={drawerWidth} />
 
-                    <BrowserRouter>    
-                        <Drawer drawerWidth={drawerWidth} />
-
-                        <main className={classes.main}>
-                            <div className={classes.appBarSpacer} />
-                            
-                            <Container maxWidth='lg' className={classes.container}>
-                                <Content />
-
-                                <Box pt={4}>
-                                    <Copyright />
-                                </Box>
-                            </Container>
-                        </main>
-                    </BrowserRouter>
+                <main className={classes.main}>
+                    <div className={classes.appBarSpacer} />
                     
-                    <SpeedDial />
-                </RecoilRoot>
+                    <Container maxWidth='lg' className={classes.container}>
+                        <Content />
+
+                        <Box pt={4}>
+                            <Copyright />
+                        </Box>
+                    </Container>
+                </main>
+                
+                <SpeedDial />
             </div>
-        </MuiThemeProvider>
+        </>
     );
 }

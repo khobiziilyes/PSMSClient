@@ -27,40 +27,39 @@ const queryClient = new QueryClient();
 export default function Content() {
 	const dialogSelectedForm = useRecoilValue(dialogSelectedFormAtom);
 	const [dialogIsOpened, setDialogIsOpened] = useRecoilState(dialogIsOpenedAtom);
+	const handleDialogClose = () => setDialogIsOpened(false);
 
 	return (
     	<QueryClientProvider client={queryClient}>
-    		<Dialog open={dialogIsOpened} disableBackdropClick disableEscapeKeyDown>
-	            <DialogTitle>{'Create new ' + dialogSelectedForm.toLowerCase()}</DialogTitle>
+    		<Formik onSubmit={onSubmit} {...Pages['Create' + dialogSelectedForm].formikParams}>
+	            {({ submitForm, isSubmitting, isValid, errors, touched }) => (
+	                <Dialog open={dialogIsOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleDialogClose}>
+	                    <DialogTitle>{'Create new ' + dialogSelectedForm.toLowerCase()}</DialogTitle>
 
-	            <Formik onSubmit={onSubmit} {...Pages['Create' + dialogSelectedForm].formikParams}>
-		            {({ submitForm, isSubmitting, isValid, errors, touched }) => (
-		                <>
-		                    <DialogContent style={{ overflow: 'hidden' }}>
-		                        <Typography variant="h6" gutterBottom>
-		                            Basic Informations
-		                        </Typography>
+	                    <DialogContent style={{ overflow: 'hidden' }}>
+	                        <Typography variant="h6" gutterBottom>
+	                            Basic Informations
+	                        </Typography>
 
-		                        <Form>
-		                            {React.createElement(Pages['Create' + dialogSelectedForm].TheForm, {
-		                            	isSubmitting
-		                            })}
-		                        </Form>
-		                    </DialogContent>
-		            
-		                    <DialogActions>
-		                        <Button onClick={() => setDialogIsOpened(false)} color="primary" disabled={isSubmitting}>
-		                            Cancel
-		                        </Button>
-		                        
-		                        <Button onClick={submitForm} color="primary" disabled={isSubmitting}>
-		                            Submit
-		                        </Button>
-		                    </DialogActions>
-		                </>
-		            )}
-		        </Formik>
-	        </Dialog>
+	                        <Form>
+	                            {React.createElement(Pages['Create' + dialogSelectedForm].TheForm, {
+	                            	isSubmitting
+	                            })}
+	                        </Form>
+	                    </DialogContent>
+	            
+	                    <DialogActions>
+	                        <Button onClick={handleDialogClose} color="primary" disabled={isSubmitting}>
+	                            Cancel
+	                        </Button>
+	                        
+	                        <Button onClick={submitForm} color="primary" disabled={isSubmitting}>
+	                            Submit
+	                        </Button>
+	                    </DialogActions>
+	                </Dialog>
+	            )}
+	        </Formik>
 
 		   	<Switch>
 		    	{Object.entries(RoutesObj).map(([index, value]) => <Route key={value + "-route"} path={index} component={value} />)}

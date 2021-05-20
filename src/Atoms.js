@@ -15,4 +15,10 @@ const dialogSelectedFormAtom = atom({
 	default: 'Customer'
 });
 
-export { drawerIsOpenedAtom, dialogIsOpenedAtom, dialogSelectedFormAtom };
+const userAtom = atom({
+    key: 'user',
+    default: null
+});
+
+
+export { drawerIsOpenedAtom, dialogIsOpenedAtom, dialogSelectedFormAtom, userAtom };

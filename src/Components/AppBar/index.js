@@ -1,13 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '@src/Atoms';
 import clsx from 'clsx';
 import { makeStyles, fade } from '@material-ui/core/styles';
 
 import { AppBar as MuiAppBar, Toolbar, Typography, IconButton, Badge } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import { useRecoilState } from 'recoil';
 import { drawerIsOpenedAtom } from '@src/Atoms';
 import BarSearch from '@Components/BarSearch';
 
@@ -60,6 +63,11 @@ export default function AppBar() {
     const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
     const classes = useStyles();
 
+    const [user, setUser] = useRecoilState(userAtom);
+    const LogOut = () => setUser(null);
+    
+    if (!user) return <Redirect to='/Signin' />;
+
     return (
         <MuiAppBar position='absolute' className={clsx(classes.appBar, drawerIsOpened && classes.appBarShift)} color="inherit">
             <Toolbar className={classes.toolbar}>
@@ -82,10 +90,14 @@ export default function AppBar() {
                 
                 <div className={classes.grow} />
                 
-                <IconButton color="inherit" className={classes.notifIcon}>
+                <IconButton color="inherit">
                     <Badge badgeContent={'99+'} color="secondary">
                         <NotificationsIcon />
                     </Badge>
+                </IconButton>
+
+                <IconButton color="inherit" onClick={LogOut}>
+                    <ExitToApp />
                 </IconButton>
             </Toolbar>
         </MuiAppBar>
