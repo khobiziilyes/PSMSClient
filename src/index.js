@@ -1,22 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilValue } from 'recoil';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
+import { userAtom } from './Atoms';
 import { App } from './App';
 import Signin from './Pages/Signin';
 import Theme from '@src/Theme';
 
+
+axios.defaults.baseURL = 'http://localhost:8000/api/';
+axios.defaults.responseType = 'json';
+
+axios.defaults.headers.common['accept'] = 'application/json';
+axios.defaults.headers.common['content-type'] = 'application/json';
+
 /*
-	- Show resources dialog.
-	- SearchBar onChange.
+	- Transactions Carts.
+
+	- Show resources dialogs.
+	- Show notes everywhere.
+	- SearchBar to sell.
+	- Show menus depending on authorizations.
 	
 	- Save Table as pdf.
 	- enableNestedDataAccess
 	- Print full table (Maybe serverside ?).
-	- Tables: Accessories - Transactions - People - Phones - Items.
 	
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).
@@ -25,16 +37,8 @@ import Theme from '@src/Theme';
 */
 
 function FullApp() {
-	return (
-		<>
-			<Switch>
-				<Route path='/Signin' component={Signin} exact />
-				<Route path='/' component={() => <App drawerWidth={240} />} />
-			</Switch>
-
-			<Redirect to='/Signin' />
-		</>
-	);
+	const user = useRecoilValue(userAtom);
+	return <Redirect to={user ? '/' : "/Signin"} />;
 }
 
 ReactDOM.render(
@@ -42,7 +46,12 @@ ReactDOM.render(
     	<RecoilRoot>
     		<BrowserRouter>
     			<MuiThemeProvider theme={Theme}>
-    				<FullApp />
+    				<Switch>
+						<Route path='/Signin' component={Signin} exact />
+						<Route path='/' component={() => <App drawerWidth={240} />} />
+					</Switch>
+
+					<FullApp />
     			</MuiThemeProvider>
     		</BrowserRouter>
     	</RecoilRoot>

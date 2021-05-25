@@ -68,20 +68,20 @@ export const DrawerItems = ({ drawerIsOpened }) => {
             
             <Divider />
 
-            <ListItem theTo='/stock' theText='Customers' theIcon={IconShoppingCart} />
-            <ListItem theTo='/vendors/list' theText='Vendors' theIcon={IconLocalShipping} />
+            <ListItem theTo='/customers' theText='Customers' theIcon={IconShoppingCart} />
+            <ListItem theTo='/vendors' theText='Vendors' theIcon={IconLocalShipping} />
 
             <Divider />
 
-            <ListItem theTo='/phones/list' theText='Phones' theIcon={IconPhoneAndroid} />
-            <ListItem theTo='/accessories/list' theText='Accessories'theIcon={IconEmojiObjects} />
-            <ListItem theTo='/items/list' theText='Items'theIcon={IconApps} />
+            <ListItem theTo='/phones' theText='Phones' theIcon={IconPhoneAndroid} />
+            <ListItem theTo='/accessories' theText='Accessories'theIcon={IconEmojiObjects} />
+            <ListItem theTo='/items' theText='Items'theIcon={IconApps} />
             
             <Divider />
 
-            <ListItem theTo='/payments/list' theText='Payments' theIcon={IconAttachMoney} />
+            <ListItem theTo='/transactions' theText='Transactions' theIcon={IconAttachMoney} />
 
-            {false && <ListSubheader inset>Payments</ListSubheader>}
+            {false && <ListSubheader inset>Transactions</ListSubheader>}
         </>
     );
 }

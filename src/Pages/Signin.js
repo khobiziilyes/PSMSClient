@@ -1,8 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { userAtom } from '@src/Atoms';
 import { Avatar, Button, CssBaseline, Link, Grid, Box, Typography, Container } from '@material-ui/core';
 
@@ -55,7 +54,7 @@ function TextField(props) {
 
 export default function Signin() {
     const classes = useStyles();
-    const [user, setUser] = useRecoilState(userAtom);
+    const setUser = useSetRecoilState(userAtom);
 
     const onSubmit = (values, { setSubmitting }) => {
         setTimeout(() => {
@@ -63,8 +62,6 @@ export default function Signin() {
             setUser({'name': values.email});
         }, 4000);
     }
-
-    if (user) return <Redirect to='/dashboard' />;
 
     return (
         <Container component="main" maxWidth="xs">

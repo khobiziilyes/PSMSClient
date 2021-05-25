@@ -17,7 +17,7 @@ const dialogSelectedFormAtom = atom({
 
 const userAtom = atom({
     key: 'user',
-    default: null
+    default: {name: 'A', email: 'B'}
 });
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { userAtom } from '@src/Atoms';
 import clsx from 'clsx';
 import { makeStyles, fade } from '@material-ui/core/styles';
@@ -63,10 +62,8 @@ export default function AppBar() {
     const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
     const classes = useStyles();
 
-    const [user, setUser] = useRecoilState(userAtom);
+    const setUser = useSetRecoilState(userAtom);
     const LogOut = () => setUser(null);
-    
-    if (!user) return <Redirect to='/Signin' />;
 
     return (
         <MuiAppBar position='absolute' className={clsx(classes.appBar, drawerIsOpened && classes.appBarShift)} color="inherit">
@@ -85,7 +82,13 @@ export default function AppBar() {
                 </Typography>
                 
                 <div className={classes.search}>
-                    <BarSearch />
+                    <BarSearch
+                        formatURL={(query) => "http://localhost:8000/api/phones"}
+                        formatData={(data) => data}
+                        getOptionLabel={(option) => option.name}
+                        getOptionSelected={(option, value) => option.name === value.name}
+                        onChange={(event, value) => console.log(value)}
+                    />
                 </div>
                 
                 <div className={classes.grow} />

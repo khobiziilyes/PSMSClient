@@ -12,7 +12,12 @@ import * as Pages from './Pages';
 
 const RoutesObj = {
 	'/dashboard': Pages.Dashboard,
-	'/stock': Pages.Stock
+	'/vendors': Pages.VendorsList,
+	'/customers': Pages.CustomersList,
+	'/phones': Pages.PhonesList,
+	'/accessories': Pages.AccessoriesList,
+	'/items': Pages.ItemsList,
+	'/transactions': Pages.TransactionsList
 }
 
 const onSubmit = (values, { setSubmitting }) => {
