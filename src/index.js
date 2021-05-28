@@ -25,7 +25,7 @@ axios.defaults.headers.common['content-type'] = 'application/json';
 	- Show notes everywhere.
 	- SearchBar to sell.
 	- Show menus depending on authorizations.
-	
+
 	- Save Table as pdf.
 	- enableNestedDataAccess
 	- Print full table (Maybe serverside ?).

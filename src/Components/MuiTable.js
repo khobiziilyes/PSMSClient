@@ -64,7 +64,6 @@ export default function MuiTable({ title, URL, columns, dependingRowColor = null
 
         const { data } = await axios.get(fullUrl);
         return data;
-        //return fetch(fullUrl).then(response => response.json());
     }
     
     const shouldBeMonitored = [rowsPerPage, searchFilter, filterList, columnSort];
@@ -133,7 +132,7 @@ export default function MuiTable({ title, URL, columns, dependingRowColor = null
                 }
             })
         } : []),
-        ...moreOptions
+        ...(moreOptions ? (Array.isArray(moreOptions) ? moreOptions : moreOptions(data)) : [])
     }
 
     return (

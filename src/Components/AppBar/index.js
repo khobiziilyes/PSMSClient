@@ -83,7 +83,7 @@ export default function AppBar() {
                 
                 <div className={classes.search}>
                     <BarSearch
-                        formatURL={(query) => "http://localhost:8000/api/phones"}
+                        formatURL={(query) => "/phones"}
                         formatData={(data) => data}
                         getOptionLabel={(option) => option.name}
                         getOptionSelected={(option, value) => option.name === value.name}

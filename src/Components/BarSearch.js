@@ -1,5 +1,6 @@
 import React from 'react'
 import {hotkeys} from 'react-keyboard-shortcuts';
+import axios from 'axios';
 
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -19,16 +20,7 @@ function BarSearchComp({ formatData, formatURL, ...props }) {
         if (!open) return;
         setLoading(true);
         
-        const response = await fetch(formatURL(query), {
-            method: 'POST',
-            body: JSON.stringify({query}),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
-
-        const data = await response.json();
+        const { data } = await axios.post(formatURL(query), {query});
         
         setOptions(formatData(data));
         setLoading(false);
