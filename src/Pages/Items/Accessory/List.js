@@ -1,5 +1,6 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
+import ShowAccessory from './Show';
 
 const columns = [
     {
@@ -19,11 +20,18 @@ const columns = [
                 return 'FUCK ' + value;
             }
         }
+
     }
 ];
 
 export default function AccessoriesList() {
     return (
-        <MuiTable title="Accessories list" URL="/accessories" columns={columns} />
+        <MuiTable
+            title="Accessories list"
+            URL="/accessories"
+            columns={columns}
+            getNameFromData={(rowData) => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
+            DialogContent={ShowAccessory}
+        />
     );
 }

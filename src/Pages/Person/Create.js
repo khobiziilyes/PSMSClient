@@ -6,6 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import TextField from '@Components/Inputs/Text';
 
+const Params = {
+    URL: '/customers',
+    formatData: ({ firstName = '', lastName = '', ...values }) => ({name: firstName + ' ' + lastName, ...values})
+}
+
 const formikParams = {
     initialValues: {
         firstName: '',
@@ -17,8 +22,8 @@ const formikParams = {
     },
     validationSchema: Yup.object({
         firstName: Yup.string().required('Must be not empty'),
-        lastName: Yup.number().required('Hmmmmmm').typeError('Must be numeric'),
-        phone1: Yup.string(),
+        lastName: Yup.string().required('Must be not empty'),
+        phone1: Yup.number().required('This field is required.').typeError('Must be numeric'),
         phone2: Yup.string(),
         fax: Yup.string(),
         address: Yup.string(),
@@ -92,6 +97,7 @@ function TheForm({ isVendor, isSubmitting }) {
 }
 
 export {
+    Params,
     formikParams,
     TheForm
 }

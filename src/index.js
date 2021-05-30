@@ -11,20 +11,24 @@ import { App } from './App';
 import Signin from './Pages/Signin';
 import Theme from '@src/Theme';
 
-
 axios.defaults.baseURL = 'http://localhost:8000/api/';
 axios.defaults.responseType = 'json';
 
-axios.defaults.headers.common['accept'] = 'application/json';
-axios.defaults.headers.common['content-type'] = 'application/json';
+axios.defaults.headers.common['Accept'] = 'application/json';
+//axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 /*
-	- Transactions Carts.
+	- Hand mouse on table hover.
+	
+	- Add formatData(data) for MuiTable.
+	- Deleted transactions should be colored.
+	- Generate dummy data in tables to keep scroll.
+	- Split items to Phones/Accessories & Transactions to Sell/Buy.
 
 	- Show resources dialogs.
 	- Show notes everywhere.
 	- SearchBar to sell.
-	- Show menus depending on authorizations.
+	- Show menus dependings on authorizations.
 
 	- Save Table as pdf.
 	- enableNestedDataAccess
@@ -34,6 +38,7 @@ axios.defaults.headers.common['content-type'] = 'application/json';
 	- Flexy page(s).
 	- Log-in page.
 	- https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object
+	- https://github.com/nwjs/nw.js/issues/7182 --disable-web-security
 */
 
 function FullApp() {

@@ -1,12 +1,13 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-
-import { TableCell, TableRow } from '@material-ui/core';
 import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { EmojiObjects, PhoneAndroid } from '@material-ui/icons';
+import ShowTransaction from './Show';
+import { makeStyles } from '@material-ui/core/styles';
 
 const columns = [
-	{
+	/*
+    {
 		name: 'isBuy',
 		label: 'Type',
 		options: {
@@ -20,16 +21,11 @@ const columns = [
             }
     	}
 	},
-    {
-        name: 'carts',
-        label: 'carts',
-        options: {
-            display: 'excluded'
-        }
-    },
+    */
 	{
 		name: 'person.name',
-		label: 'Person'
+		label: 'Person',
+        filterName: 'person'
 	},
 	{
 		name: 'deleted_at',
@@ -42,22 +38,21 @@ const columns = [
         name: 'carts',
         label: 'List',
         options: {
+            filter: false,
             customBodyRender: (itemsList) => (
                 <List dense>
-                    {itemsList.map((item) => {
-                        const iconProps = {
+                    {itemsList.map((item, i) => {
+                        const colorProp = {
                             color: item.priceChanged ? 'error' : 'inherit'
                         };
 
                         return (
-                            <ListItem>
+                            <ListItem key={'cart' + i + item.costPerItem + item.item.itemable.name}>
                                 <ListItemIcon>
-                                    {item.item.isPhone ? <PhoneAndroid {...iconProps} />  : <EmojiObjects {...iconProps} />}
+                                    {item.item.isPhone ? <PhoneAndroid {...colorProp} />  : <EmojiObjects {...colorProp} />}
                                 </ListItemIcon>
 
                                 <ListItemText
-                                    {...iconProps}
-                                    primaryTypographyProps={{style: iconProps}}
                                     primary={item.item.itemable.name}
                                     secondary={`${item.Quantity} ✖ ${item.costPerItem}`}
                                 />
@@ -70,39 +65,28 @@ const columns = [
     }
 ];
 
-const moreOptions = (data) => {
-    return {
-        responsive: 'stacked',
-        expandableRows: true,
-        expandableRowsOnClick: true,
-        renderExpandableRow: (rowData) => {
-            const Carts = rowData[2];
-            
-            return Carts.map((Cart, i) => (
-                <TableRow key={i + Cart.item.itemable.name} { ...(Cart.priceChanged && {style: {backgroundColor: 'rgba(255, 229, 3, 0.15)'}})}>
-                    <TableCell component="th" scope="row">{'#' + (i + 1)}</TableCell>
-                    <TableCell align="right">{Cart.item.itemable.name}</TableCell>
-                    <TableCell align="right">{Cart.item.itemable.brand}</TableCell>
-                    <TableCell align="right">{Cart.Quantity}</TableCell>
-                    <TableCell align="right">{Cart.costPerItem}</TableCell>
-                    <TableCell align="right">{Cart.costPerItem * Cart.Quantity}</TableCell>
-                </TableRow>
-            ));
-        },
-        //rowsExpanded: [...Array(data.data ? data.data.length : 0).keys()]
-    };
-}
+const useStyles = makeStyles({
+    redRow: {
+        '& td': {
+            color: '#C40234'
+        }
+    }
+});
 
-export default function TransactionsList() {
+export default function TransactionsList({ isBuy }) {
+    const classes = useStyles();
+
     return (
         <MuiTable
         	title="Transactions list"
         	URL="/transactions"
         	columns={columns}
-        	includeUpdateAttributes={false}
-        	//dependingRowColor={(row) => row[1] ? '#cf352e' : '#2e8b57'}
-            //moreOptions={moreOptions}
-            //components={{ExpandButton: () => null}}
+        	includeUpdateColumns={false}
+            initialFilters={{ isBuy: isBuy ? 1 : 0, withTrashed: 1 }}
+        	dependingRowColor={(row) => row.deleted_at && classes.redRow}
+            getNameFromData={() => 'Transaction Details'}
+            DialogContent={ShowTransaction}
+            StandardDialog={false}
         />
     );
 }

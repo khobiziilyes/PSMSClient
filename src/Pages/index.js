@@ -12,7 +12,9 @@ import * as CreatePerson from './Person/Create';
 import * as CreateItem from './Items/Create';
 import * as CreateTransaction from './Transactions/Create';
 
-const VendorsList = (props) => <PeopleList isVendor />;
+const VendorsList = (props) => <PeopleList isVendor {...props} />;
+const BuysList = (props) => <TransactionsList isBuy {...props} />;
+const ItemsPhonesList = (props) => <ItemsList isPhone {...props} />;
 
 const CreateVendorForm = (props) => <CreatePerson.TheForm isVendor {...props} />;
 const CreateVendor = {
@@ -35,8 +37,10 @@ export {
 	VendorsList,
 	PhonesList,
 	AccessoriesList,
-	ItemsList,
-	TransactionsList,
+	ItemsList as ItemsAccessoriesList,
+	ItemsPhonesList,
+	TransactionsList as SellsList,
+	BuysList,
 
 	CreatePerson as CreateCustomer,
 	CreateVendor,

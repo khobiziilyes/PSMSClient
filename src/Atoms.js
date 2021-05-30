@@ -5,13 +5,13 @@ const drawerIsOpenedAtom = atom({
     default: false
 });
 
-const dialogIsOpenedAtom = atom({
-	key: 'dialogIsOpenedAtom',
+const formDialogIsOpenedAtom = atom({
+	key: 'formDialogIsOpenedAtom',
 	default: false
 });
 
-const dialogSelectedFormAtom = atom({
-	key: 'dialogSelectedFormAtom',
+const formDialogSelectedFormAtom = atom({
+	key: 'formDialogSelectedFormAtom',
 	default: 'Customer'
 });
 
@@ -21,4 +21,11 @@ const userAtom = atom({
 });
 
 
-export { drawerIsOpenedAtom, dialogIsOpenedAtom, dialogSelectedFormAtom, userAtom };
+export {
+	drawerIsOpenedAtom,
+	
+	formDialogIsOpenedAtom,
+	formDialogSelectedFormAtom,
+	
+	userAtom
+};

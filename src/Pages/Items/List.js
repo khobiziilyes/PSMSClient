@@ -1,5 +1,6 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
+import ShowItem from './Show';
 
 /*
 	totalBuyCost
@@ -19,6 +20,7 @@ import MuiTable from '@Components/MuiTable';
 */
 
 const columns = [
+    /*
     {
     	name: 'isPhone',
     	label: 'Type',
@@ -33,13 +35,14 @@ const columns = [
             }
     	}
     },
-    {
-    	name: 'itemable.brand',
-    	label: 'Brand'
-    },
+    */
     {
     	name: 'itemable.name',
     	label: 'Name'
+    },
+    {
+    	name: 'itemable.brand',
+    	label: 'Brand'
     },
     {
     	name: 'delta',
@@ -47,16 +50,30 @@ const columns = [
     },
     {
     	name: 'currentQuantity',
-    	label: 'Quantity'
+    	label: 'Quantity',
+        options: {
+            filter: false
+        }
     },
     {
     	name: 'defaultPrice',
-    	label: 'Price'
+    	label: 'Price',
+        options: {
+            filter: false
+        }
     }
 ];
 
-export default function ItemsList() {
+export default function ItemsList({ isPhone }) {
     return (
-        <MuiTable title="Items list" URL="/items" columns={columns} dependingRowColor={(row) => row[1] ? '#cf352e' : '#2e8b57'} />
+        <MuiTable
+            title="Items list"
+            URL="/items"
+            columns={columns}
+            initialFilters={{ isPhone: isPhone ? 1 : 0 }}
+            getNameFromData={(rowData) => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
+            DialogContent={ShowItem}
+            StandardDialog={false}
+        />
     );
 }

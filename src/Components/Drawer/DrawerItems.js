@@ -75,11 +75,14 @@ export const DrawerItems = ({ drawerIsOpened }) => {
 
             <ListItem theTo='/phones' theText='Phones' theIcon={IconPhoneAndroid} />
             <ListItem theTo='/accessories' theText='Accessories'theIcon={IconEmojiObjects} />
-            <ListItem theTo='/items' theText='Items'theIcon={IconApps} />
+            
+            <ListItem theTo='/itemsAccessories' theText='Items'theIcon={IconApps} />
+            <ListItem theTo='/itemsPhones' theText='Items'theIcon={IconApps} />
             
             <Divider />
 
-            <ListItem theTo='/transactions' theText='Transactions' theIcon={IconAttachMoney} />
+            <ListItem theTo='/sells' theText='Sells' theIcon={IconAttachMoney} />
+            <ListItem theTo='/buys' theText='Buys' theIcon={IconAttachMoney} />
 
             {false && <ListSubheader inset>Transactions</ListSubheader>}
         </>
