@@ -126,7 +126,7 @@ export default function ShowItem({ handleDialogClose, rowData: {carts, ...rowDat
 
 	return (
 		<>
-			<MuiDialogContent style={{ overflow: 'hidden' }}>
+			<MuiDialogContent>
 		        <Grid container spacing={5}>
 					{viewCart ? <CartsContent Cart={carts[viewCart - 1]} /> : <MainContent {...rowData} totalCost={totalCost} />}
 				</Grid>

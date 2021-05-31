@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import { makeStyles, } from '@material-ui/core/styles';
 import { Box, Container, CssBaseline } from '@material-ui/core';
 
@@ -42,7 +44,7 @@ export const App = ({ drawerWidth }) => {
                     
                     <Container maxWidth='lg' className={classes.container}>
                         <Content />
-
+                        
                         <Box pt={4}>
                             <Copyright />
                         </Box>

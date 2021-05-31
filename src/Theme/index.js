@@ -4,14 +4,24 @@ import typography from './typography';
 
 const Theme = createMuiTheme({
     overrides: {
+        MuiTableBody: {
+            root: {
+                cursor: 'pointer'
+            }
+        },
         MuiTableCell: {
-          root: {
-            borderBottom: '1px solid #1a2035'
-          }
+            root: {
+                borderBottom: '1px solid #1a2035'
+            }
         },
         MuiTable: {
             root: {
                 borderCollapse: 'separate'
+            }
+        },
+        MuiDialogContent: {
+            root: {
+                overflowY: 'hidden'
             }
         }
     },

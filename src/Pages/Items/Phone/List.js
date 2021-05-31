@@ -20,7 +20,7 @@ export default function PhonesList() {
             URL="/phones"
             columns={columns}
             getNameFromData={(rowData) => 'Phones | ' + rowData.brand + ' | ' + rowData.name}
-            DialogContent={ShowPhone}
+            DetailsContent={ShowPhone}
         />
     );
 }

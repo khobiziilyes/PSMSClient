@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import ShowCustomer from './Show';
+import ShowPerson from './Show';
 
 const columns = [
     {
@@ -22,7 +22,8 @@ export default function PeopleList({ isVendor }) {
             URL={"/" + personType.toLowerCase()}
             columns={columns}
             getNameFromData={(rowData) => rowData.name}
-            DialogContent={ShowCustomer}
+            DetailsContent={ShowPerson}
+            formName={personType.slice(0, -1)}
         />
     );
 }

@@ -1,4 +1,7 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { accessoriesNamesAtom } from '@src/Atoms';
+
 import {
 	Typography,
 	Grid,
@@ -16,6 +19,8 @@ import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 
 export default function ShowCustomer({ rowData }) {
+	const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
+
 	const {
 		id,
 		name,
@@ -46,7 +51,7 @@ export default function ShowCustomer({ rowData }) {
 						<Business />
 					</ListItem>
 
-					<ListItem primary="Type" secondary={type_id}>
+					<ListItem primary="Type" secondary={accessoriesNames[type_id]}>
 						<ListIcon />
 					</ListItem>
 				</List>

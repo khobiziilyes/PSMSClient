@@ -7,6 +7,7 @@ import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
 const formikParams = {
+    URL: '/phones',
     initialValues: {
         name: '',
         brand: '',

@@ -194,7 +194,7 @@ export default function ShowItem({ handleDialogClose, rowData }) {
 	
 	return (
 		<>
-			<MuiDialogContent style={{ overflow: 'hidden' }}>
+			<MuiDialogContent>
 		        <Grid container spacing={5}>
 					{viewStats ? <StatsContent {...Stats} /> : <MainContent {...MainContentProps} />}
 				</Grid>

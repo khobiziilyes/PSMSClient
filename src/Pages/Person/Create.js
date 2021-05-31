@@ -6,50 +6,35 @@ import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import TextField from '@Components/Inputs/Text';
 
-const Params = {
-    URL: '/customers',
-    formatData: ({ firstName = '', lastName = '', ...values }) => ({name: firstName + ' ' + lastName, ...values})
-}
-
-const formikParams = {
+const formikParams = (isVendor) => ({
+    URL: isVendor ? '/vendors' : '/customers',
     initialValues: {
-        firstName: '',
-        lastName: '',
+        name: '',
         phone1: '',
         phone2: '',
         fax: '',
         address: ''
     },
     validationSchema: Yup.object({
-        firstName: Yup.string().required('Must be not empty'),
-        lastName: Yup.string().required('Must be not empty'),
+        name: Yup.string().required('Must be not empty'),
         phone1: Yup.number().required('This field is required.').typeError('Must be numeric'),
         phone2: Yup.string(),
         fax: Yup.string(),
         address: Yup.string(),
     })
-}
+})
 
 function TheForm({ isVendor, isSubmitting }) {
     return (
         <Grid container spacing={3}>
             <input type="hidden" value={isVendor ? '1' : '0'} />
             
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
                 <Field
                     component={TextField}
-                    name="firstName"
+                    name="name"
                     type="text"
-                    label="First name"
-                />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-                <Field
-                    component={TextField}
-                    name="lastName"
-                    type="text"
-                    label="Last name"
+                    label="Full name"
                 />
             </Grid>
 
@@ -97,7 +82,6 @@ function TheForm({ isVendor, isSubmitting }) {
 }
 
 export {
-    Params,
     formikParams,
     TheForm
 }

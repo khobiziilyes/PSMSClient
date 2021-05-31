@@ -2,40 +2,7 @@ import React from 'react';
 import MuiTable from '@Components/MuiTable';
 import ShowItem from './Show';
 
-/*
-	totalBuyCost
-	totalSellCost
-	totalBuys
-	totalSells
-	totalProfitPrice
-	averageBuyPricePerItem
-	averageSellPricePerItem
-	averageProfitPricePerItem
-	averageTotalProfitPrice
-	currentQuantityBuyWorth
-	currentQuantitySellWorth
-	expectedCurrentQuantityProfitPrice
-	expectedTotalProfitPrice
-	requiredMinimumPrice
-*/
-
 const columns = [
-    /*
-    {
-    	name: 'isPhone',
-    	label: 'Type',
-    	options: {
-    		display: 'excluded',
-            filterType: 'dropdown',
-            filterOptions: {
-                renderValue: value => value ? 'Phone' : 'Accessory'
-            },
-            customFilterListOptions: {
-                render: value => value ? 'Phone' : 'Accessory'
-            }
-    	}
-    },
-    */
     {
     	name: 'itemable.name',
     	label: 'Name'
@@ -70,10 +37,12 @@ export default function ItemsList({ isPhone }) {
             title="Items list"
             URL="/items"
             columns={columns}
-            initialFilters={{ isPhone: isPhone ? 1 : 0 }}
             getNameFromData={(rowData) => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
-            DialogContent={ShowItem}
+            DetailsContent={ShowItem}
+            formName='Item'
+
             StandardDialog={false}
+            initialFilters={{ isPhone: isPhone ? 1 : 0 }}
         />
     );
 }

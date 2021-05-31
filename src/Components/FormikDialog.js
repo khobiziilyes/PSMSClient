@@ -1,49 +1,110 @@
 import React from 'react';
- import { useQueryClient } from 'react-query'
-import { Formik, Form } from 'formik';
 import axios from 'axios';
+
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from 'notistack';
+import { useQueryClient } from 'react-query'
+import { Formik, Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { formDialogSelectedFormAtom, formDialogIsOpenedAtom } from '@src/Atoms';
+import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
 
 import * as Pages from '@src/Pages';
+import { makeStyles } from '@material-ui/core/styles';
 
-const onSubmit = (Params, queryClient) => {
-    return (values, { setSubmitting }) => {
-        const formatedData = Params.formatData ? Params.formatData(values) : values;
-
-        axios.post(Params.URL, Object.fromEntries(Object.entries(formatedData).filter(([name, val]) => val))).then(response => {
-            console.log(response);
-            queryClient.invalidateQueries(Params.URL);
-
-            setSubmitting(false);
-        });
+const useStyles = makeStyles({
+    root: {
+        width: '100%',
+        maxWidth: 500
     }
+});
+
+const ErrorTypo = ({ text, title = null}) => {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.root}>
+            {title && <Typography variant="h4" gutterBottom>{title}</Typography>}
+            <Typography variant="body2">{text}</Typography>
+        </div>
+    );
 }
 
 export default function FormikDialog() {
-	const formDialogSelectedForm = useRecoilValue(formDialogSelectedFormAtom);
-	const [formDialogIsOpened, setFormDialogIsOpened] = useRecoilState(formDialogIsOpenedAtom);
-	const handleFormDialogClose = () => setFormDialogIsOpened(false);
+	const queryClient = useQueryClient();
+    const history = useHistory();
+    const { enqueueSnackbar } = useSnackbar();
 
-    const SelectedPage = Pages['Create' + formDialogSelectedForm];
+	const [ formDialogIsOpened, setFormDialogIsOpened ] = useRecoilState(formDialogIsOpenedAtom);
+    const formDialogName = useRecoilValue(formDialogNameAtom);
+    const formDialogInitValues = useRecoilValue(formDialogInitValuesAtom);
+	
+    const { formikParams, TheForm } = Pages['Create' + formDialogName];
+    const isCreate = formDialogInitValues === null;
 
-    const queryClient = useQueryClient();
+    const onSubmit = (values, { setSubmitting, resetForm, setFieldError }) => {
+        axios({
+            url: formikParams.URL + '/' + (isCreate ? '' : formDialogInitValues.id),
+            method: isCreate ? 'POST' : 'PATCH',
+            data: formikParams.fieldToData ? formikParams.fieldToData(values) : values
+        }).then(response => {
+            if (response.data) {
+                const resourceId = isCreate ? response.data.data.id : response.data.id;
 
-	return (
-		<Formik onSubmit={onSubmit(SelectedPage.Params, queryClient)} {...SelectedPage.formikParams}>
-            {({ submitForm, isSubmitting, isValid, errors, touched }) => (
+                enqueueSnackbar((isCreate ? 'Created' : 'Updated') + ' successfully, ID: #' + resourceId, { variant: 'success' });
+                queryClient.invalidateQueries(formikParams.URL);
+
+                resetForm();
+                setFormDialogIsOpened(false);
+
+                if (isCreate)
+                    history.push(formikParams.tableRoute || formikParams.URL +
+                        '?totalRows=' + response.data.totalRows +
+                        '&highlightId=' + resourceId
+                    );
+            } else {
+                // Wsh a frr
+            }
+        }).catch(error => {
+            if (error.response) {
+                const errorsList = Object.entries(error.response.data.errors)
+                
+                errorsList.forEach(([fieldName, fieldError]) => {
+                    enqueueSnackbar(
+                        <ErrorTypo title={fieldName} text={fieldError} />,
+                    { variant: 'error' });
+
+                    setFieldError(fieldName, fieldError);
+                });
+            } else if (error.request) {
+                enqueueSnackbar('Server not available.', { variant: 'error' });
+            } else {
+                enqueueSnackbar('Coding error.', { variant: 'error' });
+            }
+
+            console.log(error);
+        }).finally(() => {
+            setSubmitting(false);
+        });
+    }
+
+    const { id, ...initialValues } = isCreate ? formikParams.initialValues : formDialogInitValues;
+    const handleFormDialogClose = () => setFormDialogIsOpened(false);
+    
+    return TheForm ? <Formik onSubmit={onSubmit} enableReinitialize validationSchema={formikParams.validationSchema} initialValues={initialValues}>
+        {({ submitForm, isSubmitting }) => {
+            return (
                 <Dialog open={formDialogIsOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleFormDialogClose} fullWidth maxWidth='sm'>
-                    <DialogTitle>{'Create new ' + formDialogSelectedForm.toLowerCase()}</DialogTitle>
+                    <DialogTitle>{'Create new ' + formDialogName.toLowerCase()}</DialogTitle>
 
-                    <DialogContent style={{ overflow: 'hidden' }}>
+                    <DialogContent>
                         <Typography variant="h6" gutterBottom>
                             Basic Informations
                         </Typography>
 
                         <Form>
-                            <SelectedPage.TheForm isSubmitting={isSubmitting} />
+                            <TheForm isSubmitting={isSubmitting} isCreate={isCreate} />
                         </Form>
                     </DialogContent>
             
@@ -57,7 +118,7 @@ export default function FormikDialog() {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            )}
-        </Formik>
-	);
+            );
+        }}
+    </Formik> : null;
 }

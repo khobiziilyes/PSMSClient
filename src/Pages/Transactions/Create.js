@@ -9,7 +9,7 @@ import Text from '@Components/Inputs/Text';
 import ItemToggle from '@Components/ItemToggle';
 import Box from '@material-ui/core/Box';
 
-const formikParams = {
+const formikParams = (isBuy) => ({
     initialValues: {
         item_id: '',
         Delta: ''
@@ -18,7 +18,7 @@ const formikParams = {
         item_id: Yup.string().required('Required'),
         Delta: Yup.string().required('Required')
     })
-}
+})
 
 function ComplicatedGrid(props) {
     return (

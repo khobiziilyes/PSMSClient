@@ -1,8 +1,10 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
+import { useRecoilValue } from 'recoil';
+import { accessoriesNamesAtom } from '@src/Atoms';
 import ShowAccessory from './Show';
 
-const columns = [
+const columns = (accessoriesNames) => [
     {
         name: 'brand',
         label: 'Brand'
@@ -17,7 +19,7 @@ const columns = [
         options: {
             hint: 'SUP bitch',
             customBodyRender: (value, tableMeta, updateValue) => {
-                return 'FUCK ' + value;
+                return accessoriesNames[value];
             }
         }
 
@@ -25,13 +27,16 @@ const columns = [
 ];
 
 export default function AccessoriesList() {
+    const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
+
     return (
         <MuiTable
             title="Accessories list"
             URL="/accessories"
-            columns={columns}
+            columns={columns(accessoriesNames)}
             getNameFromData={(rowData) => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
-            DialogContent={ShowAccessory}
+            DetailsContent={ShowAccessory}
+            formName={'Accessory'}
         />
     );
 }

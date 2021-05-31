@@ -4,33 +4,22 @@ import { CircularProgress, Typography, Button } from '@material-ui/core';
 
 let tableSearchDelayTimer;
 
-const updateColumns = [
-    {
-        name: 'updated_by',
-        label: 'Updator',
-        options: {
-            filterType: 'dropdown'
-        }
-    },
-    {
-        name: 'updated_at',
-        label: 'Update time'
-    }
-];
+const defaultOptions = {
+    print: false,
+    filter: true,
+    filterType: 'textField',
+    confirmFilters: true,
+    selectableRows: 'none',
+    responsive: 'vertical',
+    serverSide: true,
+    rowsPerPageOptions: [5, 7, 10, 30],
+    sortThirdClickReset: true,
+    enableNestedDataAccess: '.',
 
-const setSearchFilterDelayed = (setSearchFilter) => {
-    clearTimeout(tableSearchDelayTimer);
-    tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
+    customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
 }
 
-const handleCellClick = (totalColumns, cellMeta) => {
-    const col = totalColumns[cellMeta.colIndex];
-
-    if (col.isClickable) {
-        // const rowData = data[cellMeta.dataIndex];
-        // Open dialog of that item
-    }
-}
+const performServerDelete = (URL, id) => axios.delete(URL + '/' + id, ).then((response) => response.data);
 
 const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames) => 
     axios.get(URL, {
@@ -52,19 +41,11 @@ const performServerRequest = (URL, page, perPage, searchFilter, filterList, colu
             })).filter(value => value !== null)),
             ...initialFilters
         }
-    }).then((response) => response.data);
+    }).then((response) => response.data).catch(); /////////////////////////////////////////
 
-const defaultOptions = {
-    print: false,
-    filter: true,
-    filterType: 'textField',
-    confirmFilters: true,
-    selectableRows: 'none',
-    responsive: 'vertical',
-    serverSide: true,
-    rowsPerPageOptions: [5, 7, 10, 30],
-    sortThirdClickReset: true,
-    enableNestedDataAccess: '.'
+const setSearchFilterDelayed = (setSearchFilter) => {
+    clearTimeout(tableSearchDelayTimer);
+    tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
 }
 
 const FilterDialogFooter = ({ applyNewFilters }) => (
@@ -79,8 +60,6 @@ const Title = ({ title, isFetching }) => (
         {isFetching && <CircularProgress size={24} style={{ marginLeft: 15, position: 'relative', top: 4 }} />}
     </Typography>
 );
-
-const performServerDelete = (URL, id) => axios.delete(URL + '/' + id, ).then((response) => response.data);
 
 const DeleteDialog = ({ open, handleClose, handleContinue }) => (
     <Dialog open={open} onClose={handleClose}>
@@ -104,15 +83,55 @@ const DeleteDialog = ({ open, handleClose, handleContinue }) => (
     </Dialog>
 );
 
+const idColumn = {
+    name: 'id',
+    label: 'ID',
+    options: {
+        filter: false,
+        customBodyRender: (value) => '#' + value
+    }
+}
+
+const updateColumns = [
+    {
+        name: 'updated_by',
+        label: 'Updator',
+        options: {
+            filterType: 'dropdown'
+        }
+    },
+    {
+        name: 'updated_at',
+        label: 'Update time'
+    }
+];
+
+const creationColumns = [
+    {
+        name: 'created_by',
+        label: 'Creator',
+        options: {
+            filterType: 'dropdown'
+        }
+    },
+    {
+        name: 'created_at',
+        label: 'Create time'
+    },
+];
+
 export {
-    performServerRequest,
+    defaultOptions,
+    
     performServerDelete,
+    performServerRequest,
     
     setSearchFilterDelayed,
-    handleCellClick,
-    defaultOptions,
-    updateColumns,
-    FilterDialogFooter,
+
     Title,
-    DeleteDialog
+    DeleteDialog,
+    
+    idColumn,
+    updateColumns,
+    creationColumns
 }

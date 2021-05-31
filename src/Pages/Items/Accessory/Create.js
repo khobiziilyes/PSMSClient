@@ -6,29 +6,37 @@ import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
+import { useRecoilValue } from 'recoil';
+import { accessoriesNamesAtom } from '@src/Atoms';
+
 const formikParams = {
+    URL: '/accessories',
     initialValues: {
         name: '',
         brand: '',
-        type: null,
+        type_id: 1,
         notes: ''
     },
     validationSchema: Yup.object({
         name: Yup.string().min(8).required('Required'),
         brand: Yup.string().min(8),
-        type: Yup.string().required('Required').typeError('Selection is required'),
+        type_id: Yup.number('Required').required('Required'),
         notes: Yup.string().min(8)
     })
 }
 
-function TheForm({ isSubmitting }) {
+function TheForm({ isSubmitting, isCreate }) {
+    const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
+
     return (
 	   <Grid container spacing={3}>
             <Grid item xs={4}>
                 <Autocomplete 
-                    name="type"
+                    name="type_id"
                     label="Accessory type"
-                    options={['A', 'B', 'C']}
+                    options={Object.keys(accessoriesNames)}
+                    getOptionLabel={option => accessoriesNames[option] || ''}
+                    disabled={!isCreate}
                 />
             </Grid>
 

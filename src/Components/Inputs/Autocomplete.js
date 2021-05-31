@@ -34,16 +34,16 @@ function FormikAutoComplete({ label, disabled, field, form: { isSubmitting, setF
         },
         disabled: disabled ?? isSubmitting,
         loading: isSubmitting,
-        renderInput: (params) => (
-            <MuiTextField
+        renderInput: (params) => {
+            return (<MuiTextField
                 {...params}
                 error={metaTouched && !!metaErrors}
                 helperText={metaTouched && metaErrors}
                 label={label}
                 variant="outlined"
                 fullWidth
-            />
-        ),
+            />);
+        },
         ...fieldSubselection,
         ...props
     };

@@ -16,18 +16,30 @@ const VendorsList = (props) => <PeopleList isVendor {...props} />;
 const BuysList = (props) => <TransactionsList isBuy {...props} />;
 const ItemsPhonesList = (props) => <ItemsList isPhone {...props} />;
 
+const personFormikParams = CreatePerson.formikParams;
+
 const CreateVendorForm = (props) => <CreatePerson.TheForm isVendor {...props} />;
 const CreateVendor = {
 	...CreatePerson,
 	TheForm: CreateVendorForm,
-	formikProps: CreatePerson.formikParams
+	formikParams: personFormikParams(true)
+}
+
+const CreateCustomer = {
+	...CreatePerson,
+	formikParams: personFormikParams(false)
 }
 
 const CreateBuyForm = (props) => <CreateTransaction.TheForm isBuy {...props} />;
 const CreateBuy = {
 	...CreateTransaction,
 	TheForm: CreateBuyForm,
-	formikProps: CreateTransaction.formikParams
+	formikParams: CreateTransaction.formikParams(true)
+}
+
+const CreateSell = {
+	...CreateTransaction,
+	formikParams: CreateTransaction.formikParams(false)
 }
 
 export {
@@ -42,11 +54,11 @@ export {
 	TransactionsList as SellsList,
 	BuysList,
 
-	CreatePerson as CreateCustomer,
+	CreateCustomer,
 	CreateVendor,
 	CreatePhone,
 	CreateAccessory,
 	CreateItem,
-	CreateTransaction as CreateSell,
+	CreateSell,
 	CreateBuy
 };
