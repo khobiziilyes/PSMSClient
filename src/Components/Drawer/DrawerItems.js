@@ -84,6 +84,8 @@ export const DrawerItems = ({ drawerIsOpened }) => {
             <ListItem theTo='/sells' theText='Sells' theIcon={IconAttachMoney} />
             <ListItem theTo='/buys' theText='Buys' theIcon={IconAttachMoney} />
 
+            <ListItem theTo='/users' theText='Users' theIcon={IconAttachMoney} />
+
             {false && <ListSubheader inset>Transactions</ListSubheader>}
         </>
     );

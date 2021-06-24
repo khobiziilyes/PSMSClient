@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+
 import clsx from 'clsx';
 import queryString from "query-string";
 
@@ -75,7 +79,8 @@ function MuiTable({
         ...(includeUpdateColumns ? updateColumns : [])
     ];
 
-    const columnsFilterNames = totalColumns.map((column) => column.filterName || column.name);
+    const columnsFilterNames = totalColumns.map((column) => column.filterName || [column.name]);
+    const filterValueFormaters = totalColumns.map((column) => column.formatValue || null);
     
     const [currentPage, setCurrentPage] = useState(initPage);
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
@@ -89,7 +94,7 @@ function MuiTable({
     
     const handleDialogClose = () => setDialogIsOpened(false);
     
-    const fetchQueryFunc = ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames).then(localData => {
+    const fetchQueryFunc = ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
         if (localData && localData.data && localData.data.length === 0 && currentPage !== 1)
             setCurrentPage(1);
         
@@ -146,7 +151,7 @@ function MuiTable({
                 ])
             }
         },
-        ...(moreOptions ? (Array.isArray(moreOptions) ? moreOptions : moreOptions(data)) : [])
+        ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
     }
 
     const handleDeleteDialogContinue = () => {
@@ -219,21 +224,23 @@ function MuiTable({
                                 }
                             </DialogActions>
                         </>
-                    ) : (
-                        {detailsContent}
-                    )}
+                    ) : 
+                        detailsContent
+                    }
                 </Dialog>
             }
 
             <DeleteDialog open={deleteDialogOpen} handleClose={() => setDeleteDialogOpen(false)} handleContinue={handleDeleteDialogContinue} />
-
-            <MUIDataTables
-                title={<Title title={title} isFetching={isFetching} />}
-                data={data ? (formatTableData ? formatTableData(data.data) : data.data) : []}
-                columns={totalColumns}
-                options={options}
-                {...props}
-            />
+            
+            <MuiPickersUtilsProvider utils={MomentUtils}>
+                <MUIDataTables
+                    title={<Title title={title} isFetching={isFetching} />}
+                    data={data ? (formatTableData ? formatTableData(data.data) : data.data) : []}
+                    columns={totalColumns}
+                    options={options}
+                    {...props}
+                />
+            </MuiPickersUtilsProvider>
         </>
     );
 }

@@ -9,7 +9,10 @@ const columns = [
     },
     {
     	name: 'phone1',
-    	label: 'Phone'
+    	label: 'Phone #1',
+        options: {
+            filter: false
+        }
     }
 ];
 
@@ -24,6 +27,7 @@ export default function PeopleList({ isVendor }) {
             getNameFromData={(rowData) => rowData.name}
             DetailsContent={ShowPerson}
             formName={personType.slice(0, -1)}
+            moreOptions={{ search: false }}
         />
     );
 }

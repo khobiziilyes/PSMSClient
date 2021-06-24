@@ -1,6 +1,12 @@
+import React from 'react';
 import axios from 'axios';
 import { DialogActions, Dialog, DialogTitle, DialogContentText, DialogContent as MuiDialogContent } from '@material-ui/core';
-import { CircularProgress, Typography, Button } from '@material-ui/core';
+import { CircularProgress, Typography, Button, FormControl } from '@material-ui/core';
+
+import { DatePicker } from "@material-ui/pickers";
+
+import ClearIcon from "@material-ui/icons/Clear";
+import { IconButton } from "@material-ui/core";
 
 let tableSearchDelayTimer;
 
@@ -15,33 +21,40 @@ const defaultOptions = {
     rowsPerPageOptions: [5, 7, 10, 30],
     sortThirdClickReset: true,
     enableNestedDataAccess: '.',
+    download: false,
 
     customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
 }
 
 const performServerDelete = (URL, id) => axios.delete(URL + '/' + id, ).then((response) => response.data);
 
-const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames) => 
+const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames, filterValueFormaters) => 
     axios.get(URL, {
         params: {
             page,
             perPage,
             orderBy: columnSort.columnName,
             dir: columnSort.direction,
+            ...initialFilters,
             ...(searchFilter ? {search: searchFilter} : []),
-            ...Object.fromEntries((filterList.map((filterValues, columnIndex) => {
-                if (!filterValues.length) return null;
-                
-                let filterValue = filterValues[0];
-                
-                if (filterValue === true) filterValue = 1;
-                if (filterValue === false || filterValue === undefined || filterValue === null) filterValue = 0;
+            ...Object.fromEntries(
+                filterList.flatMap((filterValues, columnIndex) => {
+                    if (!filterValues.length) return [null];
+                    
+                    const filterValueFormater = filterValueFormaters[columnIndex];
+                    
+                    return columnsFilterNames[columnIndex].map((filterName, i) => {
+                        let filterValue = filterValues[i];
+                        filterValue = filterValueFormater ? filterValueFormater(filterValue) : filterValue;
 
-                return [columnsFilterNames[columnIndex], filterValue];
-            })).filter(value => value !== null)),
-            ...initialFilters
+                        if (filterValue === null) return null;
+
+                        return [filterName, filterValue];
+                    });
+                }).filter(value => value !== null)
+            )
         }
-    }).then((response) => response.data).catch(); /////////////////////////////////////////
+    }).then((response) => response.data);
 
 const setSearchFilterDelayed = (setSearchFilter) => {
     clearTimeout(tableSearchDelayTimer);
@@ -83,6 +96,37 @@ const DeleteDialog = ({ open, handleClose, handleContinue }) => (
     </Dialog>
 );
 
+const MyDatePicker = ({ label, onChange }) => {
+    const [selectedDate, setSelectedDate] = React.useState(null);
+
+    const handleDateChange = (newVal) => {
+        setSelectedDate(newVal);
+        onChange(newVal.format('X'));
+    }
+
+    const handleClr = (e) => {
+        e.stopPropagation();
+        setSelectedDate(null);
+    }
+
+    return (
+        <DatePicker
+            value={selectedDate}
+            label={label}
+            onChange={handleDateChange}
+            format='YYYY-MM-DD'
+            animateYearScrolling
+            InputProps={{
+                endAdornment: (
+                    <IconButton onClick={(e) => handleClr(e)} disabled={selectedDate === null} size="small" >
+                        <ClearIcon />
+                    </IconButton>
+                )
+            }}
+        />
+    );
+}
+
 const idColumn = {
     name: 'id',
     label: 'ID',
@@ -92,18 +136,48 @@ const idColumn = {
     }
 }
 
+const timeColumn = (name, label, filterName, labels) => ({
+    name,
+    label,
+    filterName,
+    options: {
+        filterType: 'custom',
+        filterOptions: {
+            display: (filterList, onChange, index, column) => {
+                return (
+                    <FormControl>
+                        <MyDatePicker
+                            label={labels[0]}
+                            onChange={newVal => {
+                                filterList[index][0] = newVal;
+                                onChange(filterList[index], index, column);
+                            }}
+                        />
+
+                        <MyDatePicker
+                            label={labels[1]}
+                            onChange={newVal => {
+                                filterList[index][1] = newVal;
+                                onChange(filterList[index], index, column);
+                            }}
+                        />
+                    </FormControl>
+                );
+            }
+        }
+    }
+});
+
 const updateColumns = [
     {
         name: 'updated_by',
         label: 'Updator',
         options: {
             filterType: 'dropdown'
-        }
+        },
+        filterName: 'updatedBy'
     },
-    {
-        name: 'updated_at',
-        label: 'Update time'
-    }
+    timeColumn('updated_at', 'Updates', ['updatedBefore', 'updatedAfter'], ['Updated Before', 'Updated After'])
 ];
 
 const creationColumns = [
@@ -112,12 +186,10 @@ const creationColumns = [
         label: 'Creator',
         options: {
             filterType: 'dropdown'
-        }
+        },
+        filterName: 'createdBy'
     },
-    {
-        name: 'created_at',
-        label: 'Create time'
-    },
+    timeColumn('created_at', 'Creates', ['createdBefore', 'createdAfter'], ['Created Before', 'Created After'])
 ];
 
 export {

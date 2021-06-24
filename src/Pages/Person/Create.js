@@ -20,7 +20,7 @@ const formikParams = (isVendor) => ({
         phone1: Yup.number().required('This field is required.').typeError('Must be numeric'),
         phone2: Yup.string(),
         fax: Yup.string(),
-        address: Yup.string(),
+        address: Yup.string()
     })
 })
 

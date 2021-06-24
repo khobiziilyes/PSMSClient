@@ -6,22 +6,6 @@ import ShowTransaction from './Show';
 import { makeStyles } from '@material-ui/core/styles';
 
 const columns = [
-	/*
-    {
-		name: 'isBuy',
-		label: 'Type',
-		options: {
-    		display: 'excluded',
-            filterType: 'dropdown',
-            filterOptions: {
-                renderValue: value => value ? 'Buy' : 'Sell'
-            },
-            customFilterListOptions: {
-                render: value => value ? 'Buy' : 'Sell'
-            }
-    	}
-	},
-    */
 	{
 		name: 'person.name',
 		label: 'Person',
@@ -79,10 +63,10 @@ export default function TransactionsList({ isBuy }) {
     return (
         <MuiTable
         	title="Transactions list"
-        	URL="/transactions"
+        	URL={"/" + (isBuy ? 'buy' : 'sell')}
         	columns={columns}
         	includeUpdateColumns={false}
-            initialFilters={{ isBuy: isBuy ? 1 : 0, withTrashed: 1 }}
+            initialFilters={{ withTrashed: 1 }}
         	dependingRowColor={(row) => row.deleted_at && classes.redRow}
             getNameFromData={() => 'Transaction Details'}
             DialogContent={ShowTransaction}

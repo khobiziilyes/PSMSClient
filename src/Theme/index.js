@@ -23,6 +23,11 @@ const Theme = createMuiTheme({
             root: {
                 overflowY: 'hidden'
             }
+        },
+        MUIDataTable: {
+            responsiveBase: {
+                overflowY: 'hidden'
+            }
         }
     },
     palette: {

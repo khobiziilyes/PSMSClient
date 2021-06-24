@@ -17,7 +17,7 @@ const formDialogNameAtom = atom({
 
 const formDialogInitValuesAtom = atom({
 	key: 'formDialogInitValuesAtom',
-	default: null
+	default: { id: 0 }
 });
 
 const userAtom = atom({

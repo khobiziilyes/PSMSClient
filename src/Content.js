@@ -26,7 +26,9 @@ const RoutesObj = {
 	'/itemsAccessories': Pages.ItemsAccessoriesList,
 	'/itemsPhones': Pages.ItemsPhonesList,
 	'/sells': Pages.SellsList,
-	'/buys': Pages.BuysList
+	'/buys': Pages.BuysList,
+
+	'/users': Pages.UsersList
 }
 
 const queryClient = new QueryClient({
@@ -34,8 +36,8 @@ const queryClient = new QueryClient({
 		queries: {
 			refetchOnWindowFocus: false,
 			placeholderData: [],
-			staleTime: 1 * 60 * 1000,
-			refetchInterval: 1 * 60 * 1000,
+			staleTime: 0.5 * 60 * 1000,
+			refetchInterval: 0.5 * 60 * 1000,
 			cacheTime: 5 * 60 * 1000
 		}
 	}

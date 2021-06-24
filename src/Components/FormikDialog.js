@@ -42,7 +42,7 @@ export default function FormikDialog() {
 	
     const { formikParams, TheForm } = Pages['Create' + formDialogName];
     const isCreate = formDialogInitValues === null;
-
+    
     const onSubmit = (values, { setSubmitting, resetForm, setFieldError }) => {
         axios({
             url: formikParams.URL + '/' + (isCreate ? '' : formDialogInitValues.id),
@@ -82,8 +82,6 @@ export default function FormikDialog() {
             } else {
                 enqueueSnackbar('Coding error.', { variant: 'error' });
             }
-
-            console.log(error);
         }).finally(() => {
             setSubmitting(false);
         });
@@ -91,20 +89,20 @@ export default function FormikDialog() {
 
     const { id, ...initialValues } = isCreate ? formikParams.initialValues : formDialogInitValues;
     const handleFormDialogClose = () => setFormDialogIsOpened(false);
-    
-    return TheForm ? <Formik onSubmit={onSubmit} enableReinitialize validationSchema={formikParams.validationSchema} initialValues={initialValues}>
-        {({ submitForm, isSubmitting }) => {
-            return (
-                <Dialog open={formDialogIsOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleFormDialogClose} fullWidth maxWidth='sm'>
+
+    return TheForm ?
+        <Formik onSubmit={formikParams.onSubmit || onSubmit} enableReinitialize validationSchema={formikParams.validationSchema} initialValues={initialValues}>
+            {({ submitForm, isSubmitting, setFieldValue }) => 
+                <Dialog open={formDialogIsOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleFormDialogClose} fullWidth maxWidth={formikParams.formSize || 'sm'}>
                     <DialogTitle>{'Create new ' + formDialogName.toLowerCase()}</DialogTitle>
 
                     <DialogContent>
-                        <Typography variant="h6" gutterBottom>
+                        {false && <Typography variant="h6" gutterBottom>
                             Basic Informations
-                        </Typography>
+                        </Typography>}
 
                         <Form>
-                            <TheForm isSubmitting={isSubmitting} isCreate={isCreate} />
+                            <TheForm setFieldValue={setFieldValue} isSubmitting={isSubmitting} isCreate={isCreate} />
                         </Form>
                     </DialogContent>
             
@@ -118,7 +116,6 @@ export default function FormikDialog() {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            );
-        }}
-    </Formik> : null;
+            }
+        </Formik> : null;
 }

@@ -120,7 +120,8 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 		</>
 	);
 }
-export default function ShowItem({ handleDialogClose, rowData: {carts, ...rowData} }) {
+
+export default function ShowTransaction({ handleDialogClose, rowData: {carts, ...rowData} }) {
 	const [viewCart, setViewCart] = React.useState(0);
 	const totalCost = carts.reduce((a, cart) => a + (cart.Quantity * cart.costPerItem), 0);
 

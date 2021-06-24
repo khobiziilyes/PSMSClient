@@ -5,12 +5,15 @@ import AccessoriesList from './Items/Accessory/List';
 import ItemsList from './Items/List';
 import PeopleList from './Person/List';
 import TransactionsList from './Transactions/List';
+import UsersList from './Users/List';
 
 import * as CreateAccessory from './Items/Accessory/Create';
 import * as CreatePhone from './Items/Phone/Create';
 import * as CreatePerson from './Person/Create';
 import * as CreateItem from './Items/Create';
 import * as CreateTransaction from './Transactions/Create';
+import * as CreateUser from './Users/Create';
+import * as CreatePermissions from './Users/Permissions';
 
 const VendorsList = (props) => <PeopleList isVendor {...props} />;
 const BuysList = (props) => <TransactionsList isBuy {...props} />;
@@ -53,6 +56,7 @@ export {
 	ItemsPhonesList,
 	TransactionsList as SellsList,
 	BuysList,
+	UsersList,
 
 	CreateCustomer,
 	CreateVendor,
@@ -60,5 +64,7 @@ export {
 	CreateAccessory,
 	CreateItem,
 	CreateSell,
-	CreateBuy
+	CreateBuy,
+	CreateUser,
+	CreatePermissions
 };
