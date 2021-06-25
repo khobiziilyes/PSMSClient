@@ -195,6 +195,12 @@ function MuiTable({
     const detailsContent = DetailsContent && selectedRowData && <DetailsContent rowData={selectedRowData} handleDialogClose={handleDialogClose} />;
     const isOwned = detailsContent && (formName && selectedRowData.created_by !== 'PSMS');
 
+    const deleteDialogProps = {
+        open: deleteDialogOpen,
+        handleContinue: handleDeleteDialogContinue,
+        handleClose: () => setDeleteDialogOpen(false)
+    }
+
     return (
         <>
             {detailsContent &&
@@ -230,7 +236,9 @@ function MuiTable({
                 </Dialog>
             }
 
-            <DeleteDialog open={deleteDialogOpen} handleClose={() => setDeleteDialogOpen(false)} handleContinue={handleDeleteDialogContinue} />
+            <DeleteDialog
+                {...deleteDialogProps}
+            />
             
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <MUIDataTables

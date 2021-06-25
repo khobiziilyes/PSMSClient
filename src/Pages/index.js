@@ -67,4 +67,4 @@ export {
 	CreateBuy,
 	CreateUser,
 	CreatePermissions
-};
+}

@@ -1,8 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ListItem as MuiListItem, ListItemIcon, ListItemText, ListSubheader, List } from '@material-ui/core';
-import { Collapse, Divider } from '@material-ui/core';
+import {
+    ListItem as MuiListItem,
+    ListItemIcon, ListItemText,
+    ListSubheader,
+    List,
+    Collapse,
+    Divider
+} from '@material-ui/core';
 
 import {
     Apps as IconApps,
@@ -17,12 +23,46 @@ import {
 } from '@material-ui/icons';
 
 import { makeStyles } from '@material-ui/styles';
+import { RoutesList } from '@src/Consts';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     nested: {
         paddingLeft: theme.spacing(6)
     }
 }));
+
+export const DrawerItems = ({ drawerIsOpened }) => {
+    const classes = useStyles();
+    const inset = drawerIsOpened && classes.nested;
+
+    return (
+        <>
+            <ListItem theTo={RoutesList.Dashboard.URL} theIcon={IconDashboard} theText='Dashboard' />
+            
+            <Divider />
+
+            <ListItem theTo={RoutesList.CustomersList.URL} theText='Customers' theIcon={IconShoppingCart} />
+            <ListItem theTo={RoutesList.VendorsList.URL} theText='Vendors' theIcon={IconLocalShipping} />
+
+            <Divider />
+
+            <ListItem theTo={RoutesList.PhonesList.URL} theText='Phones' theIcon={IconPhoneAndroid} />
+            <ListItem theTo={RoutesList.AccessoriesList.URL} theText='Accessories'theIcon={IconEmojiObjects} />
+            
+            <ListItem theTo={RoutesList.ItemsPhonesList.URL} theText='Items'theIcon={IconApps} />
+            <ListItem theTo={RoutesList.ItemsAccessoriesList.URL} theText='Items'theIcon={IconApps} />
+            
+            <Divider />
+
+            <ListItem theTo={RoutesList.SellsList.URL} theText='Sells' theIcon={IconAttachMoney} />
+            <ListItem theTo={RoutesList.BuysList.URL} theText='Buys' theIcon={IconAttachMoney} />
+
+            <ListItem theTo={RoutesList.UsersList.URL} theText='Users' theIcon={IconAttachMoney} />
+
+            {false && <ListSubheader inset>Transactions</ListSubheader>}
+        </>
+    );
+}
 
 function ListItem(props) {
     return (
@@ -54,39 +94,6 @@ function ListItems(props) {
                     {props.children}
                </List>
             </Collapse>
-        </>
-    );
-}
-
-export const DrawerItems = ({ drawerIsOpened }) => {
-    const classes = useStyles();
-    const inset = drawerIsOpened && classes.nested;
-
-    return (
-        <>
-            <ListItem theTo='/dashboard' theIcon={IconDashboard} theText='Dashboard' />
-            
-            <Divider />
-
-            <ListItem theTo='/customers' theText='Customers' theIcon={IconShoppingCart} />
-            <ListItem theTo='/vendors' theText='Vendors' theIcon={IconLocalShipping} />
-
-            <Divider />
-
-            <ListItem theTo='/phones' theText='Phones' theIcon={IconPhoneAndroid} />
-            <ListItem theTo='/accessories' theText='Accessories'theIcon={IconEmojiObjects} />
-            
-            <ListItem theTo='/itemsAccessories' theText='Items'theIcon={IconApps} />
-            <ListItem theTo='/itemsPhones' theText='Items'theIcon={IconApps} />
-            
-            <Divider />
-
-            <ListItem theTo='/sells' theText='Sells' theIcon={IconAttachMoney} />
-            <ListItem theTo='/buys' theText='Buys' theIcon={IconAttachMoney} />
-
-            <ListItem theTo='/users' theText='Users' theIcon={IconAttachMoney} />
-
-            {false && <ListSubheader inset>Transactions</ListSubheader>}
         </>
     );
 }

@@ -1,66 +1,30 @@
 import React from 'react';
-import { useSetRecoilState, useRecoilState } from 'recoil';
-import { userAtom } from '@src/Atoms';
 import clsx from 'clsx';
-import { makeStyles, fade } from '@material-ui/core/styles';
 
-import { AppBar as MuiAppBar, Toolbar, Typography, IconButton, Badge } from '@material-ui/core';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { userAtom, drawerIsOpenedAtom } from '@src/Atoms';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ExitToApp from '@material-ui/icons/ExitToApp';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import {
+    AppBar as MuiAppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    Badge
+} from '@material-ui/core';
 
-import { drawerIsOpenedAtom } from '@src/Atoms';
+import {
+    ExitToApp,
+    Menu as MenuIcon,
+    Notifications as NotificationsIcon
+} from '@material-ui/icons';
+
 import BarSearch from '@Components/BarSearch';
 
-const useStyles = makeStyles((theme) => ({
-    grow: {
-        flexGrow: 1,
-    },
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        marginLeft: 240,
-        width: `calc(100% - ${240}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    toolbar: {
-        paddingRight: 24
-    },
-    menuButton: {
-        marginRight: 36
-    },
-    menuButtonHidden: {
-        display: 'none'
-    },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25)
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto'
-        }
-    }
-}));
+import useStyles from './Styles';
 
 export default function AppBar() {
-    const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
     const classes = useStyles();
+    const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
 
     const setUser = useSetRecoilState(userAtom);
     const LogOut = () => setUser(null);

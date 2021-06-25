@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import { userAtom } from './Atoms';
-import { App } from './App';
-import Signin from './Pages/Signin';
 import Theme from '@src/Theme';
+
+import App from '@src/Pages/App';
+import Signin from '@src/Pages/Signin';
 
 axios.defaults.baseURL = 'http://192.168.43.192:8000/api/';
 axios.defaults.responseType = 'json';
