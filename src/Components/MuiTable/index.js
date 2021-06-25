@@ -11,16 +11,12 @@ import { useQuery, useQueryClient } from 'react-query'
 import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
 import { useSnackbar } from 'notistack';
 import MUIDataTables from "mui-datatables";
-import { Button, DialogActions, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { Dialog, DialogTitle } from '@material-ui/core';
 
 import { useLocation } from "react-router";
 import { makeStyles } from '@material-ui/core/styles';
 
-import {
-    HighlightOff,
-    Delete,
-    Edit
-} from '@material-ui/icons';
+import EditResourceDialog from '@Components/EditResource';
 
 import {
     defaultOptions,
@@ -192,8 +188,8 @@ function MuiTable({
         setFormDialogIsOpened(true);
     }
 
-    const detailsContent = DetailsContent && selectedRowData && <DetailsContent rowData={selectedRowData} handleDialogClose={handleDialogClose} />;
-    const isOwned = detailsContent && (formName && selectedRowData.created_by !== 'PSMS');
+    const detailsContent = <DetailsContent rowData={selectedRowData} handleDialogClose={handleDialogClose} />;
+    const isUpdatable = detailsContent && formName && (selectedRowData.created_by !== 'PSMS');
 
     const deleteDialogProps = {
         open: deleteDialogOpen,
@@ -203,33 +199,19 @@ function MuiTable({
 
     return (
         <>
-            {detailsContent &&
+            {DetailsContent && selectedRowData && detailsContent &&
                 <Dialog open={dialogIsOpened} onClose={handleDialogClose} fullWidth maxWidth={DialogSize}>
-                    <DialogTitle>{(selectedRowData && getNameFromData(selectedRowData)) || title}</DialogTitle>
+                    <DialogTitle>{getNameFromData(selectedRowData) || title}</DialogTitle>
 
                     {StandardDialog ? (
-                        <>
-                            <DialogContent>
-                                {detailsContent}
-                            </DialogContent>
-
-                            <DialogActions>
-                                <Button startIcon={<HighlightOff />} onClick={handleDialogClose} color="primary" variant="outlined">
-                                    Cancel
-                                </Button>
-                                
-                                {isOwned && <>
-                                        <Button startIcon={<Delete />} onClick={() => setDeleteDialogOpen(true)} color="primary" variant="outlined">
-                                            Delete
-                                        </Button>
-
-                                        <Button startIcon={<Edit />} onClick={handleEditButton} color="primary" variant="outlined">
-                                            Edit
-                                        </Button>
-                                    </>
-                                }
-                            </DialogActions>
-                        </>
+                        <EditResourceDialog
+                            isUpdatable={isUpdatable}
+                            handleDialogClose={handleDialogClose}
+                            handleDeleteButton={() => setDeleteDialogOpen(true)}
+                            handleEditButton={handleEditButton}
+                        >
+                            {detailsContent}
+                        </EditResourceDialog>
                     ) : 
                         detailsContent
                     }
