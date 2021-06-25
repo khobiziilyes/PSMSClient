@@ -17,6 +17,9 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Brand in Accessory shouldn't be required.
+	- Accessory isn't highlighted
+	
 	- Remove fields autocomplete.
 	- notes are not showing new lines.
 	

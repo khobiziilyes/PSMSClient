@@ -10,7 +10,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const formikParams = {
-    URL: '/',
+    URL: '/users',
     initialValues: {
 
     },

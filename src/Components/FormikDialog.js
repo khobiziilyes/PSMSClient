@@ -44,8 +44,10 @@ export default function FormikDialog() {
     const isCreate = formDialogInitValues === null;
     
     const onSubmit = (values, { setSubmitting, resetForm, setFieldError }) => {
+        const URL = formikParams.URL;
+
         axios({
-            url: formikParams.URL + '/' + (isCreate ? '' : formDialogInitValues.id),
+            url: (typeof URL === 'function') ? URL(formDialogInitValues.id, isCreate) : (formikParams.URL + '/' + (isCreate ? '' : formDialogInitValues.id)),
             method: isCreate ? 'POST' : 'PATCH',
             data: formikParams.fieldToData ? formikParams.fieldToData(values) : values
         }).then(response => {
@@ -53,7 +55,7 @@ export default function FormikDialog() {
                 const resourceId = isCreate ? response.data.data.id : response.data.id;
 
                 enqueueSnackbar((isCreate ? 'Created' : 'Updated') + ' successfully, ID: #' + resourceId, { variant: 'success' });
-                queryClient.invalidateQueries(formikParams.URL);
+                queryClient.invalidateQueries((URL instanceof Function) ? formikParams.dataURL : formikParams.URL);
 
                 resetForm();
                 setFormDialogIsOpened(false);
@@ -89,7 +91,7 @@ export default function FormikDialog() {
 
     const { id, ...initialValues } = isCreate ? formikParams.initialValues : formDialogInitValues;
     const handleFormDialogClose = () => setFormDialogIsOpened(false);
-
+    
     return TheForm ?
         <Formik onSubmit={formikParams.onSubmit || onSubmit} enableReinitialize validationSchema={formikParams.validationSchema} initialValues={initialValues}>
             {({ submitForm, isSubmitting, setFieldValue }) => 
