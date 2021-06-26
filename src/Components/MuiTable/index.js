@@ -3,24 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 
-import clsx from 'clsx';
 import queryString from "query-string";
 
-import { useSetRecoilState } from 'recoil';
 import { useQuery, useQueryClient } from 'react-query'
-import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
 import { useSnackbar } from 'notistack';
 import MUIDataTables from "mui-datatables";
-import { Dialog, DialogTitle } from '@material-ui/core';
 
 import { useLocation } from "react-router";
 import { makeStyles } from '@material-ui/core/styles';
 
-import EditResourceDialog from '@Components/EditResource';
-
 import {
-    defaultOptions,
-    
     performServerDelete,
     performServerRequest,
     
@@ -33,6 +25,9 @@ import {
     updateColumns,
     creationColumns
 } from './Consts';
+
+import makeOptions from './options';
+import DetailsDialog from './DetailsDialog';
 
 const useStyles = makeStyles({
     highlightedRow: {
@@ -57,14 +52,13 @@ function MuiTable({
     DetailsContent = null,
     DialogSize = 'md',
     StandardDialog = true,
-    ...props
+    ...props 
 }) {
-    const location = useLocation();
     const queryClient = useQueryClient();
     const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
 
-    const { totalRows, highlightId } = queryString.parse(location.search);
+    const { totalRows, highlightId } = queryString.parse(useLocation().search);
     
     const initPage = totalRows ? Math.ceil(totalRows / initRowsPerPage) : 1;
 
@@ -89,7 +83,7 @@ function MuiTable({
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     
     const handleDialogClose = () => setDialogIsOpened(false);
-    
+
     const fetchQueryFunc = ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
         if (localData && localData.data && localData.data.length === 0 && currentPage !== 1)
             setCurrentPage(1);
@@ -108,48 +102,6 @@ function MuiTable({
     
     if (isError) setTimeout(() => queryClient.invalidateQueries(URL), 10000);
 
-    const options = {
-        ...defaultOptions,
-
-        page: currentPage - 1,
-        rowsPerPage: rowsPerPage,
-        count: data ? data.total : (totalRows || 0),
-        
-        onRowClick: (rowData, { dataIndex }) => {
-            if (DetailsContent) {
-                const realRowData = data.data[dataIndex];
-                
-                if (realRowData.id === parseInt(highlightId)) classes.highlightedRow = {};
-
-                const emptyFromNull = Object.keys(realRowData).reduce((Obj, key) => {
-                    Obj[key] = realRowData[key] || '';
-                    return Obj;
-                }, {});
-
-                setSelectedRowData(emptyFromNull);
-                setDialogIsOpened(true);
-            }
-        },
-        
-        onChangePage: (newPage) => setCurrentPage(parseInt(newPage) + 1),
-        onChangeRowsPerPage: (numberOfRows) => setRowsPerPage(numberOfRows),
-        onSearchChange: (searchText) => setSearchFilterDelayed(() => setSearchFilter(searchText)),
-        onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
-        onColumnSortChange: (columnName, direction) => setColumnSort({columnName, direction}),
-        
-        setRowProps: (row, dataIndex, rowIndex) => {
-            const rowData = data.data[rowIndex];
-
-            return {
-                className: clsx([
-                    dependingRowColor && dependingRowColor(rowData),
-                    highlightId && (parseInt(highlightId) === rowData.id) && classes.highlightedRow
-                ])
-            }
-        },
-        ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
-    }
-
     const handleDeleteDialogContinue = () => {
         performServerDelete(URL, selectedRowData.id).then(response => {
             setDeleteDialogOpen(false);
@@ -165,62 +117,56 @@ function MuiTable({
         });
     }
 
-    const setFormDialogName = useSetRecoilState(formDialogNameAtom);
-    const setFormDialogInitValues = useSetRecoilState(formDialogInitValuesAtom);
-    const setFormDialogIsOpened = useSetRecoilState(formDialogIsOpenedAtom);
-
-    const handleEditButton = () => {
-        const removedData = ['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'];
-        
-        const cleanData = Object.keys(selectedRowData).reduce((Obj, key) => {
-            if (!removedData.includes(key)) {
-                const oldValue = selectedRowData[key];
-                Obj[key] = dataToField ? dataToField(key, oldValue) : oldValue;
-            }
-
-            return Obj;
-        }, {});
-
-        setFormDialogInitValues(cleanData);
-        setFormDialogName(formName);
-        setDialogIsOpened(false);
-
-        setFormDialogIsOpened(true);
-    }
-
-    const detailsContent = <DetailsContent rowData={selectedRowData} handleDialogClose={handleDialogClose} />;
-    const isUpdatable = detailsContent && formName && (selectedRowData.created_by !== 'PSMS');
-
     const deleteDialogProps = {
         open: deleteDialogOpen,
         handleContinue: handleDeleteDialogContinue,
         handleClose: () => setDeleteDialogOpen(false)
     }
 
+    const options = makeOptions({
+        currentPage,
+        setCurrentPage,
+
+        rowsPerPage,
+        setRowsPerPage,
+
+        data,
+        totalRows,
+        moreOptions,
+        dependingRowColor,
+        classes,
+        highlightId,
+        DetailsContent,
+
+        setSelectedRowData,
+        setDialogIsOpened,
+        setColumnSort,
+        setFilterList,
+        setSearchFilter,
+        setSearchFilterDelayed
+    });
+
+    const BuildHandleEditButtonArgs = { selectedRowData, dataToField, formName, setDialogIsOpened };
+
+    const DetailsDialogProps = {
+        title: (selectedRowData && getNameFromData(selectedRowData)) || title,
+        handleDialogClose,
+        StandardDialog,
+        setDeleteDialogOpen,
+        BuildHandleEditButtonArgs,
+        selectedRowData,
+        formName,
+        DetailsContent,
+        
+        maxWidth: DialogSize,
+        open: dialogIsOpened
+    }
+
     return (
         <>
-            {DetailsContent && selectedRowData && detailsContent &&
-                <Dialog open={dialogIsOpened} onClose={handleDialogClose} fullWidth maxWidth={DialogSize}>
-                    <DialogTitle>{getNameFromData(selectedRowData) || title}</DialogTitle>
+            {DetailsContent && selectedRowData && <DetailsDialog {...DetailsDialogProps} />}
 
-                    {StandardDialog ? (
-                        <EditResourceDialog
-                            isUpdatable={isUpdatable}
-                            handleDialogClose={handleDialogClose}
-                            handleDeleteButton={() => setDeleteDialogOpen(true)}
-                            handleEditButton={handleEditButton}
-                        >
-                            {detailsContent}
-                        </EditResourceDialog>
-                    ) : 
-                        detailsContent
-                    }
-                </Dialog>
-            }
-
-            <DeleteDialog
-                {...deleteDialogProps}
-            />
+            <DeleteDialog {...deleteDialogProps} />
             
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <MUIDataTables

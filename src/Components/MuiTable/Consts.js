@@ -1,12 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import { DialogActions, Dialog, DialogTitle, DialogContentText, DialogContent as MuiDialogContent } from '@material-ui/core';
-import { CircularProgress, Typography, Button, FormControl } from '@material-ui/core';
+import {
+    DialogActions,
+    Dialog,
+    DialogTitle,
+    DialogContentText,
+    DialogContent as MuiDialogContent,
+    CircularProgress,
+    Typography,
+    Button,
+    FormControl,
+    IconButton
+} from '@material-ui/core';
 
 import { DatePicker } from "@material-ui/pickers";
-
 import ClearIcon from "@material-ui/icons/Clear";
-import { IconButton } from "@material-ui/core";
 
 let tableSearchDelayTimer;
 
@@ -76,7 +84,7 @@ const Title = ({ title, isFetching }) => (
 
 const DeleteDialog = ({ open, handleClose, handleContinue }) => (
     <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">Delete resourceName</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Delete ?</DialogTitle>
         
         <MuiDialogContent>
             <DialogContentText>
