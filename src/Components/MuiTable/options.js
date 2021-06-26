@@ -1,7 +1,36 @@
 import clsx from 'clsx';
-import { defaultOptions } from './Consts';
+import { Button } from '@material-ui/core';
 
-export const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes }) => {
+let tableSearchDelayTimer;
+
+const FilterDialogFooter = ({ applyNewFilters }) => (
+    <div style={{ marginTop: '40px' }}>
+        <Button variant="contained" onClick={applyNewFilters}>Apply Filters</Button>
+    </div>
+);
+
+const defaultOptions = {
+    print: false,
+    filter: true,
+    filterType: 'textField',
+    confirmFilters: true,
+    selectableRows: 'none',
+    responsive: 'vertical',
+    serverSide: true,
+    rowsPerPageOptions: [5, 7, 10, 30],
+    sortThirdClickReset: true,
+    enableNestedDataAccess: '.',
+    download: false,
+
+    customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
+}
+
+const setSearchFilterDelayed = (setSearchFilter) => {
+    clearTimeout(tableSearchDelayTimer);
+    tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
+}
+
+const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes }) => {
     return (row, dataIndex, rowIndex) => {
         const rowData = data.data[rowIndex];
 
@@ -14,7 +43,7 @@ export const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes
     }
 }
 
-export const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }) => {
+const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }) => {
     return (rowData, { dataIndex }) => {
         const realRowData = data.data[dataIndex];
         
@@ -30,7 +59,7 @@ export const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData
     }
 }
 
-export const makeOptions = ({
+const makeOptions = ({
     currentPage,
     setCurrentPage,
 
@@ -49,8 +78,7 @@ export const makeOptions = ({
     setSelectedRowData,
     setColumnSort,
     setFilterList,
-    setSearchFilter,
-    setSearchFilterDelayed
+    setSearchFilter
 }) => ({
     ...defaultOptions,
 

@@ -1,29 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {
-    CircularProgress,
-    Typography,
-    Button
-} from '@material-ui/core';
-
-let tableSearchDelayTimer;
-
-const defaultOptions = {
-    print: false,
-    filter: true,
-    filterType: 'textField',
-    confirmFilters: true,
-    selectableRows: 'none',
-    responsive: 'vertical',
-    serverSide: true,
-    rowsPerPageOptions: [5, 7, 10, 30],
-    sortThirdClickReset: true,
-    enableNestedDataAccess: '.',
-    download: false,
-
-    customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
-}
+import { CircularProgress, Typography } from '@material-ui/core';
 
 const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames, filterValueFormaters) => 
     axios.get(URL, {
@@ -53,17 +31,6 @@ const performServerRequest = (URL, page, perPage, searchFilter, filterList, colu
         }
     }).then(response => response.data);
 
-const setSearchFilterDelayed = (setSearchFilter) => {
-    clearTimeout(tableSearchDelayTimer);
-    tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
-}
-
-const FilterDialogFooter = ({ applyNewFilters }) => (
-    <div style={{ marginTop: '40px' }}>
-        <Button variant="contained" onClick={applyNewFilters}>Apply Filters</Button>
-    </div>
-);
-
 const Title = ({ title, isFetching }) => (
     <Typography variant="h6">
         {title}
@@ -84,10 +51,6 @@ function BuildFetchQueryFunc(totalColumns, setCurrentPage, currentPage) {
 }
 
 export {
-    defaultOptions,   
-    setSearchFilterDelayed,
-
-    Title,
-
-    BuildFetchQueryFunc
+    BuildFetchQueryFunc,
+    Title
 }

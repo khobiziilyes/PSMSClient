@@ -5,8 +5,6 @@ import {
     ListItem as MuiListItem,
     ListItemIcon, ListItemText,
     ListSubheader,
-    List,
-    Collapse,
     Divider
 } from '@material-ui/core';
 
@@ -16,25 +14,13 @@ import {
     EmojiObjects as IconEmojiObjects,
     PhoneAndroid as IconPhoneAndroid,
     LocalShipping as IconLocalShipping,
-    ExpandMore as IconExpandMore,
-    ExpandLess as IconExpandLess,
     Dashboard as IconDashboard,
     AttachMoney as IconAttachMoney
 } from '@material-ui/icons';
 
-import { makeStyles } from '@material-ui/styles';
 import { RoutesList } from '@src/Consts';
 
-const useStyles = makeStyles(theme => ({
-    nested: {
-        paddingLeft: theme.spacing(6)
-    }
-}));
-
 export const DrawerItems = ({ drawerIsOpened }) => {
-    const classes = useStyles();
-    const inset = drawerIsOpened && classes.nested;
-
     return (
         <>
             <ListItem theTo={RoutesList.Dashboard.URL} theIcon={IconDashboard} theText='Dashboard' />
@@ -73,7 +59,17 @@ function ListItem(props) {
     );
 }
 
+/*
+const useStyles = makeStyles(theme => ({
+    nested: {
+        paddingLeft: theme.spacing(6)
+    }
+}));
+
 function ListItems(props) {
+    const classes = useStyles();
+    const inset = props.drawerIsOpened && classes.nested;
+
     const [open, setOpen] = React.useState(false)
 
     return (
@@ -91,9 +87,10 @@ function ListItems(props) {
                 <Divider />
                 
                 <List component="div" disablePadding>
-                    {props.children}
+                    {React.cloneElement(props.children, {className: inset})}
                </List>
             </Collapse>
         </>
     );
 }
+*/

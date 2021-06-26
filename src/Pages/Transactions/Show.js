@@ -6,21 +6,14 @@ import {
 } from '@material-ui/core';
 
 import {
-	ArrowLeft,
-	ArrowRight,
 	AttachMoney,
 	ImportExport,
-	Person,
-	Print,
-	HighlightOff,
-	Delete
+	Person
 } from '@material-ui/icons';
 
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
-
-import { Button, DialogActions, DialogContent as MuiDialogContent } from '@material-ui/core';
 
 const CartsContent = ({ Cart }) => {
 	return (
@@ -121,39 +114,12 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 	);
 }
 
-export default function ShowTransaction({ handleDialogClose, rowData: {carts, ...rowData} }) {
-	const [viewCart, setViewCart] = React.useState(0);
+export default function ShowTransaction({ viewCart, rowData: {carts, ...rowData} }) {
 	const totalCost = carts.reduce((a, cart) => a + (cart.Quantity * cart.costPerItem), 0);
 
 	return (
-		<>
-			<MuiDialogContent>
-		        <Grid container spacing={5}>
-					{viewCart ? <CartsContent Cart={carts[viewCart - 1]} /> : <MainContent {...rowData} totalCost={totalCost} />}
-				</Grid>
-			</MuiDialogContent>
-
-	        <DialogActions>
-	            <Button startIcon={<HighlightOff />} onClick={handleDialogClose} color="primary" variant="outlined">
-	                Cancel
-	            </Button>
-	            
-	            <Button startIcon={<Delete />} onClick={() => {}} color="primary" variant="outlined">
-	                Delete
-	            </Button>
-
-	            <Button startIcon={<Print />} onClick={() => {}} color="primary" variant="outlined">
-	                Receipt
-	            </Button>
-
-	            <Button startIcon={<ArrowLeft />} onClick={() => setViewCart(viewCart - 1)} color="primary" variant="outlined" disabled={viewCart === 0}>
-	                Previous Cart
-	            </Button>
-
-	            <Button endIcon={<ArrowRight />} onClick={() => setViewCart(viewCart + 1)} color="primary" variant="outlined" disabled={viewCart === carts.length}>
-	                Next Cart
-	            </Button>
-	        </DialogActions>
-       	</>
+	    <Grid container spacing={5}>
+			{viewCart ? <CartsContent Cart={carts[viewCart - 1]} /> : <MainContent {...rowData} totalCost={totalCost} />}
+		</Grid>
 	);
 }

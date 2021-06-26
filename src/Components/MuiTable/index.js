@@ -10,11 +10,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import {    
-    setSearchFilterDelayed,
-    Title,
-    BuildFetchQueryFunc
-} from './Consts';
+import { Title, BuildFetchQueryFunc } from './Consts';
 
 import { makeTotalColumns } from './Columns';
 
@@ -31,9 +27,11 @@ const useStyles = makeStyles({
 function MuiTable({
     URL, title, columns,
     
-    formName = null,
-    initRowsPerPage = 5,
+    includeCreateColumns = true,
     includeUpdateColumns = true,
+    
+    initRowsPerPage = 5,
+    formName = null,
     dependingRowColor = null,
     moreOptions = [],
     
@@ -41,8 +39,11 @@ function MuiTable({
     initialFilters = [],
     
     DetailsContent = null,
+    ShowEditButton = true,
+    ShowDeleteButton = true,
+    ExtraDetailsDialogButtons = null,
+
     DialogSize = 'md',
-    StandardDialog = true,
     ...props 
 }) {
     const queryClient = useQueryClient();
@@ -81,14 +82,6 @@ function MuiTable({
     
     if (isError) setTimeout(() => queryClient.invalidateQueries(URL), 10000);
     
-    const deleteDialogProps = {
-        URL: URL,
-        id: selectedRowData && selectedRowData.id,
-        open: deleteDialogOpen,
-        closeDeleteDialog,
-        closeDetailsDialog
-    }
-
     const options = makeOptions({
         currentPage,
         setCurrentPage,
@@ -108,22 +101,34 @@ function MuiTable({
         setSelectedRowData,
         setColumnSort,
         setFilterList,
-        setSearchFilter,
-        setSearchFilterDelayed
+        setSearchFilter
     });
 
     const DetailsDialogProps = {
         title: (selectedRowData && getNameFromData && getNameFromData(selectedRowData)) || title,
 
         closeDetailsDialog,
-        StandardDialog,
         openDetailsDialog,
+        openDeleteDialog,
+        
         selectedRowData,
         formName,
-        DetailsContent,
         
+        DetailsContent,
+        ShowDeleteButton,
+        ShowEditButton,
+        ExtraDetailsDialogButtons,
+
         maxWidth: DialogSize,
         open: detailsDialogIsOpened
+    }
+
+    const deleteDialogProps = {
+        URL: URL,
+        id: selectedRowData && selectedRowData.id,
+        open: deleteDialogOpen,
+        closeDeleteDialog,
+        closeDetailsDialog
     }
 
     return (

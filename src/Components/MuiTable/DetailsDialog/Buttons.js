@@ -1,10 +1,5 @@
 import { Button } from '@material-ui/core';
-
-import {
-    HighlightOff,
-    Delete,
-    Edit
-} from '@material-ui/icons';
+import { HighlightOff, Delete, Edit} from '@material-ui/icons';
 
 const props = {
     color: 'primary',

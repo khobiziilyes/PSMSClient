@@ -3,14 +3,7 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useQueryClient } from 'react-query'
 
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions,
-    Button
-} from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@material-ui/core';
 
 const DeleteDialog = ({ URL, id, open, closeDeleteDialog, closeDetailsDialog }) => {
     const { enqueueSnackbar } = useSnackbar();

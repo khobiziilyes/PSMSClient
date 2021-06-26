@@ -1,9 +1,16 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { List, ListItem, ListItemText, ListItemIcon, Button } from '@material-ui/core';
 import { EmojiObjects, PhoneAndroid } from '@material-ui/icons';
 import ShowTransaction from './Show';
 import { makeStyles } from '@material-ui/core/styles';
+
+import {
+    ArrowLeft,
+    ArrowRight,
+    Print
+} from '@material-ui/icons';
+
 
 const columns = [
 	{
@@ -57,8 +64,27 @@ const useStyles = makeStyles({
     }
 });
 
+function ExtraDetailsDialogButtons({ viewCart, setViewCart, rowData }) {
+    return (
+        <>
+            <Button startIcon={<Print />} onClick={() => {}} color="primary" variant="outlined">
+                Receipt
+            </Button>
+
+            <Button startIcon={<ArrowLeft />} onClick={() => setViewCart(viewCart - 1)} color="primary" variant="outlined" disabled={viewCart === 0}>
+                Previous Cart
+            </Button>
+
+            <Button endIcon={<ArrowRight />} onClick={() => setViewCart(viewCart + 1)} color="primary" variant="outlined" disabled={viewCart === rowData.carts.length}>
+                Next Cart
+            </Button>
+        </>
+    );
+}
+
 export default function TransactionsList({ isBuy }) {
     const classes = useStyles();
+    const [viewCart, setViewCart] = React.useState(0);
 
     return (
         <MuiTable
@@ -69,8 +95,10 @@ export default function TransactionsList({ isBuy }) {
             initialFilters={{ withTrashed: 1 }}
         	dependingRowColor={(row) => row.deleted_at && classes.redRow}
             getNameFromData={() => 'Transaction Details'}
-            DialogContent={ShowTransaction}
-            StandardDialog={false}
+            
+            DetailsContent={<ShowTransaction viewCart={viewCart} />}
+            ShowEditButton={true}
+            ExtraDetailsDialogButtons={<ExtraDetailsDialogButtons viewCart={viewCart} setViewCart={setViewCart} />}
         />
     );
 }

@@ -169,6 +169,7 @@ const MainContent = ( { id, name, delta, currentQuantity, defaultPrice, created_
 		</>
 	);
 }
+
 export default function ShowItem({ handleDialogClose, rowData }) {
 	const {
 		id,

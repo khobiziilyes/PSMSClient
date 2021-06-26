@@ -10,32 +10,22 @@ const idColumn = {
     }
 }
 
-const timeColumn = (name, label, filterName, labels) => ({
-    name,
-    label,
-    filterName,
-    options: {
-        filterType: 'custom',
-        filterOptions: {
-            display: (filterList, onChange, index, column) => {
-                return (
-                    <FormControl>
-                        {[0, 1].map(i => 
-                            <DatePicker
-                                label={labels[i]}
-                                onChange={newVal => {
-                                    filterList[index][i] = newVal;
-                                    onChange(filterList[index], index, column);
-                                }}
-                                key={'DatePicker-' + i}
-                            />
-                        )}
-                    </FormControl>
-                );
-            }
-        }
-    }
-});
+const timeColumnDisplay = (labels) => (filterList, onChange, index, column) => {
+    return (
+        <FormControl>
+            {[0, 1].map(i => 
+                <DatePicker
+                    label={labels[i]}
+                    onChange={newVal => {
+                        filterList[index][i] = newVal;
+                        onChange(filterList[index], index, column);
+                    }}
+                    key={'DatePicker-' + i}
+                />
+            )}
+        </FormControl>
+    );
+}
 
 const updateColumns = [
     {
@@ -46,7 +36,17 @@ const updateColumns = [
         },
         filterName: 'updatedBy'
     },
-    timeColumn('updated_at', 'Updates', ['updatedBefore', 'updatedAfter'], ['Updated Before', 'Updated After'])
+    {
+        name: 'updated_at',
+        label: 'Updates',
+        filterName: ['updatedBefore', 'updatedAfter'],
+        options: {
+            filterType: 'custom',
+            filterOptions: {
+                display: timeColumnDisplay(['Updated Before', 'Updated After'])
+            }
+        }
+    }
 ];
 
 const creationColumns = [
@@ -58,13 +58,23 @@ const creationColumns = [
         },
         filterName: 'createdBy'
     },
-    timeColumn('created_at', 'Creates', ['createdBefore', 'createdAfter'], ['Created Before', 'Created After'])
+    {
+        name: 'created_at',
+        label: 'Creates',
+        filterName: ['createdBefore', 'createdAfter'],
+        options: {
+            filterType: 'custom',
+            filterOptions: {
+                display: timeColumnDisplay(['Created Before', 'Created After'])
+            }
+        }
+    }
 ];
 
-const makeTotalColumns = (columns, includeUpdateColumns) => [
+const makeTotalColumns = (columns, includeCreateColumns, includeUpdateColumns) => [
     idColumn,
     ...columns,
-    ...creationColumns,
+    ...(includeCreateColumns ? creationColumns : []),
     ...(includeUpdateColumns ? updateColumns : [])
 ];
 

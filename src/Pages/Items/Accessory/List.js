@@ -18,9 +18,7 @@ const columns = (accessoriesNames) => [
         label: 'Type',
         options: {
             hint: 'SUP bitch',
-            customBodyRender: (value, tableMeta, updateValue) => {
-                return accessoriesNames[value];
-            }
+            customBodyRender: (value, tableMeta, updateValue) => accessoriesNames[value]
         }
 
     }
@@ -34,8 +32,8 @@ export default function AccessoriesList() {
             title="Accessories list"
             URL="/accessories"
             columns={columns(accessoriesNames)}
-            getNameFromData={(rowData) => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
-            DetailsContent={ShowAccessory}
+            getNameFromData={rowData => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
+            DetailsContent={<ShowAccessory />}
             formName={'Accessory'}
         />
     );

@@ -25,7 +25,7 @@ export default function PeopleList({ isVendor }) {
             URL={"/" + personType.toLowerCase()}
             columns={columns}
             getNameFromData={(rowData) => rowData.name}
-            DetailsContent={ShowPerson}
+            DetailsContent={<ShowPerson />}
             formName={personType.slice(0, -1)}
             moreOptions={{ search: false }}
         />

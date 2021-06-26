@@ -1,24 +1,26 @@
+import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 
 import { useSetRecoilState } from 'recoil';
 import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
 
-import {
-    EditButton,
-    DeleteButton,
-    CloseButton
-} from './Buttons';
+import { EditButton, DeleteButton, CloseButton } from './Buttons';
 
-export default function DetailsDialog ({
+export default function DetailsDialog({
     title,
 
     closeDetailsDialog,
-    StandardDialog,
     openDetailsDialog,
+    openDeleteDialog,
+    
     selectedRowData,
     formName,
-    DetailsContent,
     
+    DetailsContent,
+    ShowDeleteButton,
+    ShowEditButton,
+    ExtraDetailsDialogButtons,
+
     ...props
 }) {
     const setFormDialogName = useSetRecoilState(formDialogNameAtom);
@@ -35,27 +37,30 @@ export default function DetailsDialog ({
         setFormDialogIsOpened(true);
     }
 
-    const detailsContent = <DetailsContent rowData={selectedRowData} handleDialogClose={closeDetailsDialog} />;
-    const isUpdatable = detailsContent && formName && selectedRowData && (selectedRowData.created_by !== 'PSMS');
-
+    const detailsContent = selectedRowData && React.isValidElement(DetailsContent) ?
+        React.cloneElement(DetailsContent, {rowData: selectedRowData, handleDialogClose: closeDetailsDialog}) : null;
+    
     return (
         detailsContent && <Dialog onClose={closeDetailsDialog} fullWidth {...props}>
             <DialogTitle>{title}</DialogTitle>
+    
+            <DialogContent>
+                {detailsContent}
+            </DialogContent>
 
-            {StandardDialog ? (
-                <>
-                    <DialogContent>
-                        {detailsContent}
-                    </DialogContent>
-
-                    <DialogActions>
-                        <CloseButton handleDialogClose={closeDetailsDialog} />
-                        {isUpdatable && <DeleteButton handleDeleteButton={openDetailsDialog} />}
-                        {isUpdatable && <EditButton handleEditButton={openEditForm} />}
-                    </DialogActions>
-                </>
-            ) : 
-                detailsContent
-            }
-        </Dialog>);
+            <DialogActions>
+                <CloseButton handleDialogClose={closeDetailsDialog} />
+                
+                {ShowDeleteButton && <DeleteButton handleDeleteButton={openDeleteDialog} />}
+                {ShowEditButton && formName && <EditButton handleEditButton={openEditForm} />}
+                
+                {React.Children.map(ExtraDetailsDialogButtons, ExtraButton => {
+                    if (React.isValidElement(ExtraButton)) 
+                        return React.cloneElement(ExtraButton, { rowData: selectedRowData });
+                    
+                    return ExtraButton;
+                })}
+            </DialogActions>
+        </Dialog>
+    );
 }
