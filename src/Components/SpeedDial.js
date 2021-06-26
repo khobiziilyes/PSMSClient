@@ -5,7 +5,7 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 import { useSetRecoilState } from 'recoil';
-import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
+import { formDialogParamsAtom } from '@src/Atoms';
 
 import {
     Apps as IconApps,
@@ -32,9 +32,7 @@ const actions = [
 ];
 
 export default function SpeedDial() {
-	const setFormDialogName = useSetRecoilState(formDialogNameAtom);
-    const setFormDialogInitValues = useSetRecoilState(formDialogInitValuesAtom);
-    const setFormDialogIsOpened = useSetRecoilState(formDialogIsOpenedAtom);
+	const setFormDialogParams = useSetRecoilState(formDialogParamsAtom);
 
     const classes = useStyles();
 
@@ -43,12 +41,14 @@ export default function SpeedDial() {
     const handleSpeedDialOpen = () => setSpeedDialOpen(true);
     const handleSpeedDialClose = () => setSpeedDialOpen(false);
 
-    const handleSpeedDialSelect = (name) => {
+    const handleSpeedDialSelect = name => {
         handleSpeedDialClose();
         
-        setFormDialogName(name);
-        setFormDialogInitValues(null);
-        setFormDialogIsOpened(true);
+        setFormDialogParams({
+            isOpened: true,
+            name,
+            initialValues: null
+        });
     }
 
     return (

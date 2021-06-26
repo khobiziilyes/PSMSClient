@@ -1,5 +1,5 @@
 import React from 'react'
-import {hotkeys} from 'react-keyboard-shortcuts';
+import { hotkeys } from 'react-keyboard-shortcuts';
 import axios from 'axios';
 
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -81,7 +81,9 @@ class BarSearch extends React.PureComponent {
         }
     }
 
-    render() { return <BarSearchComp {...this.props} />; }
+    render() {
+        return <BarSearchComp {...this.props} />;
+    }
 }
 
 export default hotkeys(BarSearch);

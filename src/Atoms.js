@@ -5,20 +5,15 @@ const drawerIsOpenedAtom = atom({
     default: false
 });
 
-const formDialogIsOpenedAtom = atom({
-	key: 'formDialogIsOpenedAtom',
-	default: false
-});
 
-const formDialogNameAtom = atom({
-	key: 'formDialogNameAtom',
-	default: 'Customer'
-});
-
-const formDialogInitValuesAtom = atom({
-	key: 'formDialogInitValuesAtom',
-	default: { id: 0 }
-});
+const formDialogParamsAtom = atom({
+	key: 'formDialogParams',
+	default: {
+		isOpened: false,
+		name: 'Customer',
+		initialValues: null
+	}
+})
 
 const userAtom = atom({
     key: 'user',
@@ -38,10 +33,7 @@ const accessoriesNamesAtom = atom({
 export {
 	drawerIsOpenedAtom,
 	
-	formDialogIsOpenedAtom,
-	formDialogNameAtom,
-	formDialogInitValuesAtom,
-	
 	userAtom,
-	accessoriesNamesAtom
+	accessoriesNamesAtom,
+	formDialogParamsAtom
 };

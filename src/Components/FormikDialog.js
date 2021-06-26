@@ -7,8 +7,8 @@ import { useQueryClient } from 'react-query'
 import { Formik, Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { formDialogNameAtom, formDialogInitValuesAtom, formDialogIsOpenedAtom } from '@src/Atoms';
+import { useRecoilState } from 'recoil';
+import { formDialogParamsAtom } from '@src/Atoms';
 
 import * as Pages from '@src/Pages';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,18 +36,19 @@ export default function FormikDialog() {
     const history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
 
-	const [ formDialogIsOpened, setFormDialogIsOpened ] = useRecoilState(formDialogIsOpenedAtom);
-    const formDialogName = useRecoilValue(formDialogNameAtom);
-    const formDialogInitValues = useRecoilValue(formDialogInitValuesAtom);
-	
-    const { formikParams, TheForm } = Pages['Create' + formDialogName];
-    const isCreate = formDialogInitValues === null;
+	const [formDialogParams, setFormDialogParams] = useRecoilState(formDialogParamsAtom);
+    const formDialogName = formDialogParams.name;
+    const formDialogInitialValues = formDialogParams.initialValues;
+	const handleFormDialogClose = () => setFormDialogParams({ isOpened: false });
+
+    const { formikParams, TheForm } = Pages['Create' + formDialogName] || {};
+    const isCreate = formDialogInitialValues === null;
     
     const onSubmit = (values, { setSubmitting, resetForm, setFieldError }) => {
         const URL = formikParams.URL;
 
         axios({
-            url: (typeof URL === 'function') ? URL(formDialogInitValues.id, isCreate) : (formikParams.URL + '/' + (isCreate ? '' : formDialogInitValues.id)),
+            url: (typeof URL === 'function') ? URL(formDialogInitialValues.id, isCreate) : (formikParams.URL + '/' + (isCreate ? '' : formDialogInitialValues.id)),
             method: isCreate ? 'POST' : 'PATCH',
             data: formikParams.fieldToData ? formikParams.fieldToData(values) : values
         }).then(response => {
@@ -58,7 +59,7 @@ export default function FormikDialog() {
                 queryClient.invalidateQueries((URL instanceof Function) ? formikParams.dataURL : formikParams.URL);
 
                 resetForm();
-                setFormDialogIsOpened(false);
+                handleFormDialogClose();
 
                 if (isCreate)
                     history.push(formikParams.tableRoute || formikParams.URL +
@@ -89,13 +90,12 @@ export default function FormikDialog() {
         });
     }
 
-    const { id, ...initialValues } = isCreate ? formikParams.initialValues : formDialogInitValues;
-    const handleFormDialogClose = () => setFormDialogIsOpened(false);
+    const { id, ...initialValues } = (isCreate ? formikParams.initialValues : formDialogInitialValues) || {};
     
     return TheForm ?
         <Formik onSubmit={formikParams.onSubmit || onSubmit} enableReinitialize validationSchema={formikParams.validationSchema} initialValues={initialValues}>
             {({ submitForm, isSubmitting, setFieldValue }) => 
-                <Dialog open={formDialogIsOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleFormDialogClose} fullWidth maxWidth={formikParams.formSize || 'sm'}>
+                <Dialog open={formDialogParams.isOpened} disableBackdropClick={isSubmitting} disableEscapeKeyDown={isSubmitting} onClose={handleFormDialogClose} fullWidth maxWidth={formikParams.formSize || 'sm'}>
                     <DialogTitle>{'Create new ' + formDialogName.toLowerCase()}</DialogTitle>
 
                     <DialogContent>

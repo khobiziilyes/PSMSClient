@@ -3,9 +3,9 @@ import { useRecoilValue } from 'recoil';
 import { Field } from 'formik';
 
 import { Switch } from 'formik-material-ui';
-
 import { Grid, FormControlLabel, Typography } from '@material-ui/core';
-import { formDialogInitValuesAtom } from '@src/Atoms';
+
+import { formDialogParamsAtom } from '@src/Atoms';
 
 const resourcesList = ['Accessory', 'Item', 'Customer', 'Vendor', 'Phone', 'Buy', 'Sell'];
 
@@ -45,7 +45,7 @@ const PermissionSwitch = ({ method, name, defaultVal, setFieldValue }) => {
 }
 
 function TheForm({ setFieldValue }) {
-    const {id, ...initialValues} = useRecoilValue(formDialogInitValuesAtom);
+    const {id, ...initialValues} = useRecoilValue(formDialogParamsAtom).initialValues;
 
     return (
         <Grid container spacing={3} justify="center">

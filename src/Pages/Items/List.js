@@ -2,6 +2,9 @@ import React from 'react';
 import MuiTable from '@Components/MuiTable';
 import ShowItem from './Show';
 
+import { Assessment } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+
 const columns = [
     {
     	name: 'itemable.name',
@@ -31,18 +34,25 @@ const columns = [
     }
 ];
 
+const ViewStatsButton = ({ viewStats, setViewStats }) => (
+    <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
+        {(viewStats ? 'Hide ' : 'View') + ' Stats'}
+    </Button>
+);
+
 export default function ItemsList({ isPhone }) {
+    const [viewStats, setViewStats] = React.useState(false);
+
     return (
         <MuiTable
             title="Items list"
             URL="/items"
             columns={columns}
             getNameFromData={(rowData) => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
-            DetailsContent={ShowItem}
+            DetailsContent={<ShowItem viewStats={viewStats} />}
             formName='Item'
-
-            StandardDialog={false}
             initialFilters={{ isPhone: isPhone ? 1 : 0 }}
+            ExtraDetailsDialogButtons={<ViewStatsButton setViewStats={setViewStats} viewStats={viewStats} />}
         />
     );
 }

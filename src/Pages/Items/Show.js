@@ -5,22 +5,11 @@ import {
 	List
 } from '@material-ui/core';
 
-import {
-	HighlightOff,
-	Delete,
-	Edit,
-	Assessment,
-	Phone,
-	AttachMoney,
-	EmojiEmotions,
-	ViewModule
-} from '@material-ui/icons';
+import { Phone, AttachMoney, EmojiEmotions, ViewModule } from '@material-ui/icons';
 
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
-
-import { Button, DialogActions, DialogContent as MuiDialogContent } from '@material-ui/core';
 
 const StatsContent = ( {
 	totalBuyCost,
@@ -170,7 +159,7 @@ const MainContent = ( { id, name, delta, currentQuantity, defaultPrice, created_
 	);
 }
 
-export default function ShowItem({ handleDialogClose, rowData }) {
+export default function ShowItem({ rowData, viewStats }) {
 	const {
 		id,
 		itemable: {
@@ -191,33 +180,10 @@ export default function ShowItem({ handleDialogClose, rowData }) {
 	} = rowData;
 
 	const MainContentProps = { id, name, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
-	const [viewStats, setViewStats] = React.useState(false);
 	
 	return (
-		<>
-			<MuiDialogContent>
-		        <Grid container spacing={5}>
-					{viewStats ? <StatsContent {...Stats} /> : <MainContent {...MainContentProps} />}
-				</Grid>
-			</MuiDialogContent>
-
-	        <DialogActions>
-	            <Button startIcon={<HighlightOff />} onClick={handleDialogClose} color="primary" variant="outlined">
-	                Cancel
-	            </Button>
-	            
-	            <Button startIcon={<Delete />} onClick={() => {}} color="primary" variant="outlined">
-	                Delete
-	            </Button>
-
-	            <Button startIcon={<Edit />} onClick={() => {}} color="primary" variant="outlined">
-	                Edit
-	            </Button>
-
-	            <Button startIcon={<Assessment />} onClick={() => setViewStats(!viewStats)} color="primary" variant="outlined">
-	                {(viewStats ? 'Hide ' : 'View') + ' Stats'}
-	            </Button>
-	        </DialogActions>
-       	</>
+        <Grid container spacing={5}>
+			{viewStats ? <StatsContent {...Stats} /> : <MainContent {...MainContentProps} />}
+		</Grid>
 	);
 }
