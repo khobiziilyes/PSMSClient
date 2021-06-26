@@ -14,21 +14,19 @@ export const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes
     }
 }
 
-export const BuildOnRowClick = ({ DetailsContent, data, highlightId, classes, setSelectedRowData, setDialogIsOpened }) => {
+export const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }) => {
     return (rowData, { dataIndex }) => {
-        if (DetailsContent) {
-            const realRowData = data.data[dataIndex];
-            
-            if (realRowData.id === parseInt(highlightId)) classes.highlightedRow = {};
+        const realRowData = data.data[dataIndex];
+        
+        if (realRowData.id === parseInt(highlightId)) classes.highlightedRow = {};
 
-            const emptyFromNull = Object.keys(realRowData).reduce((Obj, key) => {
-                Obj[key] = realRowData[key] || '';
-                return Obj;
-            }, {});
+        const emptyFromNull = Object.keys(realRowData).reduce((Obj, key) => {
+            Obj[key] = realRowData[key] || '';
+            return Obj;
+        }, {});
 
-            setSelectedRowData(emptyFromNull);
-            setDialogIsOpened(true);
-        }
+        setSelectedRowData(emptyFromNull);
+        openDetailsDialog();
     }
 }
 
@@ -46,9 +44,9 @@ export const makeOptions = ({
     classes,
     highlightId,
     DetailsContent,
+    openDetailsDialog,
 
     setSelectedRowData,
-    setDialogIsOpened,
     setColumnSort,
     setFilterList,
     setSearchFilter,
@@ -64,9 +62,9 @@ export const makeOptions = ({
     onChangeRowsPerPage: (numberOfRows) => setRowsPerPage(numberOfRows),
     onSearchChange: (searchText) => setSearchFilterDelayed(() => setSearchFilter(searchText)),
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
-    onColumnSortChange: (columnName, direction) => setColumnSort({columnName, direction}),
+    onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     
-    onRowClick: BuildOnRowClick({ DetailsContent, data, highlightId, classes, setSelectedRowData, setDialogIsOpened }),
+    onRowClick: DetailsContent && BuildOnRowClick({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }),
     setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightId, classes }),
     ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
 });

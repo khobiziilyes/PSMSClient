@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from 'react';
-
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
-
-import queryString from "query-string";
-
-import { useQuery, useQueryClient } from 'react-query'
-import { useSnackbar } from 'notistack';
 import MUIDataTables from "mui-datatables";
 
+import { useQuery, useQueryClient } from 'react-query'
 import { useLocation } from "react-router";
+
+import queryString from "query-string";
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
 import { makeStyles } from '@material-ui/core/styles';
 
-import {
-    performServerDelete,
-    performServerRequest,
-    
+import {    
     setSearchFilterDelayed,
-
     Title,
-    DeleteDialog,
-    
-    idColumn,
-    updateColumns,
-    creationColumns
+    BuildFetchQueryFunc
 } from './Consts';
+
+import { makeTotalColumns } from './Columns';
 
 import makeOptions from './options';
 import DetailsDialog from './DetailsDialog';
+import DeleteDialog from './DeleteDialog';
 
 const useStyles = makeStyles({
     highlightedRow: {
@@ -45,8 +38,6 @@ function MuiTable({
     moreOptions = [],
     
     getNameFromData = null,
-    dataToField = null,
-    formatTableData = null,
     initialFilters = [],
     
     DetailsContent = null,
@@ -55,41 +46,29 @@ function MuiTable({
     ...props 
 }) {
     const queryClient = useQueryClient();
-    const { enqueueSnackbar } = useSnackbar();
+    const totalColumns = makeTotalColumns(columns, includeUpdateColumns);
     const classes = useStyles();
 
     const { totalRows, highlightId } = queryString.parse(useLocation().search);
-    
     const initPage = totalRows ? Math.ceil(totalRows / initRowsPerPage) : 1;
-
-    const totalColumns = [
-        idColumn,
-        ...columns,
-        ...creationColumns,
-        ...(includeUpdateColumns ? updateColumns : [])
-    ];
-
-    const columnsFilterNames = totalColumns.map((column) => column.filterName || [column.name]);
-    const filterValueFormaters = totalColumns.map((column) => column.formatValue || null);
-    
     const [currentPage, setCurrentPage] = useState(initPage);
+
+    const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage, currentPage);
+
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
     const [searchFilter, setSearchFilter] = useState('');
     const [filterList, setFilterList] = useState([]);
     const [columnSort, setColumnSort] = useState({ columnName: 'id', direction: 'asc' });
 
     const [selectedRowData, setSelectedRowData] = React.useState(null);
-    const [dialogIsOpened, setDialogIsOpened] = React.useState(false);
-    const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-    
-    const handleDialogClose = () => setDialogIsOpened(false);
 
-    const fetchQueryFunc = ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
-        if (localData && localData.data && localData.data.length === 0 && currentPage !== 1)
-            setCurrentPage(1);
-        
-        return localData;
-    });
+    const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+    const openDeleteDialog = () => setDeleteDialogOpen(true);
+    const closeDeleteDialog = () => setDeleteDialogOpen(false);
+
+    const [detailsDialogIsOpened, setDetailsDialogIsOpened] = React.useState(false);
+    const closeDetailsDialog = () => setDetailsDialogIsOpened(false);
+    const openDetailsDialog = () => setDetailsDialogIsOpened(true);
 
     const queryKeys = [rowsPerPage, searchFilter, filterList, columnSort, initialFilters];
 
@@ -101,26 +80,13 @@ function MuiTable({
     }, [dataUpdatedAt]);
     
     if (isError) setTimeout(() => queryClient.invalidateQueries(URL), 10000);
-
-    const handleDeleteDialogContinue = () => {
-        performServerDelete(URL, selectedRowData.id).then(response => {
-            setDeleteDialogOpen(false);
-
-            if (response.deleted) {
-                setDialogIsOpened(false);
-
-                queryClient.invalidateQueries(URL);
-                enqueueSnackbar('The customer has been deleted successfully.', { variant: 'success' });
-            } else {
-                enqueueSnackbar('The customer could not be deleted.', { variant: 'error' });
-            }
-        });
-    }
-
+    
     const deleteDialogProps = {
+        URL: URL,
+        id: selectedRowData && selectedRowData.id,
         open: deleteDialogOpen,
-        handleContinue: handleDeleteDialogContinue,
-        handleClose: () => setDeleteDialogOpen(false)
+        closeDeleteDialog,
+        closeDetailsDialog
     }
 
     const options = makeOptions({
@@ -137,29 +103,27 @@ function MuiTable({
         classes,
         highlightId,
         DetailsContent,
+        openDetailsDialog,
 
         setSelectedRowData,
-        setDialogIsOpened,
         setColumnSort,
         setFilterList,
         setSearchFilter,
         setSearchFilterDelayed
     });
 
-    const BuildHandleEditButtonArgs = { selectedRowData, dataToField, formName, setDialogIsOpened };
-
     const DetailsDialogProps = {
-        title: (selectedRowData && getNameFromData(selectedRowData)) || title,
-        handleDialogClose,
+        title: (selectedRowData && getNameFromData && getNameFromData(selectedRowData)) || title,
+
+        closeDetailsDialog,
         StandardDialog,
-        setDeleteDialogOpen,
-        BuildHandleEditButtonArgs,
+        openDetailsDialog,
         selectedRowData,
         formName,
         DetailsContent,
         
         maxWidth: DialogSize,
-        open: dialogIsOpened
+        open: detailsDialogIsOpened
     }
 
     return (
@@ -171,7 +135,7 @@ function MuiTable({
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <MUIDataTables
                     title={<Title title={title} isFetching={isFetching} />}
-                    data={data ? (formatTableData ? formatTableData(data.data) : data.data) : []}
+                    data={(data && data.data) ? data.data : []}
                     columns={totalColumns}
                     options={options}
                     {...props}

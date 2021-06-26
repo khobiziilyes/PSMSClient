@@ -1,20 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+
 import {
-    DialogActions,
-    Dialog,
-    DialogTitle,
-    DialogContentText,
-    DialogContent as MuiDialogContent,
     CircularProgress,
     Typography,
-    Button,
-    FormControl,
-    IconButton
+    Button
 } from '@material-ui/core';
-
-import { DatePicker } from "@material-ui/pickers";
-import ClearIcon from "@material-ui/icons/Clear";
 
 let tableSearchDelayTimer;
 
@@ -33,8 +24,6 @@ const defaultOptions = {
 
     customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
 }
-
-const performServerDelete = (URL, id) => axios.delete(URL + '/' + id, ).then((response) => response.data);
 
 const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames, filterValueFormaters) => 
     axios.get(URL, {
@@ -62,7 +51,7 @@ const performServerRequest = (URL, page, perPage, searchFilter, filterList, colu
                 }).filter(value => value !== null)
             )
         }
-    }).then((response) => response.data);
+    }).then(response => response.data);
 
 const setSearchFilterDelayed = (setSearchFilter) => {
     clearTimeout(tableSearchDelayTimer);
@@ -82,136 +71,23 @@ const Title = ({ title, isFetching }) => (
     </Typography>
 );
 
-const DeleteDialog = ({ open, handleClose, handleContinue }) => (
-    <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">Delete ?</DialogTitle>
+function BuildFetchQueryFunc(totalColumns, setCurrentPage, currentPage) {
+    const columnsFilterNames = totalColumns.map(column => column.filterName || [column.name]);
+    const filterValueFormaters = totalColumns.map(column => column.formatValue || null);
+    
+    return ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
+        if (localData && localData.data && localData.data.length === 0 && currentPage !== 1)
+            setCurrentPage(1);
         
-        <MuiDialogContent>
-            <DialogContentText>
-                Do you wish to continue?
-            </DialogContentText>
-        </MuiDialogContent>
-        
-        <DialogActions>
-            <Button onClick={handleClose} color="primary">
-                Cancel
-            </Button>
-            
-            <Button onClick={handleContinue} color="primary" autoFocus>
-                Continue
-            </Button>
-        </DialogActions>
-    </Dialog>
-);
-
-const MyDatePicker = ({ label, onChange }) => {
-    const [selectedDate, setSelectedDate] = React.useState(null);
-
-    const handleDateChange = (newVal) => {
-        setSelectedDate(newVal);
-        onChange(newVal.format('X'));
-    }
-
-    const handleClr = (e) => {
-        e.stopPropagation();
-        setSelectedDate(null);
-    }
-
-    return (
-        <DatePicker
-            value={selectedDate}
-            label={label}
-            onChange={handleDateChange}
-            format='YYYY-MM-DD'
-            animateYearScrolling
-            InputProps={{
-                endAdornment: (
-                    <IconButton onClick={(e) => handleClr(e)} disabled={selectedDate === null} size="small" >
-                        <ClearIcon />
-                    </IconButton>
-                )
-            }}
-        />
-    );
+        return localData;
+    });
 }
-
-const idColumn = {
-    name: 'id',
-    label: 'ID',
-    options: {
-        filter: false,
-        customBodyRender: (value) => '#' + value
-    }
-}
-
-const timeColumn = (name, label, filterName, labels) => ({
-    name,
-    label,
-    filterName,
-    options: {
-        filterType: 'custom',
-        filterOptions: {
-            display: (filterList, onChange, index, column) => {
-                return (
-                    <FormControl>
-                        <MyDatePicker
-                            label={labels[0]}
-                            onChange={newVal => {
-                                filterList[index][0] = newVal;
-                                onChange(filterList[index], index, column);
-                            }}
-                        />
-
-                        <MyDatePicker
-                            label={labels[1]}
-                            onChange={newVal => {
-                                filterList[index][1] = newVal;
-                                onChange(filterList[index], index, column);
-                            }}
-                        />
-                    </FormControl>
-                );
-            }
-        }
-    }
-});
-
-const updateColumns = [
-    {
-        name: 'updated_by',
-        label: 'Updator',
-        options: {
-            filterType: 'dropdown'
-        },
-        filterName: 'updatedBy'
-    },
-    timeColumn('updated_at', 'Updates', ['updatedBefore', 'updatedAfter'], ['Updated Before', 'Updated After'])
-];
-
-const creationColumns = [
-    {
-        name: 'created_by',
-        label: 'Creator',
-        options: {
-            filterType: 'dropdown'
-        },
-        filterName: 'createdBy'
-    },
-    timeColumn('created_at', 'Creates', ['createdBefore', 'createdAfter'], ['Created Before', 'Created After'])
-];
 
 export {
-    defaultOptions,
-    
-    performServerDelete,
-    performServerRequest,
-    
+    defaultOptions,   
     setSearchFilterDelayed,
 
     Title,
-    DeleteDialog,
-    
-    idColumn,
-    updateColumns,
-    creationColumns
+
+    BuildFetchQueryFunc
 }

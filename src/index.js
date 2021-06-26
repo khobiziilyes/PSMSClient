@@ -19,6 +19,7 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- use filterValueFormater prop in Tables for booleans.
 	- Add isUpdatable to data from server.
 	- Brand in Accessory shouldn't be required.
 	- Accessory isn't highlighted
