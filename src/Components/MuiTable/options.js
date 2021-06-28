@@ -86,9 +86,9 @@ const makeOptions = ({
     rowsPerPage: rowsPerPage,
     count: data ? data.total : (totalRows || 0),
     
-    onChangePage: (newPage) => setCurrentPage(parseInt(newPage) + 1),
-    onChangeRowsPerPage: (numberOfRows) => setRowsPerPage(numberOfRows),
-    onSearchChange: (searchText) => setSearchFilterDelayed(() => setSearchFilter(searchText)),
+    onChangePage: newPage => setCurrentPage(parseInt(newPage) + 1),
+    onChangeRowsPerPage: numberOfRows => setRowsPerPage(numberOfRows),
+    onSearchChange: searchText => setSearchFilterDelayed(() => setSearchFilter(searchText)),
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
     onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     

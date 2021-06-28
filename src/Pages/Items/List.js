@@ -34,11 +34,21 @@ const columns = [
     }
 ];
 
-const ViewStatsButton = ({ viewStats, setViewStats }) => (
-    <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
-        {(viewStats ? 'Hide ' : 'View') + ' Stats'}
-    </Button>
-);
+const ViewStatsButton = ({ viewStats, setViewStats, rowData: { itemable: {id: itemable_id} } }) => {
+    const highlightItemable = () => {};
+
+    return (
+        <>
+            <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
+                {(viewStats ? 'Hide ' : 'View') + ' Stats'}
+            </Button>
+
+            <Button startIcon={<Assessment />} onClick={highlightItemable} color="primary" variant="outlined">
+                Got to Item
+            </Button>
+        </>
+    );
+}
 
 export default function ItemsList({ isPhone }) {
     const [viewStats, setViewStats] = React.useState(false);

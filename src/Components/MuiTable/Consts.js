@@ -38,13 +38,14 @@ const Title = ({ title, isFetching }) => (
     </Typography>
 );
 
-function BuildFetchQueryFunc(totalColumns, setCurrentPage, currentPage) {
+function BuildFetchQueryFunc(totalColumns, setCurrentPage) {
     const columnsFilterNames = totalColumns.map(column => column.filterName || [column.name]);
     const filterValueFormaters = totalColumns.map(column => column.formatValue || null);
     
     return ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
-        if (localData && localData.data && localData.data.length === 0 && currentPage !== 1)
-            setCurrentPage(1);
+        setCurrentPage(currentPage => {
+            return (localData && localData.data && localData.data.length === 0 && currentPage !== 1) ? 1 : currentPage;
+        });
         
         return localData;
     });

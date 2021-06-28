@@ -52,9 +52,10 @@ function MuiTable({
 
     const { totalRows, highlightId } = queryString.parse(useLocation().search);
     const initPage = totalRows ? Math.ceil(totalRows / initRowsPerPage) : 1;
+
     const [currentPage, setCurrentPage] = useState(initPage);
 
-    const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage, currentPage);
+    const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage);
 
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
     const [searchFilter, setSearchFilter] = useState('');

@@ -116,7 +116,7 @@ const StatsContent = ( {
 	);
 }
 
-const MainContent = ( { id, name, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes } ) => {
+const MainContent = ({ id, name, brand, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes }) => {
 	return (
 		<>
 			<Grid item xs={6}>
@@ -128,6 +128,10 @@ const MainContent = ( { id, name, delta, currentQuantity, defaultPrice, created_
 					<IDListItem ID={id} />
 					
 					<ListItem primary="Name" secondary={name}>
+						<Phone />
+					</ListItem>
+
+					<ListItem primary="Brand" secondary={brand}>
 						<Phone />
 					</ListItem>
 
@@ -163,9 +167,8 @@ export default function ShowItem({ rowData, viewStats }) {
 	const {
 		id,
 		itemable: {
-			id: itemable_id, //
 			name,
-			brand //
+			brand
 		},
 		delta,
 		currentQuantity,
@@ -179,7 +182,7 @@ export default function ShowItem({ rowData, viewStats }) {
 		...Stats
 	} = rowData;
 
-	const MainContentProps = { id, name, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
+	const MainContentProps = { id, name, brand, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
 	
 	return (
         <Grid container spacing={5}>

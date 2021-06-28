@@ -48,6 +48,8 @@ ReactDOM.render(
     <React.StrictMode>
     	<RecoilRoot>
     		<BrowserRouter>
+    			<FullApp />
+    			
     			<MuiThemeProvider theme={Theme}>
     				<Switch>
 						<Route path='/Signin' component={Signin} exact />
