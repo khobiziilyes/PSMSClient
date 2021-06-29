@@ -2,7 +2,7 @@ import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-export default function ItemToggle( {callBack, ...props} ) {
+export default function ItemToggle({ callBack, ...props }) {
     const [itemType, setItemType] = React.useState('accessory');
 
     const handleItemTypeChange = (event, newItemType) => {

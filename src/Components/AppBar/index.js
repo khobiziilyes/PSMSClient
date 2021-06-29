@@ -18,7 +18,7 @@ import {
     Notifications as NotificationsIcon
 } from '@material-ui/icons';
 
-import BarSearch from '@Components/BarSearch';
+import { LiveSearchWithKeys } from '@Components/Inputs/LiveSearch';
 
 import useStyles from './Styles';
 
@@ -46,12 +46,12 @@ export default function AppBar() {
                 </Typography>
                 
                 <div className={classes.search}>
-                    <BarSearch
-                        formatURL={(query) => "/phones"}
-                        formatData={(data) => data}
-                        getOptionLabel={(option) => option.name}
+                    <LiveSearchWithKeys
+                        formatURL={query => "/search/all"}
+                        getOptionLabel={option => option.name}
                         getOptionSelected={(option, value) => option.name === value.name}
                         onChange={(event, value) => console.log(value)}
+                        style={{ width: 300 }}
                     />
                 </div>
                 

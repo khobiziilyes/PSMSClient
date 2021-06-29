@@ -1,9 +1,10 @@
+import React from 'react';
 import { Field } from 'formik';
-import { TextField as MuiTextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import MuiAutocomplete from '@material-ui/lab/Autocomplete';
 
 export default function Autocomplete(props) {
-	return (
+    return (
 		<Field
 	        component={FormikAutoComplete}
 	        fullWidth
@@ -12,20 +13,36 @@ export default function Autocomplete(props) {
     );
 }
 
-function FormikAutoComplete({ label, disabled, field, form: { isSubmitting, setFieldValue, errors, touched }, type, onChange, onBlur, freeSolo, ...props }) {
+function FormikAutoComplete(oldProps) {
+    const newProps = BuildAutocompleteProps(oldProps)
+    return <MuiAutocomplete {...newProps} />;
+}
+
+function BuildAutocompleteProps({ label, renderInputExtraProps, disabled, field, form, onChange, onBlur, freeSolo, ...props }) {
     const {
     	name,
         onChange: _onChange,
         onBlur: _onBlur,
         multiple: _multiple,
+        // eslint-disable-next-line
         ...fieldSubselection
     } = field;
 
+    const { isSubmitting, setFieldValue, touched, errors } = form;
+
     const metaTouched = touched[name];
     const metaErrors = errors[name];
+    
+    const renderInputProps = {
+        label,
+        metaTouched,
+        metaErrors,
+        extraProps: renderInputExtraProps
+    }
 
     const newProps = {
         freeSolo,
+        disableClearable: true,
         onBlur: onBlur ?? function (event) {
             field.onBlur(event ?? name);
         },
@@ -33,20 +50,24 @@ function FormikAutoComplete({ label, disabled, field, form: { isSubmitting, setF
             setFieldValue(name, value);
         },
         disabled: disabled ?? isSubmitting,
-        loading: isSubmitting,
-        renderInput: (params) => {
-            return (<MuiTextField
-                {...params}
-                error={metaTouched && !!metaErrors}
-                helperText={metaTouched && metaErrors}
-                label={label}
-                variant="outlined"
-                fullWidth
-            />);
-        },
-        ...fieldSubselection,
+        renderInput: RenderInput(renderInputProps),
+        // ...fieldSubselection,
         ...props
     };
 
-    return <MuiAutocomplete {...newProps} />;
+    return newProps;
+}
+
+function RenderInput({ label, metaTouched, metaErrors, extraProps = null }) {
+    return params => (
+        <TextField
+            {...params}
+            variant="outlined"
+            placeholder={label}
+
+            error={metaTouched && !!metaErrors}
+            helperText={metaTouched && metaErrors}
+            {...(extraProps ? extraProps(params) : {})}
+        />
+    );
 }

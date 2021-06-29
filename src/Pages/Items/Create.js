@@ -6,17 +6,19 @@ import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
+import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import ItemToggle from '@Components/ItemToggle';
 
 const formikParams = {
+    onSubmit: console.log,
     initialValues: {
-        item_id: '',
+        product_id: '',
         Delta: '',
         currentQuantity: 0,
         defaultPrice: ''
     },
     validationSchema: Yup.object({
-        item_id: Yup.string().required('Required'),
+        product_id: Yup.object().required('Required Nigga'),
         Delta: Yup.string().required('Required'),
         currentQuantity: Yup.number().min(0).required('Required'),
         defaultPrice: Yup.number().min(0).required('Required')
@@ -25,16 +27,21 @@ const formikParams = {
 
 function TheForm({ isSubmitting }) {
 	const [itemType, handleItemTypeChange] = React.useState('accessory');
-	const callBack = (newItemType) => handleItemTypeChange(newItemType);
 
 	return (
         <Grid container spacing={3}>
             <Grid item xs={12} style={{textAlign: 'center'}}>
-				<ItemToggle callBack={callBack} value={itemType} />
+				<ItemToggle callBack={handleItemTypeChange} value={itemType} />
             </Grid>
 
 			<Grid item xs={12}>
-            	<Autocomplete name="item_id" label={"Select the " + itemType} options={['Some', 'Text']} />
+            	<FormikLiveSearch
+                    name="product_id"
+                    formatURL={query => "/search/" + itemType}
+                    getOptionLabel={option => option.name}
+                    getOptionSelected={(option, value) => option.name === value.name}
+                    key={'createItem-' + itemType}
+                />
             </Grid>
 
             <Grid item xs={4}>
