@@ -79,3 +79,13 @@ export const snackBarOptions = {
     },
     maxSnack: 8
 }
+
+export const accessoriesTypes = Object.fromEntries(['Best', 'Better', 'Good', 'Standard', 'Bad', 'Worse', 'Worst'].map((value, i) => [3 - i, value]));
+export const phonesTypes = Object.fromEntries(['Best', 'Better', 'Good', 'Standard', 'Bad', 'Worse', 'Worst'].map((value, i) => [3 - i, (3 - i).toString()]));
+
+export const accessoriesNames = {
+	1: 'AntiShock',
+	2: 'Glass',
+	3: 'AirPods',
+	4: 'IDK'
+}

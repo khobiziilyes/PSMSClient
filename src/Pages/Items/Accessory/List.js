@@ -1,10 +1,9 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import { useRecoilValue } from 'recoil';
-import { accessoriesNamesAtom } from '@src/Atoms';
+import { accessoriesNames } from '@src/Consts';
 import ShowAccessory from './Show';
 
-const columns = (accessoriesNames) => [
+const columns = [
     {
         name: 'brand',
         label: 'Brand'
@@ -25,13 +24,11 @@ const columns = (accessoriesNames) => [
 ];
 
 export default function AccessoriesList() {
-    const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
-
     return (
         <MuiTable
             title="Accessories list"
             URL="/accessories"
-            columns={columns(accessoriesNames)}
+            columns={columns}
             getNameFromData={rowData => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
             DetailsContent={<ShowAccessory />}
             formName={'Accessory'}

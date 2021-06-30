@@ -49,7 +49,7 @@ export default function AppBar() {
                     <LiveSearchWithKeys
                         formatURL={query => "/search/all"}
                         getOptionLabel={option => option.name}
-                        getOptionSelected={(option, value) => option.name === value.name}
+                        getOptionSelected={(option, value) => option.id === value.id}
                         onChange={(event, value) => console.log(value)}
                         style={{ width: 300 }}
                     />

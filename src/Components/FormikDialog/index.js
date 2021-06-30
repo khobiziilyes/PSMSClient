@@ -27,7 +27,7 @@ export default function FormikDialog() {
 
 	const closeFormDialog = () => setFormDialogParams({ isOpened: false });
     const showNotification = (child, variant = 'success') => enqueueSnackbar(child, { variant });
-    const redirectTo = URL => history.push(URL);
+    const redirectTo = history.push;
     const invalidateQueries = URL => queryClient.invalidateQueries();
     
     const { id, ...initialValues } = formDialogInitialValues || formikParams.initialValues;

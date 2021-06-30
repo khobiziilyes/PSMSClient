@@ -4,7 +4,6 @@ import MUIDataTables from "mui-datatables";
 import { useQuery, useQueryClient } from 'react-query'
 import { useLocation } from "react-router";
 
-import queryString from "query-string";
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
@@ -49,10 +48,10 @@ function MuiTable({
     const queryClient = useQueryClient();
     const totalColumns = makeTotalColumns(columns, includeUpdateColumns);
     const classes = useStyles();
-
-    const { totalRows, highlightId } = queryString.parse(useLocation().search);
+    
+    const { totalRows, highlightId } = useLocation().state || {};
     const initPage = totalRows ? Math.ceil(totalRows / initRowsPerPage) : 1;
-
+    
     const [currentPage, setCurrentPage] = useState(initPage);
 
     const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage);

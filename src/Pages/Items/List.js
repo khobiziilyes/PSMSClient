@@ -4,8 +4,9 @@ import ShowItem from './Show';
 
 import { Assessment } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import { accessoriesTypes, phonesTypes } from '@src/Consts'
 
-const columns = [
+const columns = isPhone => [
     {
     	name: 'itemable.name',
     	label: 'Name'
@@ -16,7 +17,10 @@ const columns = [
     },
     {
     	name: 'delta',
-    	label: 'Type'
+    	label: 'Type',
+        options: {
+            customBodyRender: (value, tableMeta, updateValue) => (isPhone ? phonesTypes : accessoriesTypes)[value]
+        }
     },
     {
     	name: 'currentQuantity',
@@ -57,7 +61,7 @@ export default function ItemsList({ isPhone }) {
         <MuiTable
             title="Items list"
             URL="/items"
-            columns={columns}
+            columns={columns(isPhone)}
             getNameFromData={(rowData) => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
             DetailsContent={<ShowItem viewStats={viewStats} />}
             formName='Item'

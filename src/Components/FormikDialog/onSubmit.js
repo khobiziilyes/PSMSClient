@@ -22,6 +22,8 @@ const ErrorTypo = ({ text, title = null }) => {
 }
 
 const buildCatchError = ({ showNotification, setFieldError }) => error => {
+    console.log(error);
+
     if (error.response && error.response.data && error.response.data.errors) {
         Object.entries(error.response.data.errors).forEach(([fieldName, fieldError]) => {
             showNotification(<ErrorTypo title={fieldName} text={fieldError} />, 'error');
@@ -42,13 +44,18 @@ const buildOnSubmit = ({
     redirectTo,
     showNotification
 }) => (values, { setSubmitting, resetForm, setFieldError }) => {
-    const URL = formikParams.URL;
     const isCreate = (initialId === null);
+    const { URL , formatData } = formikParams;
+
+    const formatedData = formatData ? formatData(values) : values;
+    const formatedURL = (typeof URL === 'function') ?
+        URL(initialId, isCreate, values, formatedData) :
+        (URL + '/' + (isCreate ? '' : initialId));
 
     axios({
-        url: (typeof URL === 'function') ? URL(initialId, isCreate) : (URL + '/' + (isCreate ? '' : initialId)),
-        method: isCreate ? 'POST' : 'PATCH',
-        data: values
+        url: formatedURL,
+        data: formatedData,
+        method: isCreate ? 'POST' : 'PATCH'
     }).then(response => {
         if (response.data) {
             const resourceId = isCreate ? response.data.data.id : initialId;
@@ -60,7 +67,7 @@ const buildOnSubmit = ({
             closeFormDialog();
 
             if (isCreate)
-                redirectTo(formikParams.tableRoute || (URL + '?totalRows=' + response.data.totalRows + '&highlightId=' + resourceId));
+                redirectTo((formikParams.tableRoute(values) || URL), { totalRows: response.data.totalRows, highlightId: resourceId });
         } else {
             return Promise.reject({ request: response });
         }

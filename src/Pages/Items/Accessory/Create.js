@@ -6,8 +6,7 @@ import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
-import { useRecoilValue } from 'recoil';
-import { accessoriesNamesAtom } from '@src/Atoms';
+import { accessoriesNames } from '@src/Consts';
 
 const formikParams = {
     URL: '/accessories',
@@ -26,8 +25,6 @@ const formikParams = {
 }
 
 function TheForm({ isSubmitting, isCreate }) {
-    const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
-
     return (
 	   <Grid container spacing={3}>
             <Grid item xs={4}>

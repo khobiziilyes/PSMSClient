@@ -37,7 +37,7 @@ const BuildInputComponentProps = loading => ({ InputProps: { startAdornment, end
     }
 });
 
-export default function LiveSearch({ formatURL, formatQuery = null, formatData = null, component = null, renderInputExtraProps = null, ...props }) {
+export default function LiveSearch({ formatURL, formatQuery = null, formatData = null, component = null, ...props }) {
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(false);

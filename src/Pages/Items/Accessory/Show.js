@@ -1,6 +1,5 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { accessoriesNamesAtom } from '@src/Atoms';
+import { accessoriesNames } from '@src/Consts';
 
 import {
 	Typography,
@@ -19,8 +18,6 @@ import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 
 export default function ShowCustomer({ rowData }) {
-	const accessoriesNames = useRecoilValue(accessoriesNamesAtom);
-
 	const {
 		id,
 		name,

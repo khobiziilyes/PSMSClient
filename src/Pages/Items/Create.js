@@ -8,18 +8,24 @@ import Text from '@Components/Inputs/Text';
 
 import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import ItemToggle from '@Components/ItemToggle';
+import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 const formikParams = {
-    onSubmit: console.log,
+    URL: (initialId, isCreate, { product: { isPhone, id } }) => '/items/' + (isPhone ? 'phone' : 'accessory') + '/' + id,
+    formatData: ({ product, ...data }) => {
+        return data
+    },
+    tableRoute: ({ product: { isPhone } }) => 'items' + (isPhone ? 'Phones' : 'Accessories'),
     initialValues: {
-        product_id: '',
-        Delta: '',
+        product: {},
+        delta: 0,
         currentQuantity: 0,
-        defaultPrice: ''
+        defaultPrice: 0,
+        notes: ''
     },
     validationSchema: Yup.object({
-        product_id: Yup.object().required('Required Nigga'),
-        Delta: Yup.string().required('Required'),
+        product: Yup.object().required('Required Nigga'),
+        delta: Yup.number().required('Required'),
         currentQuantity: Yup.number().min(0).required('Required'),
         defaultPrice: Yup.number().min(0).required('Required')
     })
@@ -27,6 +33,9 @@ const formikParams = {
 
 function TheForm({ isSubmitting }) {
 	const [itemType, handleItemTypeChange] = React.useState('accessory');
+    const isPhone = itemType === 'phone';
+
+    const deltaList = isPhone ? phonesTypes : accessoriesTypes;
 
 	return (
         <Grid container spacing={3}>
@@ -36,16 +45,21 @@ function TheForm({ isSubmitting }) {
 
 			<Grid item xs={12}>
             	<FormikLiveSearch
-                    name="product_id"
+                    name="product"
                     formatURL={query => "/search/" + itemType}
                     getOptionLabel={option => option.name}
-                    getOptionSelected={(option, value) => option.name === value.name}
+                    getOptionSelected={(option, value) => option.id === value.id}
                     key={'createItem-' + itemType}
                 />
             </Grid>
 
             <Grid item xs={4}>
-            	<Autocomplete name="Delta" label={"Select the " + ((itemType === 'phone') ? 'version' : 'quality')} options={['Idk', 'Haha']} />
+            	<Autocomplete
+                    name="delta"
+                    label={"Select the " + (isPhone ? 'version' : 'quality')}
+                    options={Object.keys(deltaList)}
+                    getOptionLabel={option => deltaList[option]}
+                />
             </Grid>
             
 			<Grid item xs={4}>

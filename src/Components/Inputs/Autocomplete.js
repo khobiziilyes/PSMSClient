@@ -33,13 +33,6 @@ function BuildAutocompleteProps({ label, renderInputExtraProps, disabled, field,
     const metaTouched = touched[name];
     const metaErrors = errors[name];
     
-    const renderInputProps = {
-        label,
-        metaTouched,
-        metaErrors,
-        extraProps: renderInputExtraProps
-    }
-
     const newProps = {
         freeSolo,
         disableClearable: true,
@@ -50,24 +43,20 @@ function BuildAutocompleteProps({ label, renderInputExtraProps, disabled, field,
             setFieldValue(name, value);
         },
         disabled: disabled ?? isSubmitting,
-        renderInput: RenderInput(renderInputProps),
+        renderInput: params => (
+            <TextField
+                {...params}
+                variant="outlined"
+                placeholder={label}
+
+                error={metaTouched && !!metaErrors}
+                helperText={metaTouched && metaErrors}
+                {...(renderInputExtraProps ? renderInputExtraProps(params) : {})}
+            />
+        ),
         // ...fieldSubselection,
         ...props
     };
 
     return newProps;
-}
-
-function RenderInput({ label, metaTouched, metaErrors, extraProps = null }) {
-    return params => (
-        <TextField
-            {...params}
-            variant="outlined"
-            placeholder={label}
-
-            error={metaTouched && !!metaErrors}
-            helperText={metaTouched && metaErrors}
-            {...(extraProps ? extraProps(params) : {})}
-        />
-    );
 }

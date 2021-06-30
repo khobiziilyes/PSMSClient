@@ -19,7 +19,9 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- TextInput money formating.
+	- Remove queryString library.
+	- After redirecting if yu are on the table it wont change the initPage.
+	- TextInput mask.
 	- use filterValueFormater prop in Tables for booleans.
 	- Accessory isn't highlighted.
 	
@@ -38,6 +40,7 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 	- https://github.com/nwjs/nw.js/issues/7182 --disable-web-security
 */
 
+// eslint-disable-next-line
 function FullApp() {
 	const user = useRecoilValue(userAtom);
 	return <Redirect to={user ? '/' : "/Signin"} />;
@@ -47,8 +50,6 @@ ReactDOM.render(
     <React.StrictMode>
     	<RecoilRoot>
     		<BrowserRouter>
-    			<FullApp />
-    			
     			<MuiThemeProvider theme={Theme}>
     				<Switch>
 						<Route path='/Signin' component={Signin} exact />
