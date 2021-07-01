@@ -49,12 +49,12 @@ const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData, openD
         
         if (realRowData.id === parseInt(highlightId)) classes.highlightedRow = {};
 
-        const emptyFromNull = Object.keys(realRowData).reduce((Obj, key) => {
-            Obj[key] = realRowData[key] || '';
+        const nullToEmpty = Object.keys(realRowData).reduce((Obj, key) => {
+            Obj[key] = realRowData[key] === null ? '' : realRowData[key];
             return Obj;
         }, {});
 
-        setSelectedRowData(emptyFromNull);
+        setSelectedRowData(nullToEmpty);
         openDetailsDialog();
     }
 }

@@ -18,7 +18,7 @@ import {
     AttachMoney as IconAttachMoney
 } from '@material-ui/icons';
 
-import { RoutesList } from '@src/Consts';
+import { RoutesList } from '@src/Pages/Routes';
 
 export const DrawerItems = ({ drawerIsOpened }) => {
     return (

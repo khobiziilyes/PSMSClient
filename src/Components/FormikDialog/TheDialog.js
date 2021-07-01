@@ -12,7 +12,8 @@ const TheDialog = ({
     isOpened,
     closeFormDialog,
     formSize,
-    children
+    children,
+    AdditionalActions = null
 }) => {
     const dialogProps = {
         open: isOpened,
@@ -49,6 +50,8 @@ const TheDialog = ({
                 <Button onClick={submitForm} {...ButtonsProps}>
                     Submit
                 </Button>
+
+                { AdditionalActions && AdditionalActions(ButtonsProps) }
             </DialogActions>
         </Dialog>
     );

@@ -1,13 +1,12 @@
 import React from 'react';
 import * as Yup from 'yup';
-
 import Grid from '@material-ui/core/Grid';
+
 import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
 import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
-import ItemToggle from '@Components/ItemToggle';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 const formikParams = {
@@ -32,47 +31,44 @@ const formikParams = {
 }
 
 function TheForm({ isSubmitting }) {
-	const [itemType, handleItemTypeChange] = React.useState('accessory');
-    const isPhone = itemType === 'phone';
-
-    const deltaList = isPhone ? phonesTypes : accessoriesTypes;
+	const [selectedItem, setSelectedItem] = React.useState(null);
+    const deltaList = selectedItem ? (selectedItem.isPhone ? phonesTypes : accessoriesTypes) : [];
 
 	return (
         <Grid container spacing={3}>
-            <Grid item xs={12} style={{textAlign: 'center'}}>
-				<ItemToggle callBack={handleItemTypeChange} value={itemType} />
-            </Grid>
-
-			<Grid item xs={12}>
+            <Grid item xs={12}>
             	<FormikLiveSearch
                     name="product"
-                    formatURL={query => "/search/" + itemType}
+                    formatURL={query => "/search/all"}
                     getOptionLabel={option => option.name}
                     getOptionSelected={(option, value) => option.id === value.id}
-                    key={'createItem-' + itemType}
+                    onItemChange={setSelectedItem}
                 />
             </Grid>
+            {selectedItem &&
+                <>
+                    <Grid item xs={4}>
+                    	<Autocomplete
+                            name="delta"
+                            label={"Select the " + (selectedItem.isPhone ? 'version' : 'quality')}
+                            options={Object.keys(deltaList)}
+                            getOptionLabel={option => deltaList[option]}
+                        />
+                    </Grid>
+                    
+        			<Grid item xs={4}>
+                    	<Text name="currentQuantity" label="Current quantity" />
+                    </Grid>
 
-            <Grid item xs={4}>
-            	<Autocomplete
-                    name="delta"
-                    label={"Select the " + (isPhone ? 'version' : 'quality')}
-                    options={Object.keys(deltaList)}
-                    getOptionLabel={option => deltaList[option]}
-                />
-            </Grid>
-            
-			<Grid item xs={4}>
-            	<Text name="currentQuantity" label="Current quantity" />
-            </Grid>
+                    <Grid item xs={4}>
+                    	<Text name="defaultPrice" label="Default price" />
+                    </Grid>
 
-            <Grid item xs={4}>
-            	<Text name="defaultPrice" label="Default price" />
-            </Grid>
-
-            <Grid item xs>
-                <Notes />
-            </Grid>
+                    <Grid item xs>
+                        <Notes />
+                    </Grid>
+                </>
+            }
         </Grid>
 	);
 }

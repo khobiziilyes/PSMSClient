@@ -54,7 +54,8 @@ export default function FormikDialog() {
         title: formikParams.title || (isCreate ? 'Create' : 'Edit'),
         isOpened,
         closeFormDialog,
-        formSize: formikParams.formSize
+        formSize: formikParams.formSize,
+        AdditionalActions: formikParams.AdditionalActions || null
     }
 
     return (

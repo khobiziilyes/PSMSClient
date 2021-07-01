@@ -11,6 +11,8 @@ import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 
+import { accessoriesTypes, phonesTypes } from '@src/Consts';
+
 const StatsContent = ( {
 	totalBuyCost,
 	totalSellCost,
@@ -116,7 +118,9 @@ const StatsContent = ( {
 	);
 }
 
-const MainContent = ({ id, name, brand, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes }) => {
+const MainContent = ({ id, name, brand, delta, isPhone, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes }) => {
+	const deltaText = (isPhone ? phonesTypes : accessoriesTypes)[delta];
+
 	return (
 		<>
 			<Grid item xs={6}>
@@ -135,7 +139,7 @@ const MainContent = ({ id, name, brand, delta, currentQuantity, defaultPrice, cr
 						<Phone />
 					</ListItem>
 
-					<ListItem primary="Version" secondary={delta}>
+					<ListItem primary="Version" secondary={deltaText}>
 						<Phone />
 					</ListItem>
 
@@ -178,11 +182,11 @@ export default function ShowItem({ rowData, viewStats }) {
 		updated_by,
 		updated_at,
 		notes,
-		isPhone, //
+		isPhone,
 		...Stats
 	} = rowData;
 
-	const MainContentProps = { id, name, brand, delta, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
+	const MainContentProps = { id, name, brand, delta, isPhone, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
 	
 	return (
         <Grid container spacing={5}>

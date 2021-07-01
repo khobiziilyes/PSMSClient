@@ -1,6 +1,3 @@
-import { QueryClient } from 'react-query';
-import * as Pages from './Pages';
-
 import {
 	CheckCircleOutline as CheckCircleOutlineIcon,
 	Error as ErrorIcon,
@@ -8,50 +5,7 @@ import {
 	Info as InfoIcon
 } from '@material-ui/icons';
 
-export const RoutesList = {
-	Dashboard: {
-		URL: '/dashboard',
-		Component: Pages.Dashboard
-	},
-	VendorsList: {
-		URL: '/vendors',
-		Component: Pages.VendorsList
-	},
-	CustomersList: {
-		URL: '/customers',
-		Component: Pages.CustomersList
-	},
-	PhonesList: {
-		URL: '/phones',
-		Component: Pages.PhonesList
-	},
-	AccessoriesList: {
-		URL: '/accessories',
-		Component: Pages.AccessoriesList
-	},
-	ItemsAccessoriesList: {
-		URL: '/itemsAccessories',
-		Component: Pages.ItemsAccessoriesList	
-	},
-	ItemsPhonesList: {
-		URL: '/itemsPhones',
-		Component: Pages.ItemsPhonesList
-	},
-	SellsList: {
-		URL: '/sells',
-		Component: Pages.SellsList
-	},
-	BuysList: {
-		URL: '/buys',
-		Component: Pages.BuysList
-	},
-	UsersList: {
-		URL: '/users',
-		Component: Pages.UsersList
-	}
-}
-
-export const queryClient = new QueryClient({
+export const queryClientOptions = {
 	defaultOptions: {
 		queries: {
 			refetchOnWindowFocus: false,
@@ -61,7 +15,7 @@ export const queryClient = new QueryClient({
 			cacheTime: 5 * 60 * 1000
 		}
 	}
-});
+};
 
 const iconsProps = {
 	fontSize: "large",

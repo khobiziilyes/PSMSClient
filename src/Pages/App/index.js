@@ -1,15 +1,16 @@
 import React from 'react';
-import { QueryClientProvider } from 'react-query';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { Route, Switch } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 
 import { Box, Container, CssBaseline } from '@material-ui/core';
 
 import {
-    queryClient,
-    snackBarOptions,
-    RoutesList
+    queryClientOptions,
+    snackBarOptions
 } from '@src/Consts.js';
+
+import { RoutesList } from '@src/Pages/Routes';
 
 import {
     AppBar,
@@ -20,6 +21,8 @@ import {
 } from '@Components';
 
 import useStyles from './Styles';
+
+const queryClient = new QueryClient(queryClientOptions);
 
 export default function App ({ drawerWidth }) {
     const classes = useStyles();

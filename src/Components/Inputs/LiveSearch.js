@@ -37,7 +37,7 @@ const BuildInputComponentProps = loading => ({ InputProps: { startAdornment, end
     }
 });
 
-export default function LiveSearch({ formatURL, formatQuery = null, formatData = null, component = null, ...props }) {
+export default function LiveSearch({ formatURL, withItems = false, formatQuery = null, formatData = null, component = null, ...props }) {
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ export default function LiveSearch({ formatURL, formatQuery = null, formatData =
         setLoading(true);
         
         const formatedURL = formatURL(query);
-        const formatedQuery = formatQuery ? formatQuery(query) : { query };
+        const formatedQuery = formatQuery ? formatQuery(query) : { query, items: withItems };
 
         axios.post(formatedURL, formatedQuery).then(({ data }) => {
             const formatedData = formatData ? formatData(data) : data;

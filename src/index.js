@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import { userAtom } from './Atoms';
+import { userAtom } from '@src/Atoms';
 import Theme from '@src/Theme';
 
 import App from '@src/Pages/App';
@@ -19,6 +19,10 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- You should use Tabs everywhere.
+	- In Transaction, Tabs for items and then tabs for person_id and notes, then checkout.
+	- In buy, automatically add Item to DB, in sell, Fetch for available.
+	
 	- Remove queryString library.
 	- After redirecting if yu are on the table it wont change the initPage.
 	- TextInput mask.

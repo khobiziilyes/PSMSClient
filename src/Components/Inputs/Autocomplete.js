@@ -18,7 +18,7 @@ function FormikAutoComplete(oldProps) {
     return <MuiAutocomplete {...newProps} />;
 }
 
-function BuildAutocompleteProps({ label, renderInputExtraProps, disabled, field, form, onChange, onBlur, freeSolo, ...props }) {
+function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraProps, disabled, field, form, onChange, onBlur, freeSolo, ...props }) {
     const {
     	name,
         onChange: _onChange,
@@ -40,6 +40,7 @@ function BuildAutocompleteProps({ label, renderInputExtraProps, disabled, field,
             field.onBlur(event ?? name);
         },
         onChange: onChange ?? function (_event, value) {
+            onItemChange && onItemChange(value);
             setFieldValue(name, value);
         },
         disabled: disabled ?? isSubmitting,

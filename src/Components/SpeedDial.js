@@ -11,6 +11,8 @@ import {
     Apps as IconApps,
     ShoppingCart as IconShoppingCart,
     EmojiObjects as IconEmojiObjects,
+    AttachMoney as AttachMoneyIcon,
+    MoneyOff as MoneyOffIcon,
     // PhoneAndroid as IconPhoneAndroid,
     LocalShipping as IconLocalShipping
 } from '@material-ui/icons';
@@ -28,7 +30,8 @@ const actions = [
     {icon: <IconLocalShipping />, name: 'Vendor'},
     {icon: <IconEmojiObjects />, name: 'Accessory'},
     {icon: <IconApps />, name: 'Item'},
-    {icon: <IconApps />, name: 'Buy'}
+    {icon: <MoneyOffIcon />, name: 'Buy'},
+    {icon: <AttachMoneyIcon />, name: 'Sell'}
 ];
 
 export default function SpeedDial() {
