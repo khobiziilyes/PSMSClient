@@ -34,37 +34,48 @@ export default function FormikDialog() {
 
     const isCreate = !id;
 
-    const onSubmit = buildOnSubmit({
+    const buildOnSubmitProps = {
         initialId : id || null,
-        formikParams,
         invalidateQueries,
         closeFormDialog,
         redirectTo,
-        showNotification 
+        showNotification,
+        formikParams
+    }
+
+    const onSubmit = buildOnSubmit({
+        ...buildOnSubmitProps,
+        formikParams
     });
 
     const formikProps = {
-        enableReinitialize: true,
+        // enableReinitialize: true,
         onSubmit: formikParams.onSubmit || onSubmit,
         validationSchema: formikParams.validationSchema,
         initialValues: initialValues
     }
+    
+    const DialogComponent = formikBag => {
+        const dialogProps = {
+            title: formikParams.title || (isCreate ? 'Create' : 'Edit'),
+            isOpened,
+            closeFormDialog,
+            formSize: formikParams.formSize,
+        }
 
-    const dialogParams = {
-        title: formikParams.title || (isCreate ? 'Create' : 'Edit'),
-        isOpened,
-        closeFormDialog,
-        formSize: formikParams.formSize,
-        AdditionalActions: formikParams.AdditionalActions || null
+
+        if (formikParams.selfDialog) return <TheForm isCreate={isCreate} formikBag={formikBag} dialogProps={dialogProps} />;
+
+        return (
+            <TheDialog {...dialogProps} formikBag={formikBag} >
+                <TheForm isCreate={isCreate} />
+            </TheDialog>
+        );
     }
 
     return (
         <Formik {...formikProps}>
-            {formikBag => 
-                <TheDialog formikBag={formikBag} {...dialogParams}>
-                    <TheForm isCreate={isCreate} />
-                </TheDialog>
-            }
+            { DialogComponent }
         </Formik>
     );
 }

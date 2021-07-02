@@ -1,68 +1,54 @@
 import React from 'react';
-import * as Yup from 'yup';
+import { useFormikContext, FieldArray } from 'formik';
+// import * as Yup from 'yup';
 
-import { Button } from '@material-ui/core';
+import TheDialog from '@Components/FormikDialog/TheDialog';
 
 import AddItemDialog from './AddItemDialog';
-import ItemsPanel from './ItemsPanel';
+import ItemsPanel, { ProductItemTabContent } from './ItemsPanel';
+import CustomActions from './Actions';
+
+import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
 
 const formikParams = isBuy => ({
-    //AdditionalActions: (ButtonsProps) => <Button onClick={() => {}} {...ButtonsProps}>Item</Button>,
+    onSubmit: (values, { setSubmitting }) => {
+        console.log(values);
+        setTimeout(() => setSubmitting(false), 5000);
+    },
     title: 'Perform new transaction',
+    selfDialog: true,
     formSize: 'md',
     initialValues: {
-        item_id: '',
-        Delta: ''
-    },
-    validationSchema: Yup.object({
-        item_id: Yup.string().required('Required'),
-        Delta: Yup.string().required('Required')
-    })
+        items: []
+    }
 });
 
-function TheForm({ isSubmitting, isBuy }) {
-    const [addItemDialogOpened, setAddItemDialogOpened] = React.useState(false);
-    const closeAddItemDialog = () => setAddItemDialogOpened(false);
+const CheckoutTab = {
+    Title: 'Checkout',
+    Icon: <AttachMoney />,
+    Content: <></>
+}
 
-    const [selectedItems, setSelectedItems] = React.useState([
-        {
-            "id": 12,
-            "delta": 3,
-            "productId": 1,
-            "name": "Xiaomi Redmi Note 7",
-            "brand": "Xiaomi",
-            "isPhone": true,
-            "showName": "Xiaomi Redmi Note 7 - 6/64 GB"
-        },
-        {
-            "id": 13,
-            "delta": 0,
-            "productId": 1,
-            "name": "Xiaomi Redmi Note 7",
-            "brand": "Xiaomi",
-            "isPhone": true,
-            "showName": "Incassable - Galaxy M20"
-        },
-        {
-            "id": 13,
-            "delta": 0,
-            "productId": 1,
-            "name": "Xiaomi Redmi Note 7",
-            "brand": "Xiaomi",
-            "isPhone": true,
-            "showName": "Checkout"
-        }
-    ]);
+const FieldArrayChild = ({ closeAddItemDialog, isBuy, addItemDialogOpened, arrayHelpers: { push, remove }}) => {
+    const { isSubmitting, values } = useFormikContext();
 
     const addItemToList = newItem => {
-        const alreadyExists = selectedItems.some(item => item.id === newItem.id);
-        
-        if (alreadyExists) {
-            // Show notif
-        } else {
-            setSelectedItems(localSelectedItems => [...localSelectedItems, newItem]);
-            closeAddItemDialog();
+        const TabProps = {
+            removeItem: remove,
+            isSubmitting
         }
+
+        const formatedItem = {
+            id: newItem.id,
+            Title: newItem.name + ' - ' + newItem.delta,
+            Icon: newItem.isPhone ? <PhoneIcon /> : null,
+            Content: <ProductItemTabContent {...TabProps} />,
+            costPerItem: 1000,
+            Quantity: 1
+        }
+
+        push(formatedItem);
+        closeAddItemDialog();
     }
 
     const AddItemDialogProps = {
@@ -72,11 +58,40 @@ function TheForm({ isSubmitting, isBuy }) {
         open: addItemDialogOpened
     }
 
+    const tabsList = [
+        ...(values.items ?? []),
+        // CheckoutTab
+    ];
+
     return (
         <>
             <AddItemDialog {...AddItemDialogProps} />
-            <ItemsPanel items={selectedItems} />
+            <ItemsPanel tabsList={tabsList} />
         </>
+    );
+}
+
+function TheForm({ formikBag, dialogProps, isBuy, isCreate }) {
+    const [addItemDialogOpened, setAddItemDialogOpened] = React.useState(false);
+    const closeAddItemDialog = () => setAddItemDialogOpened(false);
+    
+    return (
+        <TheDialog formikBag={formikBag} {...dialogProps} CustomActions={<CustomActions openAddItemDialog={() => setAddItemDialogOpened(true)} />}>
+            <FieldArray name="items">
+                {
+                    arrayHelpers => {
+                        const FieldArrayChildProps = {
+                            arrayHelpers,
+                            closeAddItemDialog,
+                            isBuy,
+                            addItemDialogOpened
+                        }
+
+                        return <FieldArrayChild {...FieldArrayChildProps} />;
+                    }
+                }
+            </FieldArray>
+        </TheDialog>
     );
 }
 

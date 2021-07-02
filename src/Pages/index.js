@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Dashboard from './Dashboard';
 
 import PhonesList from './Items/Phone/List';
@@ -15,25 +17,23 @@ import * as CreateTransaction from './Transactions/Create';
 import * as CreateUser from './Users/Create';
 import * as CreatePermissions from './Users/Permissions';
 
-const VendorsList = (props) => <PeopleList isVendor {...props} />;
-const BuysList = (props) => <TransactionsList isBuy {...props} />;
-const ItemsPhonesList = (props) => <ItemsList isPhone {...props} />;
+const VendorsList = props => <PeopleList isVendor {...props} />;
+const BuysList = props => <TransactionsList isBuy {...props} />;
+const ItemsPhonesList = props => <ItemsList isPhone {...props} />;
 
-const personFormikParams = CreatePerson.formikParams;
-
-const CreateVendorForm = (props) => <CreatePerson.TheForm isVendor {...props} />;
+const CreateVendorForm = props => <CreatePerson.TheForm isVendor {...props} />
 const CreateVendor = {
 	...CreatePerson,
 	TheForm: CreateVendorForm,
-	formikParams: personFormikParams(true)
+	formikParams: CreatePerson.formikParams(true)
 }
 
 const CreateCustomer = {
 	...CreatePerson,
-	formikParams: personFormikParams(false)
+	formikParams: CreatePerson.formikParams(false)
 }
 
-const CreateBuyForm = (props) => <CreateTransaction.TheForm isBuy {...props} />;
+const CreateBuyForm = props => <CreateTransaction.TheForm isBuy {...props} />;
 const CreateBuy = {
 	...CreateTransaction,
 	TheForm: CreateBuyForm,

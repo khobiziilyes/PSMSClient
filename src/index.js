@@ -19,8 +19,8 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Server should not return Products with 0 items.
 	- You should use Tabs everywhere.
-	- In Transaction, Tabs for items and then tabs for person_id and notes, then checkout.
 	- In buy, automatically add Item to DB, in sell, Fetch for available.
 	
 	- Remove queryString library.

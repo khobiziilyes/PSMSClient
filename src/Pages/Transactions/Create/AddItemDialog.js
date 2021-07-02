@@ -6,10 +6,10 @@ import LiveSearch from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog, ...props }) {
-    const [selectedProduct, setSelectedProduct] = React.useState({});
+    const [selectedProduct, setSelectedProduct] = React.useState(null);
     const [selectedItem, setSelectedItem] = React.useState(null);
 
-    const { id: productId, name, brand, isPhone, items } = selectedProduct;
+    const { id: productId, name, brand, isPhone, items } = selectedProduct || {};
     const deltaList = isPhone ? phonesTypes : accessoriesTypes;
 
     const setFormatedSelectedItem = item => 
@@ -19,8 +19,7 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
             productId,
             name,
             brand,
-            isPhone,
-            showName: name + ' - ' + deltaList[item.delta]
+            isPhone
         });
     
     return (
@@ -41,12 +40,14 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Autocomplete
-                            label={"Select the " + (isPhone ? 'version' : 'quality')}
-                            options={items || []}
-                            getOptionLabel={option => deltaList[option.delta]}
-                            onChange={(event, value) => setFormatedSelectedItem(value)}
-                        />
+                        { 
+                            selectedProduct && <Autocomplete
+                                label={"Select the " + (isPhone ? 'version' : 'quality')}
+                                options={items}
+                                getOptionLabel={option => deltaList[option.delta]}
+                                onChange={(event, value) => setFormatedSelectedItem(value)}
+                            />
+                        }
                     </Grid>
                 </Grid>
             </DialogContent>

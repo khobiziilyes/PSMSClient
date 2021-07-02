@@ -2,6 +2,23 @@ import React from 'react';
 import { Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 
+export const CancelButton = ({ closeFormDialog, ...props }) => 
+    <Button onClick={closeFormDialog} {...props}>
+        Cancel
+    </Button>
+
+export const SubmitButton = ({ submitForm, ...props }) => 
+    <Button onClick={submitForm} {...props}>
+        Submit
+    </Button>
+
+export const DefaultActions = ({ ButtonsProps, closeFormDialog, submitForm }) => (
+    <>
+        <CancelButton closeFormDialog={closeFormDialog} {...ButtonsProps} />
+        <SubmitButton submitForm={submitForm} {...ButtonsProps} />
+    </>
+);
+
 const TheDialog = ({
     formikBag: {
         submitForm,
@@ -13,7 +30,7 @@ const TheDialog = ({
     closeFormDialog,
     formSize,
     children,
-    AdditionalActions = null
+    CustomActions = null
 }) => {
     const dialogProps = {
         open: isOpened,
@@ -26,8 +43,14 @@ const TheDialog = ({
 
     const ButtonsProps = {
         color: 'primary',
-        disabled: isSubmitting,
-        variant: 'outlined'
+        variant: 'outlined',
+        disabled: isSubmitting
+    }
+
+    const actionsProps = {
+        ButtonsProps,
+        closeFormDialog,
+        submitForm
     }
 
     return (
@@ -36,22 +59,12 @@ const TheDialog = ({
 
             <DialogContent>
                 <Form>
-                    {
-                        React.cloneElement(children, { setFieldValue, isSubmitting })
-                    }
+                    { React.cloneElement(children, { setFieldValue, isSubmitting }) }
                 </Form>
             </DialogContent>
-    
+            
             <DialogActions>
-                <Button onClick={closeFormDialog} {...ButtonsProps}>
-                    Cancel
-                </Button>
-                
-                <Button onClick={submitForm} {...ButtonsProps}>
-                    Submit
-                </Button>
-
-                { AdditionalActions && AdditionalActions(ButtonsProps) }
+                { React.cloneElement(CustomActions ?? <DefaultActions />, actionsProps) }
             </DialogActions>
         </Dialog>
     );
