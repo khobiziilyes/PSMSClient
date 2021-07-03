@@ -30,24 +30,22 @@ const setSearchFilterDelayed = (setSearchFilter) => {
     tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
 }
 
-const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes }) => {
+const BuildSetRowProps = ({ data, dependingRowColor, highlightFirst, classes }) => {
     return (row, dataIndex, rowIndex) => {
         const rowData = data.data[rowIndex];
 
         return {
             className: clsx([
                 dependingRowColor && dependingRowColor(rowData),
-                highlightId && (parseInt(highlightId) === rowData.id) && classes.highlightedRow
+                highlightFirst && (dataIndex === 0) && classes.highlightedRow
             ])
         }
     }
 }
 
-const BuildOnRowClick = ({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }) => {
+const BuildOnRowClick = ({ data, setSelectedRowData, openDetailsDialog }) => {
     return (rowData, { dataIndex }) => {
         const realRowData = data.data[dataIndex];
-        
-        if (realRowData.id === parseInt(highlightId)) classes.highlightedRow = {};
 
         const nullToEmpty = Object.keys(realRowData).reduce((Obj, key) => {
             Obj[key] = realRowData[key] === null ? '' : realRowData[key];
@@ -70,8 +68,8 @@ const makeOptions = ({
     totalRows,
     moreOptions,
     dependingRowColor,
+    highlightFirst,
     classes,
-    highlightId,
     DetailsContent,
     openDetailsDialog,
 
@@ -92,8 +90,8 @@ const makeOptions = ({
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
     onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     
-    onRowClick: DetailsContent && BuildOnRowClick({ data, highlightId, classes, setSelectedRowData, openDetailsDialog }),
-    setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightId, classes }),
+    onRowClick: DetailsContent && BuildOnRowClick({ data, highlightFirst, setSelectedRowData, openDetailsDialog }),
+    setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightFirst, classes }),
     ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
 });
 

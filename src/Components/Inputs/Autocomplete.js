@@ -24,10 +24,10 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
         onChange: _onChange,
         onBlur: _onBlur,
         multiple: _multiple,
-        // eslint-disable-next-line
+        value: fieldValue,
         ...fieldSubselection
     } = field;
-
+    
     const { isSubmitting, setFieldValue, touched, errors } = form;
 
     const metaTouched = touched[name];
@@ -55,7 +55,8 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
                 {...(renderInputExtraProps ? renderInputExtraProps(params) : {})}
             />
         ),
-        // ...fieldSubselection,
+        // value: fieldValue ?? '',
+        ...fieldSubselection,
         ...props
     };
 

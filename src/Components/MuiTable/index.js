@@ -45,21 +45,20 @@ function MuiTable({
     DialogSize = 'md',
     ...props 
 }) {
+    const classes = useStyles();
     const queryClient = useQueryClient();
     const totalColumns = makeTotalColumns(columns, includeUpdateColumns);
-    const classes = useStyles();
     
-    const { totalRows, highlightId } = useLocation().state || {};
-    const initPage = totalRows ? Math.ceil(totalRows / initRowsPerPage) : 1;
+    const { totalRows } = useLocation().state || {};
     
-    const [currentPage, setCurrentPage] = useState(initPage);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage);
 
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
     const [searchFilter, setSearchFilter] = useState('');
     const [filterList, setFilterList] = useState([]);
-    const [columnSort, setColumnSort] = useState({ columnName: 'id', direction: 'asc' });
+    const [columnSort, setColumnSort] = useState({ columnName: 'created_at', direction: 'desc' });
 
     const [selectedRowData, setSelectedRowData] = React.useState(null);
 
@@ -76,12 +75,16 @@ function MuiTable({
     const { isFetching, isError, data, dataUpdatedAt } = useQuery([URL, currentPage, ...queryKeys], fetchQueryFunc);
     
     useEffect(() => {
-        if (data.current_page !== data.last_page)
-            queryClient.prefetchQuery([URL, parseInt(currentPage) + 1, ...queryKeys], fetchQueryFunc) // eslint-disable-next-line
+        if (data.current_page !== data.last_page) 
+            queryClient.prefetchQuery([URL, parseInt(currentPage) + 1, ...queryKeys], fetchQueryFunc);
+
+        return () => queryClient.cancelQueries(URL);
+    // eslint-disable-next-line
     }, [dataUpdatedAt]);
     
+
     if (isError) setTimeout(() => queryClient.invalidateQueries(URL), 10000);
-    
+
     const options = makeOptions({
         currentPage,
         setCurrentPage,
@@ -93,8 +96,8 @@ function MuiTable({
         totalRows,
         moreOptions,
         dependingRowColor,
+        highlightFirst: totalRows !== undefined,
         classes,
-        highlightId,
         DetailsContent,
         openDetailsDialog,
 

@@ -109,7 +109,8 @@ const FieldArrayChild = ({ closeAddItemDialog, isBuy, addItemDialogOpened, array
     const itemsPanelProps = {
         tabsList,
         currentTab,
-        setCurrentTab
+        setCurrentTab,
+        items: values.items
     }
 
     return (

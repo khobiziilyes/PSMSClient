@@ -5,12 +5,12 @@ import ShowAccessory from './Show';
 
 const columns = [
     {
-        name: 'brand',
-        label: 'Brand'
-    },
-    {
         name: 'name',
         label: 'Name'
+    },
+    {
+        name: 'brand',
+        label: 'Brand'
     },
     {
         name: 'type_id',

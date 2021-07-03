@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
+import MaskedInput from '@Components/Inputs/MaskedInput';
 
 import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
@@ -19,7 +20,7 @@ const formikParams = {
         product: {},
         delta: 0,
         currentQuantity: 0,
-        defaultPrice: 0,
+        defaultPrice: 1000,
         notes: ''
     },
     validationSchema: Yup.object({
@@ -40,7 +41,7 @@ function TheForm({ isSubmitting }) {
             	<FormikLiveSearch
                     name="product"
                     formatURL={query => '/search/products/all'}
-                    getOptionLabel={option => option.name}
+                    getOptionLabel={option => option.name ?? ''}
                     getOptionSelected={(option, value) => option.id === value.id}
                     onItemChange={setSelectedItem}
                 />
@@ -61,7 +62,7 @@ function TheForm({ isSubmitting }) {
                     </Grid>
 
                     <Grid item xs={4}>
-                    	<Text name="defaultPrice" label="Default price" />
+                    	<MaskedInput name="defaultPrice" label="Default price" />
                     </Grid>
 
                     <Grid item xs>

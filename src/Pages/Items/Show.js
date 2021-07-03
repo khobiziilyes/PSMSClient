@@ -10,6 +10,7 @@ import { Phone, AttachMoney, EmojiEmotions, ViewModule } from '@material-ui/icon
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
+import ShowNotes from '@Components/ShowResource/Notes';
 
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
@@ -157,11 +158,7 @@ const MainContent = ({ id, name, brand, delta, isPhone, currentQuantity, default
 				<UserTimeList title="Creations" userName={created_by} time={created_at}/>
 				<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
 
-				{notes && <Typography variant="h6">
-					Notes
-				</Typography>}
-
-				<p>{notes}</p>
+				<ShowNotes notes={notes} />
 			</Grid>
 		</>
 	);

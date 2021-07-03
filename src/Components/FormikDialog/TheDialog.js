@@ -38,7 +38,8 @@ const TheDialog = ({
         disableEscapeKeyDown: isSubmitting,
         onClose: closeFormDialog,
         fullWidth: true,
-        maxWidth: formSize || 'sm'
+        maxWidth: formSize || 'sm',
+        disableRestoreFocus: true
     }
 
     const ButtonsProps = {

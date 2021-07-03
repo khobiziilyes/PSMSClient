@@ -1,10 +1,12 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { CancelToken } from 'axios';
 
 import { CircularProgress, Typography } from '@material-ui/core';
 
-const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames, filterValueFormaters) => 
-    axios.get(URL, {
+const performServerRequest = (URL, page, perPage, searchFilter, filterList, columnSort, initialFilters, columnsFilterNames, filterValueFormaters) => {
+    const source = CancelToken.source();
+
+    const promise = axios.get(URL, {
         params: {
             page,
             perPage,
@@ -28,8 +30,14 @@ const performServerRequest = (URL, page, perPage, searchFilter, filterList, colu
                     });
                 }).filter(value => value !== null)
             )
-        }
+        },
+        cancelToken: source.token
     }).then(response => response.data);
+
+    promise.cancel = () => source.cancel('Query was cancelled by React Query');
+
+    return promise;
+}
 
 const Title = ({ title, isFetching }) => (
     <Typography variant="h6">

@@ -19,19 +19,15 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- You should use Tabs everywhere.
+	- Autocomplete is not handling initValue.
+
 	- In buy, automatically add Item to DB, in sell, Fetch for available.
+	- You should use Tabs everywhere.
 	
-	- Remove queryString library.
-	- After redirecting if yu are on the table it wont change the initPage.
-	- TextInput mask.
 	- use filterValueFormater prop in Tables for booleans.
-	- Accessory isn't highlighted.
 	
 	- Remove fields autocomplete.
-	- notes are not showing new lines.
 	
-	- SpeedDial problem.
 	- win tl9a axios ma tnsach .catch();
 
 	- SearchBar action + searchType.

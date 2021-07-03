@@ -40,8 +40,8 @@ export const DrawerItems = ({ drawerIsOpened }) => {
             
             <Divider />
 
-            <ListItem theTo={RoutesList.SellsList.URL} theText='Sells' theIcon={IconAttachMoney} />
             <ListItem theTo={RoutesList.BuysList.URL} theText='Buys' theIcon={IconAttachMoney} />
+            <ListItem theTo={RoutesList.SellsList.URL} theText='Sells' theIcon={IconAttachMoney} />
 
             <ListItem theTo={RoutesList.UsersList.URL} theText='Users' theIcon={IconAttachMoney} />
 

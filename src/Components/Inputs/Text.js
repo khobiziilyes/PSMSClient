@@ -14,16 +14,19 @@ export default function Text(props) {
 }
 
 function TextField({ children, ...props }) {
-	return <MuiTextField {...fieldToTextField(props)}>{children}</MuiTextField>;
+	const newProps = fieldToTextField(props);
+	return <MuiTextField {...newProps}>{children}</MuiTextField>;
 }
 
 function fieldToTextField({
 	disabled,
 	field: { onBlur, onChange, value, ...field },
-	form: { isSubmitting, touched, errors },
+	form: { isSubmitting, touched, errors, setFieldValue },
 	onChange: _onChange,
 	onBlur: _onBlur,
 	helperText,
+	inputProps = {},
+	selfSetValue = false,
 	...props
 }) {
 	const fieldError = getIn(errors, field.name);
@@ -36,10 +39,15 @@ function fieldToTextField({
 		disabled: disabled ?? isSubmitting,
 		onBlur: _onBlur ?? (e => onBlur(e ?? field.name)),
 		onChange: e => {
-			onChange(e);
+			if (!selfSetValue) onChange(e);
 			_onChange && _onChange(e.target.value);
 		},
 		value: value ?? '',
+		inputProps: selfSetValue ? 
+			{
+				...inputProps,
+				setFieldValue
+			} : inputProps,
 		...field,
 		...props
 	}

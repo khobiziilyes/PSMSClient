@@ -14,6 +14,7 @@ import {
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
+import ShowNotes from '@Components/ShowResource/Notes';
 
 const CartsContent = ({ Cart }) => {
 	return (
@@ -104,11 +105,7 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 				<UserTimeList title="Creations" userName={created_by} time={created_at} />
 				<UserTimeList title="Deletion" userName={deleted_at && updated_by} time={deleted_at} />
 
-				{notes && <Typography variant="h6">
-					Notes
-				</Typography>}
-
-				<p>{notes}</p>
+				<ShowNotes notes={notes} />
 			</Grid>
 		</>
 	);

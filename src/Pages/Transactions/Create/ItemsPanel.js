@@ -1,17 +1,17 @@
 import React from 'react';
-import { useFormikContext } from 'formik';
 
 import { Tabs, Tab, Typography, Grid, List, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
+import MaskedInput from '@Components/Inputs/MaskedInput';
 import Text from '@Components/Inputs/Text';
+import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import Notes from '@Components/Inputs/Notes';
 import ListItem from '@Components/ShowResource/ListItem';
 
 import { AttachMoney, MoneyOff } from '@material-ui/icons';
 
-export function CheckoutTabContent({ isBuy }) {
+export function CheckoutTabContent({ isBuy, items }) {
     return (
         <Grid container spacing={3}>
             <Grid item xs={6}>
@@ -64,8 +64,7 @@ export function CheckoutTabContent({ isBuy }) {
     );
 }
 
-export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, setCurrentTab }) {
-    const { values: { items } } = useFormikContext();
+export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, setCurrentTab, items }) {
     const { Quantity, costPerItem, currentQuantity } = items[index];
 
     return (
@@ -77,7 +76,7 @@ export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, 
 
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
-                        <Text name={`items.${index}.costPerItem`} label="Cost per item" />
+                        <MaskedInput name={`items.${index}.costPerItem`} label="Cost per item" />
                     </Grid>
 
                     <Grid item xs={12}>
@@ -132,9 +131,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ItemsPanel({ currentTab, setCurrentTab, tabsList = [] }) {
-    // Switch to last element when added
-
+export default function ItemsPanel({ currentTab, setCurrentTab, items, tabsList = [] }) {
     const classes = useStyles();
 
     const handleChange = (event, newValue) => setCurrentTab(newValue);
@@ -148,7 +145,7 @@ export default function ItemsPanel({ currentTab, setCurrentTab, tabsList = [] })
             {tabsList.map((tabItem, i) =>
                 <div role="tabpanel" hidden={currentTab !== i} style={{ padding: 20, width: '100%' }} key={'vertical-tabpanel-' + i}>
                     {
-                        React.cloneElement(tabItem.Content, { index: i, setCurrentTab })
+                        React.cloneElement(tabItem.Content, { index: i, setCurrentTab, items })
                     }
                 </div>
             )}

@@ -13,6 +13,7 @@ import {
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
+import ShowNotes from '@Components/ShowResource/Notes';
 
 export default function ShowCustomer({ rowData }) {
 	const {
@@ -50,11 +51,7 @@ export default function ShowCustomer({ rowData }) {
 				<UserTimeList title="Creations" userName={created_by} time={created_at}/>
 				<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
 
-				{notes && <Typography variant="h6">
-					Notes
-				</Typography>}
-
-				<p>{notes}</p>
+				<ShowNotes notes={notes} />
 			</Grid>
 		</Grid>
 	);
