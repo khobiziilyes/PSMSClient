@@ -39,7 +39,7 @@ function TheForm({ isSubmitting }) {
             <Grid item xs={12}>
             	<FormikLiveSearch
                     name="product"
-                    formatURL={query => "/search/all"}
+                    formatURL={query => '/search/products/all'}
                     getOptionLabel={option => option.name}
                     getOptionSelected={(option, value) => option.id === value.id}
                     onItemChange={setSelectedItem}

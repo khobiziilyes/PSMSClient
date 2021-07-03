@@ -47,7 +47,7 @@ export default function AppBar() {
                 
                 <div className={classes.search}>
                     <LiveSearchWithKeys
-                        formatURL={query => "/search/all"}
+                        formatURL={query => '/search/items'}
                         getOptionLabel={option => option.name}
                         getOptionSelected={(option, value) => option.id === value.id}
                         onChange={(event, value) => console.log(value)}

@@ -1,18 +1,72 @@
 import React from 'react';
+import { useFormikContext } from 'formik';
 
 import { Tabs, Tab, Typography, Grid, List, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import Text from '@Components/Inputs/Text';
+import Notes from '@Components/Inputs/Notes';
 import ListItem from '@Components/ShowResource/ListItem';
 
 import { AttachMoney, MoneyOff } from '@material-ui/icons';
 
-export function ProductItemTabContent({ isSubmitting, removeItem, index, setValue }) {
-    // Nrmlement t5dm b "values" instead.
-    
-    const [costPerItem, setCostPerItem] = React.useState(0);
-    const [Quantity, setQuantity] = React.useState(0);
+export function CheckoutTabContent({ isBuy }) {
+    return (
+        <Grid container spacing={3}>
+            <Grid item xs={6}>
+                <Typography variant="h6" gutterBottom>
+                    Basic informations
+                </Typography>
+
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <FormikLiveSearch
+                            name="person"
+                            formatURL={query => '/search/people/' + (isBuy ? 'vendor' : 'customer')}
+                            minLength={2}
+                            placeholder="UNKNOWN"
+                            withItems
+                            getOptionLabel={option => option.name}
+                            getOptionSelected={(option, value) => option.id === value.id}
+                            defaultOptions={[ { id: 0, name: 'UNKNOWN' } ]}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Notes />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid item xs={6}>
+                <Typography variant="h6">Current item</Typography>
+
+                <List>
+                    <ListItem primary="Total Price" secondary={''}>
+                        <MoneyOff />
+                    </ListItem>
+
+                    <ListItem primary="Profit" secondary="3 000 DA">
+                        <AttachMoney />
+                    </ListItem>
+
+                    <ListItem primary="New Quantity" secondary={''}>
+                        <AttachMoney />
+                    </ListItem>
+                </List>
+            </Grid>
+        </Grid>
+    );
+}
+
+export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, setCurrentTab }) {
+    const { values: { items } } = useFormikContext();
+    const { Quantity, costPerItem, currentQuantity } = items[index];
 
     return (
         <Grid container spacing={3}>
@@ -31,7 +85,7 @@ export function ProductItemTabContent({ isSubmitting, removeItem, index, setValu
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Button onClick={() => { setValue(0); removeItem(index); }} fullWidth color="primary" variant="outlined" disabled={isSubmitting}>
+                        <Button onClick={() => { setCurrentTab(0); removeItem(index); }} fullWidth color="primary" variant="outlined" disabled={isSubmitting}>
                             Remove
                         </Button>
                     </Grid>
@@ -50,7 +104,7 @@ export function ProductItemTabContent({ isSubmitting, removeItem, index, setValu
                         <AttachMoney />
                     </ListItem>
 
-                    <ListItem primary="Left Quantity" secondary={6 - Quantity}>
+                    <ListItem primary="New Quantity" secondary={currentQuantity + Quantity * (isBuy ? 1 : -1 )}>
                         <AttachMoney />
                     </ListItem>
                 </List>
@@ -78,30 +132,29 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ItemsPanel({ tabsList = [] }) {
-    console.log(tabsList);
+export default function ItemsPanel({ currentTab, setCurrentTab, tabsList = [] }) {
+    // Switch to last element when added
 
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
 
-    const handleChange = (event, newValue) => setValue(newValue);
+    const handleChange = (event, newValue) => setCurrentTab(newValue);
 
     return (tabsList.length > 0) ? (
         <div className={classes.root}>
-            <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} className={classes.tabs}>
+            <Tabs orientation="vertical" variant="scrollable" value={currentTab} onChange={handleChange} className={classes.tabs}>
                 {tabsList.map((tabItem, i) => <Tab icon={tabItem.Icon} label={tabItem.Title} key={'vertical-tab-' + i} />)};
             </Tabs>
 
             {tabsList.map((tabItem, i) =>
-                <div role="tabpanel" hidden={value !== i} style={{ padding: 20, width: '100%' }} key={'vertical-tabpanel-' + i}>
+                <div role="tabpanel" hidden={currentTab !== i} style={{ padding: 20, width: '100%' }} key={'vertical-tabpanel-' + i}>
                     {
-                        React.cloneElement(tabItem.Content, { index: i, setValue })
+                        React.cloneElement(tabItem.Content, { index: i, setCurrentTab })
                     }
                 </div>
             )}
         </div>
     ) :
     <div className={classes.typo}>
-        <Typography variant="h1" color="secondary" align="center"> Add items first </Typography>
+        <Typography variant="h1" color="secondary" align="center">Add items first</Typography>
     </div>
 }

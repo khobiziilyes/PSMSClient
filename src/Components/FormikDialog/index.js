@@ -49,7 +49,7 @@ export default function FormikDialog() {
     });
 
     const formikProps = {
-        // enableReinitialize: true,
+        enableReinitialize: true,
         onSubmit: formikParams.onSubmit || onSubmit,
         validationSchema: formikParams.validationSchema,
         initialValues: initialValues

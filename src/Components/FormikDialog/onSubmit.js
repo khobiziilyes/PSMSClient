@@ -45,12 +45,19 @@ const buildOnSubmit = ({
     showNotification
 }) => (values, { setSubmitting, resetForm, setFieldError }) => {
     const isCreate = (initialId === null);
-    const { URL , formatData } = formikParams;
+    const { URL , formatData, testing, tableRoute } = formikParams;
 
     const formatedData = formatData ? formatData(values) : values;
     const formatedURL = (typeof URL === 'function') ?
         URL(initialId, isCreate, values, formatedData) :
         (URL + '/' + (isCreate ? '' : initialId));
+
+    if (testing) {
+        console.log(formatedURL);
+        console.table(formatedData);
+        setSubmitting(false);
+        return;
+    }
 
     axios({
         url: formatedURL,
@@ -67,7 +74,7 @@ const buildOnSubmit = ({
             closeFormDialog();
 
             if (isCreate)
-                redirectTo((formikParams.tableRoute(values) || URL), { totalRows: response.data.totalRows, highlightId: resourceId });
+                redirectTo((tableRoute || URL), { totalRows: response.data.totalRows, highlightId: resourceId });
         } else {
             return Promise.reject({ request: response });
         }

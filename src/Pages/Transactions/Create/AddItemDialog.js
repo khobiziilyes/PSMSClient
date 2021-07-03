@@ -9,17 +9,14 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
     const [selectedProduct, setSelectedProduct] = React.useState(null);
     const [selectedItem, setSelectedItem] = React.useState(null);
 
-    const { id: productId, name, brand, isPhone, items } = selectedProduct || {};
+    const { isPhone, items } = selectedProduct || {};
     const deltaList = isPhone ? phonesTypes : accessoriesTypes;
 
-    const setFormatedSelectedItem = item => 
+    const setFormatedSelectedItem = theItem => 
         setSelectedItem({
-            id: item.id,
-            delta: item.delta,
-            productId,
-            name,
-            brand,
-            isPhone
+            ...selectedProduct,
+            ...theItem,
+            productId: selectedProduct.id
         });
     
     return (
@@ -30,12 +27,11 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <LiveSearch
-                            formatURL={query => "/search/all"}
+                            formatURL={query => '/search/items'}
                             withItems
                             onChange={(event, value) => setSelectedProduct(value)}
                             getOptionLabel={option => option.name}
                             getOptionSelected={(option, value) => option.id === value.id}
-                            disableClearable
                         />
                     </Grid>
 

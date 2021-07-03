@@ -12,10 +12,10 @@ import FormikAutoComplete from './Autocomplete';
 
 let inputRef, delayTimer;
 
-const BuildInputComponentProps = loading => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
+const BuildInputComponentProps = (loading, placeholder) => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
     ...params,
     variant: 'outlined',
-    placeholder: 'Redmi Mi 9T',
+    placeholder,
     
     inputRef: input => inputRef = input,
     InputProps: {
@@ -37,9 +37,9 @@ const BuildInputComponentProps = loading => ({ InputProps: { startAdornment, end
     }
 });
 
-export default function LiveSearch({ formatURL, withItems = false, formatQuery = null, formatData = null, component = null, ...props }) {
+export default function LiveSearch({ formatURL, placeholder = 'Redmi Mi 9T', minLength = 3, defaultOptions = [], withItems = false, formatQuery = null, formatData = null, component = null, ...props }) {
     const [open, setOpen] = useState(false);
-    const [options, setOptions] = useState([]);
+    const [options, setOptions] = useState(defaultOptions);
     const [loading, setLoading] = useState(false);
 
     const performSearch = query => {
@@ -61,7 +61,9 @@ export default function LiveSearch({ formatURL, withItems = false, formatQuery =
         delayTimer = setTimeout(() => performSearch(query), 1000);
     }
 
-    const onInputChange = (event, newValue) => (newValue.length > 2) && performSearchDelayed(newValue);
+    const onInputChange = (event, newValue) => (newValue.length >= minLength) && performSearchDelayed(newValue);
+
+    const inputComponentProps = BuildInputComponentProps(loading, placeholder);
 
     return React.createElement(component || Autocomplete, {
         open,
@@ -71,10 +73,11 @@ export default function LiveSearch({ formatURL, withItems = false, formatQuery =
 
         onOpen: () => setOpen(true),
         onClose: () => setOpen(false),
-
+        disableClearable: true,
+        
         ...(component ?
-            { renderInputExtraProps: BuildInputComponentProps(loading) } :
-            { renderInput: params => <TextField {...BuildInputComponentProps(loading)(params)} /> }
+            { renderInputExtraProps: inputComponentProps } :
+            { renderInput: params => <TextField {...inputComponentProps(params)} /> }
         ),
         
         ...props
