@@ -1,9 +1,14 @@
+import moment from 'moment';
 import {
 	CheckCircleOutline as CheckCircleOutlineIcon,
 	Error as ErrorIcon,
 	Warning as WarningIcon,
 	Info as InfoIcon
 } from '@material-ui/icons';
+
+export function formatTimestamp(value, time = true) {
+    return moment.unix(value).format('DD/MM/YYYY' + (time ? ' HH:mm:ss' : ''));
+}
 
 export const queryClientOptions = {
 	defaultOptions: {

@@ -13,13 +13,13 @@ const performServerRequest = (URL, page, perPage, searchFilter, filterList, colu
             orderBy: columnSort.columnName,
             dir: columnSort.direction,
             ...initialFilters,
-            ...(searchFilter ? {search: searchFilter} : []),
+            ...(searchFilter ? {search: searchFilter} : {}),
             ...Object.fromEntries(
                 filterList.flatMap((filterValues, columnIndex) => {
                     if (!filterValues.length) return [null];
                     
                     const filterValueFormater = filterValueFormaters[columnIndex];
-                    
+
                     return columnsFilterNames[columnIndex].map((filterName, i) => {
                         let filterValue = filterValues[i];
                         filterValue = filterValueFormater ? filterValueFormater(filterValue) : filterValue;
@@ -49,7 +49,7 @@ const Title = ({ title, isFetching }) => (
 function BuildFetchQueryFunc(totalColumns, setCurrentPage) {
     const columnsFilterNames = totalColumns.map(column => column.filterName || [column.name]);
     const filterValueFormaters = totalColumns.map(column => column.formatValue || null);
-    
+
     return ({ queryKey }) => performServerRequest(...queryKey, columnsFilterNames, filterValueFormaters).then(localData => {
         setCurrentPage(currentPage => {
             return (localData && localData.data && localData.data.length === 0 && currentPage !== 1) ? 1 : currentPage;

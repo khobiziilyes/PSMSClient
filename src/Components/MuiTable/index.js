@@ -47,7 +47,7 @@ function MuiTable({
 }) {
     const classes = useStyles();
     const queryClient = useQueryClient();
-    const totalColumns = makeTotalColumns(columns, includeUpdateColumns);
+    const totalColumns = makeTotalColumns(columns, includeCreateColumns, includeUpdateColumns);
     
     const { totalRows } = useLocation().state || {};
     
@@ -58,7 +58,7 @@ function MuiTable({
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
     const [searchFilter, setSearchFilter] = useState('');
     const [filterList, setFilterList] = useState([]);
-    const [columnSort, setColumnSort] = useState({ columnName: 'created_at', direction: 'desc' });
+    const [columnSort, setColumnSort] = useState({ columnName: 'id', direction: 'desc' });
 
     const [selectedRowData, setSelectedRowData] = React.useState(null);
 

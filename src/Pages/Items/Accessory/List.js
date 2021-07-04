@@ -16,7 +16,6 @@ const columns = [
         name: 'type_id',
         label: 'Type',
         options: {
-            hint: 'SUP bitch',
             customBodyRender: (value, tableMeta, updateValue) => accessoriesNames[value]
         }
 

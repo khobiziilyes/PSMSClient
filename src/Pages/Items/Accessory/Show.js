@@ -53,13 +53,13 @@ export default function ShowCustomer({ rowData }) {
 						<ListIcon />
 					</ListItem>
 				</List>
+
+				<ShowNotes notes={notes} />
 			</Grid>
 
 			<Grid item xs={6}>
 				<UserTimeList title="Creations" userName={created_by} time={created_at}/>
 				<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
-
-				<ShowNotes notes={notes} />
 			</Grid>
 		</Grid>
 	);

@@ -19,12 +19,16 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Accessories type filter.
+	
+	- Better filters TimeUser sort.
+	- Time ships cannot get remove.
+	
 	- Autocomplete is not handling initValue.
+	- PhonesAccessories relations.
 
 	- In buy, automatically add Item to DB, in sell, Fetch for available.
 	- You should use Tabs everywhere.
-	
-	- use filterValueFormater prop in Tables for booleans.
 	
 	- Remove fields autocomplete.
 	

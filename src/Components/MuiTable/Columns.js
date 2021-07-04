@@ -1,16 +1,17 @@
 import { FormControl } from '@material-ui/core';
 import DatePicker from '@Components/DatePicker';
+import { formatTimestamp } from '@src/Consts';
 
 const idColumn = {
     name: 'id',
     label: 'ID',
     options: {
         filter: false,
-        customBodyRender: (value) => '#' + value
+        customBodyRender: value => '#' + value
     }
 }
 
-const timeColumnDisplay = (labels) => (filterList, onChange, index, column) => {
+const timeColumnDisplay = labels => (filterList, onChange, index, column) => {
     return (
         <FormControl>
             {[0, 1].map(i => 
@@ -27,49 +28,64 @@ const timeColumnDisplay = (labels) => (filterList, onChange, index, column) => {
     );
 }
 
-const updateColumns = [
+function getUserId(value) {
+    return value.substr(value.indexOf('#') + 1);   
+}
+
+const createTimeUserColumns = ({ user, time, timeDisplayArray }) => [
     {
-        name: 'updated_by',
-        label: 'Updator',
         options: {
-            filterType: 'dropdown'
+            filterType: 'dropdown',
         },
-        filterName: 'updatedBy'
+        formatValue: getUserId,
+        ...user
     },
     {
-        name: 'updated_at',
-        label: 'Updates',
-        filterName: ['updatedBefore', 'updatedAfter'],
         options: {
             filterType: 'custom',
+            customBodyRender: formatTimestamp,
             filterOptions: {
-                display: timeColumnDisplay(['Updated Before', 'Updated After'])
+                display: timeColumnDisplay(timeDisplayArray)
+            },
+            customFilterListOptions: {
+                render: v => v.filter(i => !!i).map(i => formatTimestamp(i, false)),
+                update: (filterList, filterPos, index) => {
+                    filterList[index].splice(filterPos, 1);
+                    return filterList;
+                }
             }
-        }
+        },
+        ...time
     }
 ];
 
-const creationColumns = [
-    {
+const creationColumns = createTimeUserColumns({
+    user: {
         name: 'created_by',
         label: 'Creator',
-        options: {
-            filterType: 'dropdown'
-        },
-        filterName: 'createdBy'
+        filterName: ['createdBy']
     },
-    {
+    time: {
         name: 'created_at',
         label: 'Creates',
-        filterName: ['createdBefore', 'createdAfter'],
-        options: {
-            filterType: 'custom',
-            filterOptions: {
-                display: timeColumnDisplay(['Created Before', 'Created After'])
-            }
-        }
-    }
-];
+        filterName: ['createdBefore', 'createdAfter']
+    },
+    timeDisplayArray: ['Created Before', 'Created After']
+});
+
+const updateColumns = createTimeUserColumns({
+    user: {
+        name: 'updated_by',
+        label: 'Updator',
+        filterName: ['updatedBy']
+    },
+    time: {
+        name: 'updated_at',
+        label: 'Updates',
+        filterName: ['updatedBefore', 'updatedAfter']
+    },
+    timeDisplayArray: ['Updated Before', 'Updated After']
+});
 
 const makeTotalColumns = (columns, includeCreateColumns, includeUpdateColumns) => [
     idColumn,

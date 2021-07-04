@@ -9,7 +9,7 @@ export default function ShowNotes({ notes }) {
 				Notes
 			</Typography>
 
-			<p style={{ 'white-space': 'pre-wrap' }}>{notes}</p>
+			<p style={{ whiteSpace: 'pre-wrap', border: '1px solid #1a2035', padding: 10 }}>{notes}</p>
 		</>
 	) : null;
 }

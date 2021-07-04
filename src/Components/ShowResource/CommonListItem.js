@@ -1,6 +1,7 @@
 import React from 'react';
 import { AccountCircle, AccessAlarm, AttachFile } from '@material-ui/icons';
 import ListItem from './ListItem';
+import { formatTimestamp } from '@src/Consts';
 
 function IDListItem({ ID }){
 	return (
@@ -20,7 +21,7 @@ function UserListItem({ userName }){
 
 function TimeListItem({ time }){
 	return (
-		<ListItem primary="Time" secondary={time}>
+		<ListItem primary="Time" secondary={formatTimestamp(time)}>
 			<AccessAlarm />
 		</ListItem>
 	);

@@ -8,14 +8,15 @@ import ClearIcon from "@material-ui/icons/Clear";
 const DatePicker = ({ label, onChange, ...props }) => {
     const [selectedDate, setSelectedDate] = React.useState(null);
 
-    const handleDateChange = (newVal) => {
+    const handleDateChange = newVal => {
         setSelectedDate(newVal);
-        onChange(newVal.format('X'));
+        onChange(newVal.hour(0).minute(0).second(0).millisecond(0).format('X'));
     }
 
     const handleClr = (e) => {
         e.stopPropagation();
         setSelectedDate(null);
+        onChange(null);
     }
 
     return (
@@ -23,8 +24,9 @@ const DatePicker = ({ label, onChange, ...props }) => {
             value={selectedDate}
             label={label}
             onChange={handleDateChange}
-            format='YYYY-MM-DD'
+            format='DD/MM/YYYY HH:mm:ss'
             animateYearScrolling
+            showTodayButton
             InputProps={{
                 endAdornment: (
                     <IconButton onClick={(e) => handleClr(e)} disabled={selectedDate === null} size="small" >

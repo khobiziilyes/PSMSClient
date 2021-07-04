@@ -16,7 +16,7 @@ const columns = [
 	{
 		name: 'person.name',
 		label: 'Person',
-        filterName: 'person'
+        filterName: ['person']
 	},
 	{
 		name: 'deleted_at',
