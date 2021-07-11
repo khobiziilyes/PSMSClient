@@ -55,7 +55,7 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
                 {...(renderInputExtraProps ? renderInputExtraProps(params) : {})}
             />
         ),
-        // value: fieldValue ?? '',
+        value: fieldValue ?? '',
         ...fieldSubselection,
         ...props
     };

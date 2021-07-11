@@ -19,19 +19,20 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- SearchBar action + searchType.
+	- use "Enter" key in search instead of timer.
+	- You should distinct between Select and autocomplete.
+	
 	- Autocomplete not disabled while submiting.
+	- Open table with initId for details (eg: redirect from item details to product details).
 	- Enter button in forms.
 	- Table go for first page button.
-	- Accessories type filter.
-	
-	- Autocomplete is not handling initValue.
 	
 	- In buy, automatically add Item to DB, in sell, Fetch for available.
 	- You should use Tabs everywhere.
 	
 	- win tl9a axios ma tnsach .catch();
 
-	- SearchBar action + searchType.
 	- Hide components dependings on permissions.
 
 	- Main page containing quick actions & Infos.

@@ -2,7 +2,7 @@ import * as Pages from '@src/Pages';
 
 export const RoutesList = {
 	Dashboard: {
-		URL: '/dashboard',
+		URL: '/',
 		Component: Pages.Dashboard
 	},
 	VendorsList: {

@@ -6,6 +6,10 @@ import {
 	Info as InfoIcon
 } from '@material-ui/icons';
 
+export function getIdFromText(value) {
+    return value.substr(value.indexOf('#') + 1);   
+}
+
 export function formatTimestamp(value, time = true) {
     return moment.unix(value).format('DD/MM/YYYY' + (time ? ' HH:mm:ss' : ''));
 }

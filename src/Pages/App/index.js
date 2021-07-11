@@ -45,7 +45,7 @@ export default function App ({ drawerWidth }) {
                                 
                                 <Switch>
                                     {Object.values(RoutesList).map(value =>
-                                        <Route key={value.URL + "-route"} path={value.URL} component={value.Component} />
+                                        <Route exact key={value.URL + "-route"} path={value.URL} component={value.Component} />
                                     )}
                                 </Switch>
                             </SnackbarProvider>

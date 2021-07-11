@@ -19,7 +19,7 @@ export default function FormikDialog() {
     const { enqueueSnackbar } = useSnackbar();
 	
     const [formDialogParams, setFormDialogParams] = useRecoilState(formDialogParamsAtom);
-    const { name: formDialogName, isOpened, initialValues: formDialogInitialValues } = formDialogParams;
+    const { name: formDialogName, isOpened, initialValues: formDialogInitialValues, injectedProps = {} } = formDialogParams;
 
     if (!formDialogName) return null;
     
@@ -63,12 +63,11 @@ export default function FormikDialog() {
             formSize: formikParams.formSize,
         }
 
-
-        if (formikParams.selfDialog) return <TheForm isCreate={isCreate} formikBag={formikBag} dialogProps={dialogProps} />;
+        if (formikParams.selfDialog) return <TheForm {...injectedProps} isCreate={isCreate} formikBag={formikBag} dialogProps={dialogProps} />;
 
         return (
             <TheDialog {...dialogProps} formikBag={formikBag} >
-                <TheForm isCreate={isCreate} />
+                <TheForm {...injectedProps} isCreate={isCreate} />
             </TheDialog>
         );
     }

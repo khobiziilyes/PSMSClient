@@ -2,14 +2,18 @@ import React from 'react';
 import clsx from 'clsx';
 
 import { useSetRecoilState, useRecoilState } from 'recoil';
-import { userAtom, drawerIsOpenedAtom } from '@src/Atoms';
+import { userAtom, drawerIsOpenedAtom, formDialogParamsAtom } from '@src/Atoms';
 
 import {
     AppBar as MuiAppBar,
     Toolbar,
     Typography,
     IconButton,
-    Badge
+    Badge,
+    Select,
+    FormControl,
+    MenuItem,
+    InputLabel
 } from '@material-ui/core';
 
 import {
@@ -23,11 +27,26 @@ import { LiveSearchWithKeys } from '@Components/Inputs/LiveSearch';
 import useStyles from './Styles';
 
 export default function AppBar() {
+    const setFormDialogParams = useSetRecoilState(formDialogParamsAtom);
+
     const classes = useStyles();
     const [drawerIsOpened, setDrawerIsOpened] = useRecoilState(drawerIsOpenedAtom);
 
     const setUser = useSetRecoilState(userAtom);
     const LogOut = () => setUser(null);
+
+    const [searchType, setSearchType] = React.useState('all');
+    
+    const onLiveSearchChange = (event, value) => {
+        setFormDialogParams({
+            isOpened: true,
+            name: 'Sell',
+            initialValues: null,
+            injectedProps: {
+                defaultSelectedProduct: value
+            }
+        });
+    }
 
     return (
         <MuiAppBar position='absolute' className={clsx(classes.appBar, drawerIsOpened && classes.appBarShift)} color="inherit">
@@ -47,14 +66,21 @@ export default function AppBar() {
                 
                 <div className={classes.search}>
                     <LiveSearchWithKeys
-                        formatURL={query => '/search/items'}
+                        formatURL={query => '/search/items/' + searchType}
+                        withItems
                         getOptionLabel={option => option.name}
                         getOptionSelected={(option, value) => option.id === value.id}
-                        onChange={(event, value) => console.log(value)}
+                        onChange={onLiveSearchChange}
                         style={{ width: 300 }}
                     />
                 </div>
                 
+                <SimpleSelect id="searchType" label="Type" onChange={event => setSearchType(event.target.value)} value={searchType}>
+                    <MenuItem value="all">All</MenuItem>
+                    <MenuItem value="phone">Phone</MenuItem>
+                    <MenuItem value="accessory">Accessory</MenuItem>
+                </SimpleSelect>
+
                 <div className={classes.grow} />
                 
                 <IconButton color="inherit">
@@ -69,4 +95,16 @@ export default function AppBar() {
             </Toolbar>
         </MuiAppBar>
     );
+}
+
+function SimpleSelect({ id, label, children, ...props }) {
+    return (
+        <FormControl style={{ minWidth: 120, paddingLeft: 10 }}>
+            <InputLabel shrink id={id}>{label}</InputLabel>
+           
+            <Select labelId={id} {...props} >
+                {children}
+            </Select>
+        </FormControl>
+    )
 }

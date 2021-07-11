@@ -10,8 +10,6 @@ import CustomActions from './Actions';
 
 import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
 
-// Show all items depending on youngest ... easier for highlighting
-
 function groupBy(collection, property) {
     var i = 0, val, index,
         values = [], result = [];
@@ -57,7 +55,7 @@ const formikParams = isBuy => ({
         items: [],
         person: {
             id: 0,
-            name: 'XXX'
+            name: 'UNKNOWN'
         },
         notes: ''
     },
@@ -70,7 +68,7 @@ const CheckoutTab = isBuy => ({
     Content: <CheckoutTabContent isBuy={isBuy} />
 })
 
-const FieldArrayChild = ({ closeAddItemDialog, isBuy, addItemDialogOpened, arrayHelpers: { push, remove }}) => {
+const FieldArrayChild = ({ defaultSelectedProduct, closeAddItemDialog, isBuy, addItemDialogOpened, arrayHelpers: { push, remove }}) => {
     const { isSubmitting, values } = useFormikContext();
     const [currentTab, setCurrentTab] = React.useState(0);
 
@@ -98,6 +96,7 @@ const FieldArrayChild = ({ closeAddItemDialog, isBuy, addItemDialogOpened, array
     }
 
     const AddItemDialogProps = {
+        defaultSelectedProduct,
         isBuy,
         addItemToList,
         closeAddItemDialog,
@@ -121,7 +120,7 @@ const FieldArrayChild = ({ closeAddItemDialog, isBuy, addItemDialogOpened, array
     );
 }
 
-function TheForm({ formikBag, dialogProps, isBuy, isCreate }) {
+function TheForm({ formikBag, dialogProps, isBuy, isCreate, defaultSelectedProduct = null }) {
     const [addItemDialogOpened, setAddItemDialogOpened] = React.useState(true);
     const closeAddItemDialog = () => setAddItemDialogOpened(false);
     
@@ -131,6 +130,7 @@ function TheForm({ formikBag, dialogProps, isBuy, isCreate }) {
                 {
                     arrayHelpers => {
                         const FieldArrayChildProps = {
+                            defaultSelectedProduct,
                             arrayHelpers,
                             closeAddItemDialog,
                             isBuy,

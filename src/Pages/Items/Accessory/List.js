@@ -2,6 +2,7 @@ import React from 'react';
 import MuiTable from '@Components/MuiTable';
 import { accessoriesNames } from '@src/Consts';
 import ShowAccessory from './Show';
+import { getIdFromText } from '@src/Consts';
 
 const columns = [
     {
@@ -15,11 +16,12 @@ const columns = [
     {
         name: 'type_id',
         label: 'Type',
+        filterName: ['type'],
         options: {
             filterType: 'dropdown',
-            customBodyRender: (value, tableMeta, updateValue) => accessoriesNames[value]
-        }
-
+            customBodyRender: value => accessoriesNames[value] + ' #' + value
+        },
+        formatValue: getIdFromText
     }
 ];
 

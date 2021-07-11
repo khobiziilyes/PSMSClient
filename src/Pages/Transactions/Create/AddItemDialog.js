@@ -1,14 +1,14 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Grid } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Grid, TextField } from '@material-ui/core';
 
-import Autocomplete from '@Components/Inputs/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import LiveSearch from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
-export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog, ...props }) {
-    const [selectedProduct, setSelectedProduct] = React.useState(null);
+export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog, defaultSelectedProduct = null, ...props }) {
+    const [selectedProduct, setSelectedProduct] = React.useState(defaultSelectedProduct);
     const [selectedItem, setSelectedItem] = React.useState(null);
-
+    
     const { isPhone, items } = selectedProduct || {};
     const deltaList = isPhone ? phonesTypes : accessoriesTypes;
 
@@ -27,11 +27,12 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <LiveSearch
-                            formatURL={query => '/search/items'}
+                            formatURL={query => '/search/items/all'}
                             withItems
-                            onChange={(event, value) => setSelectedProduct(value)}
                             getOptionLabel={option => option.name}
                             getOptionSelected={(option, value) => option.id === value.id}
+                            onChange={(event, value) => setSelectedProduct(value)}
+                            defaultValue={defaultSelectedProduct}
                         />
                     </Grid>
 
@@ -42,6 +43,7 @@ export default function AddFormDialog({ isBuy, addItemToList, closeAddItemDialog
                                 options={items}
                                 getOptionLabel={option => deltaList[option.delta]}
                                 onChange={(event, value) => setFormatedSelectedItem(value)}
+                                renderInput={params => <TextField {...params} variant="outlined" placeholder={'Something'} />}
                             />
                         }
                     </Grid>

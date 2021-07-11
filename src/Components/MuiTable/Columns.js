@@ -1,6 +1,6 @@
 import { FormControl } from '@material-ui/core';
 import DatePicker from '@Components/DatePicker';
-import { formatTimestamp } from '@src/Consts';
+import { formatTimestamp, getIdFromText } from '@src/Consts';
 
 const idColumn = {
     name: 'id',
@@ -28,16 +28,12 @@ const timeColumnDisplay = labels => (filterList, onChange, index, column) => {
     );
 }
 
-function getUserId(value) {
-    return value.substr(value.indexOf('#') + 1);   
-}
-
 const createTimeUserColumns = ({ user, time, timeDisplayArray }) => [
     {
         options: {
             filterType: 'dropdown',
         },
-        formatValue: getUserId,
+        formatValue: getIdFromText,
         ...user
     },
     {
