@@ -16,6 +16,7 @@ const columns = [
         name: 'type_id',
         label: 'Type',
         options: {
+            filterType: 'dropdown',
             customBodyRender: (value, tableMeta, updateValue) => accessoriesNames[value]
         }
 

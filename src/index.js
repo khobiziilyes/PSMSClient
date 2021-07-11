@@ -13,29 +13,26 @@ import Theme from '@src/Theme';
 import App from '@src/Pages/App';
 import Signin from '@src/Pages/Signin';
 
-axios.defaults.baseURL = 'http://192.168.43.192:8000/api/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
 axios.defaults.responseType = 'json';
 
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Autocomplete not disabled while submiting.
+	- Enter button in forms.
+	- Table go for first page button.
 	- Accessories type filter.
 	
-	- Better filters TimeUser sort.
-	- Time ships cannot get remove.
-	
 	- Autocomplete is not handling initValue.
-	- PhonesAccessories relations.
-
+	
 	- In buy, automatically add Item to DB, in sell, Fetch for available.
 	- You should use Tabs everywhere.
-	
-	- Remove fields autocomplete.
 	
 	- win tl9a axios ma tnsach .catch();
 
 	- SearchBar action + searchType.
-	- Hide components dependings on authorizations.
+	- Hide components dependings on permissions.
 
 	- Main page containing quick actions & Infos.
 	- Flexy page(s).

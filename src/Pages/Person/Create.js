@@ -6,14 +6,15 @@ import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import TextField from '@Components/Inputs/Text';
 
-const formikParams = (isVendor) => ({
+const formikParams = isVendor => ({
     URL: isVendor ? '/vendors' : '/customers',
     initialValues: {
         name: '',
         phone1: '',
         phone2: '',
         fax: '',
-        address: ''
+        address: '',
+        notes: ''
     },
     validationSchema: Yup.object({
         name: Yup.string().required('Must be not empty'),

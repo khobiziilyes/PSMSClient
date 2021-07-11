@@ -14,7 +14,8 @@ const formikParams = {
         name: '',
         brand: '',
         type_id: 1,
-        notes: ''
+        notes: '',
+        is_public: false
     },
     validationSchema: Yup.object({
         name: Yup.string().min(8).required('Required'),

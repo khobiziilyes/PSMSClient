@@ -67,7 +67,7 @@ const creationColumns = createTimeUserColumns({
     },
     time: {
         name: 'created_at',
-        label: 'Creates',
+        label: 'Created',
         filterName: ['createdBefore', 'createdAfter']
     },
     timeDisplayArray: ['Created Before', 'Created After']
@@ -81,7 +81,7 @@ const updateColumns = createTimeUserColumns({
     },
     time: {
         name: 'updated_at',
-        label: 'Updates',
+        label: 'Updated',
         filterName: ['updatedBefore', 'updatedAfter']
     },
     timeDisplayArray: ['Updated Before', 'Updated After']

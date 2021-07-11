@@ -38,8 +38,9 @@ export default function DetailsDialog({
         });
     }
 
-    const standardProps = {rowData: selectedRowData, handleDialogClose: closeDetailsDialog};
+    const standardProps = { rowData: selectedRowData, handleDialogClose: closeDetailsDialog };
     const detailsContent = selectedRowData && injectProps(DetailsContent, standardProps)
+    const { isWritable } = selectedRowData;
     
     return (
         detailsContent && <Dialog onClose={closeDetailsDialog} fullWidth {...props}>
@@ -52,10 +53,10 @@ export default function DetailsDialog({
             <DialogActions>
                 <CloseButton handleDialogClose={closeDetailsDialog} />
                 
-                {ShowDeleteButton && <DeleteButton handleDeleteButton={openDeleteDialog} />}
-                {ShowEditButton && formName && <EditButton handleEditButton={openEditForm} />}
+                { isWritable && ShowDeleteButton && <DeleteButton handleDeleteButton={openDeleteDialog} /> }
+                { isWritable && ShowEditButton && formName && <EditButton handleEditButton={openEditForm} /> }
                 
-                {React.Children.map(ExtraDetailsDialogButtons, ExtraButton => injectProps(ExtraButton, standardProps) || null)}
+                { React.Children.map(ExtraDetailsDialogButtons, ExtraButton => injectProps(ExtraButton, standardProps) || null) }
             </DialogActions>
         </Dialog>
     );
