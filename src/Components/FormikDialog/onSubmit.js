@@ -55,7 +55,9 @@ const buildOnSubmit = ({
     if (testing) {
         console.log(formatedURL);
         console.table(formatedData);
-        setSubmitting(false);
+        
+        setTimeout(() => setSubmitting(false), 5000);
+
         return;
     }
 

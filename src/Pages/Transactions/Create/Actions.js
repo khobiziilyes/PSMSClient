@@ -1,4 +1,4 @@
-import { CancelButton, SubmitButton } from '@Components/FormikDialog/TheDialog';
+import { CancelButton, SubmitButtonWithKeys } from '@Components/FormikDialog/TheDialog';
 import { Button } from '@material-ui/core';
 
 const AddItemButton = ({ openAddItemDialog, ...props }) => (
@@ -10,7 +10,7 @@ const AddItemButton = ({ openAddItemDialog, ...props }) => (
 const CustomActions = ({ openAddItemDialog, ButtonsProps, closeFormDialog, submitForm }) => (
     <>
         <CancelButton closeFormDialog={closeFormDialog} {...ButtonsProps} />
-        <SubmitButton submitForm={submitForm} {...ButtonsProps} />
+        <SubmitButtonWithKeys submitForm={submitForm} {...ButtonsProps} />
         <AddItemButton openAddItemDialog={openAddItemDialog} {...ButtonsProps} />
     </>
 );

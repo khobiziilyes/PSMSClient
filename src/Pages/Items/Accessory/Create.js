@@ -18,11 +18,12 @@ const formikParams = {
         is_public: false
     },
     validationSchema: Yup.object({
-        name: Yup.string().min(8).required('Required'),
+        name: Yup.string().min(1).required('Required'),
         brand: Yup.string().min(5),
         type_id: Yup.number('Required').required('Required'),
         notes: Yup.string().min(8)
-    })
+    }),
+    testing: true
 }
 
 function TheForm({ isSubmitting, isCreate }) {

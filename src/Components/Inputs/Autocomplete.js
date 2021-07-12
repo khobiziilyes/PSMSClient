@@ -35,6 +35,7 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
     
     const newProps = {
         freeSolo,
+        autoSelect: true,
         disableClearable: true,
         onBlur: onBlur ?? function (event) {
             field.onBlur(event ?? name);
@@ -43,7 +44,7 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
             onItemChange && onItemChange(value);
             setFieldValue(name, value);
         },
-        disabled: disabled ?? isSubmitting,
+        disabled: isSubmitting,
         renderInput: params => (
             <TextField
                 {...params}

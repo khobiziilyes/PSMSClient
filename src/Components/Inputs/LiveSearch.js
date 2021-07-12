@@ -10,13 +10,18 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import FormikAutoComplete from './Autocomplete';
 
-let inputRef, delayTimer;
+let inputRef;
 
-const BuildInputComponentProps = (loading, placeholder) => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
+const BuildInputComponentProps = (loading, placeholder, performSearchOnDemand) => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
     ...params,
     variant: 'outlined',
     placeholder,
-    
+    onKeyDown: e => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            performSearchOnDemand(e.target.value);
+        }
+    },
     inputRef: input => inputRef = input,
     InputProps: {
         ...InputProps,
@@ -56,20 +61,13 @@ export default function LiveSearch({ formatURL, placeholder = 'Redmi Mi 9T', min
         }).finally(() => setLoading(false));
     }
 
-    function performSearchDelayed(query) {
-        clearTimeout(delayTimer);
-        delayTimer = setTimeout(() => performSearch(query), 1000);
-    }
-
-    const onInputChange = (event, newValue) => (newValue.length >= minLength) && performSearchDelayed(newValue);
-
-    const inputComponentProps = BuildInputComponentProps(loading, placeholder);
+    const performSearchOnDemand = query => query && (query.length >= minLength) && performSearch(query);
+    const inputComponentProps = BuildInputComponentProps(loading, placeholder, performSearchOnDemand);
 
     return React.createElement(component || Autocomplete, {
         open,
         options,
         loading,
-        onInputChange,
 
         onOpen: () => setOpen(true),
         onClose: () => setOpen(false),

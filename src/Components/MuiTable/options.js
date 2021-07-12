@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import { Button } from '@material-ui/core';
 
-let tableSearchDelayTimer;
-
 const FilterDialogFooter = ({ applyNewFilters }) => (
     <div style={{ marginTop: '40px' }}>
         <Button variant="contained" onClick={applyNewFilters}>Apply Filters</Button>
@@ -23,11 +21,6 @@ const defaultOptions = {
     download: false,
 
     customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
-}
-
-const setSearchFilterDelayed = (setSearchFilter) => {
-    clearTimeout(tableSearchDelayTimer);
-    tableSearchDelayTimer = setTimeout(setSearchFilter, 2000);
 }
 
 const BuildSetRowProps = ({ data, dependingRowColor, highlightFirst, classes }) => {
@@ -86,7 +79,10 @@ const makeOptions = ({
     
     onChangePage: newPage => setCurrentPage(parseInt(newPage) + 1),
     onChangeRowsPerPage: numberOfRows => setRowsPerPage(numberOfRows),
-    onSearchChange: searchText => setSearchFilterDelayed(() => setSearchFilter(searchText)),
+    searchProps: {
+        onKeyUp: e => e.keyCode === 13 && setSearchFilter(e.target.value)
+    },
+    onSearchClose: () => setSearchFilter(''),
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
     onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     

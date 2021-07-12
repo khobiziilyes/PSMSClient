@@ -1,6 +1,9 @@
 import React from 'react';
 import { Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import withKeys from '@Components/withKeys';
+
+let buttonRef = null;
 
 export const CancelButton = ({ closeFormDialog, ...props }) => 
     <Button onClick={closeFormDialog} {...props}>
@@ -8,16 +11,30 @@ export const CancelButton = ({ closeFormDialog, ...props }) =>
     </Button>
 
 export const SubmitButton = ({ submitForm, ...props }) => 
-    <Button onClick={submitForm} {...props}>
+    <Button onClick={submitForm} ref={theidk => buttonRef = theidk} {...props}>
         Submit
     </Button>
 
-export const DefaultActions = ({ ButtonsProps, closeFormDialog, submitForm }) => (
-    <>
-        <CancelButton closeFormDialog={closeFormDialog} {...ButtonsProps} />
-        <SubmitButton submitForm={submitForm} {...ButtonsProps} />
-    </>
-);
+export const SubmitButtonWithKeys = withKeys(SubmitButton, {
+    'ctrl+enter': {
+        priority: 1,
+        handler: event => {
+            const noSubmit = ['TEXTAREA'];
+            const tagName = event.target.tagName;
+
+            if (buttonRef && !noSubmit.includes(tagName)) buttonRef.click();
+        }
+    }
+});
+
+export const DefaultActions = ({ ButtonsProps, closeFormDialog, submitForm }) => {
+    return (
+        <>
+            <CancelButton closeFormDialog={closeFormDialog} {...ButtonsProps} />
+            <SubmitButtonWithKeys submitForm={submitForm} {...ButtonsProps} />
+        </>
+    );
+}
 
 const TheDialog = ({
     formikBag: {
@@ -69,6 +86,10 @@ const TheDialog = ({
             </DialogActions>
         </Dialog>
     );
+}
+
+function onKeyDown(keyEvent) {
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.preventDefault();
 }
 
 export default TheDialog;

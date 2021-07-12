@@ -19,16 +19,12 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- SearchBar action + searchType.
-	- use "Enter" key in search instead of timer.
+	- Open table with initId for details (eg: redirect from item details to product details).
+	- In transaction dialog, if there is no items & add item is closed, close main dialog too.
+	
 	- You should distinct between Select and autocomplete.
 	
-	- Autocomplete not disabled while submiting.
-	- Open table with initId for details (eg: redirect from item details to product details).
-	- Enter button in forms.
-	- Table go for first page button.
-	
-	- In buy, automatically add Item to DB, in sell, Fetch for available.
+	- Table go to first page button.
 	- You should use Tabs everywhere.
 	
 	- win tl9a axios ma tnsach .catch();
@@ -36,7 +32,6 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 	- Hide components dependings on permissions.
 
 	- Main page containing quick actions & Infos.
-	- Flexy page(s).
 	
 	- https://github.com/nwjs/nw.js/issues/7182 --disable-web-security
 */
