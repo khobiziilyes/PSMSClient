@@ -13,7 +13,7 @@ import { Title, BuildFetchQueryFunc } from './Consts';
 
 import { makeTotalColumns } from './Columns';
 
-import makeOptions from './options';
+import makeOptions from './Options';
 import DetailsDialog from './DetailsDialog';
 import DeleteDialog from './DeleteDialog';
 

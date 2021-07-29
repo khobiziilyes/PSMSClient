@@ -21,7 +21,7 @@ const formikParams = {
     })
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -46,7 +46,6 @@ function TextField(props) {
         <Text
             variant="outlined"
             margin="normal"
-            fullWidth
             {...props}
         />
     )

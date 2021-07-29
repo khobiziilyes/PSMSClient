@@ -99,7 +99,7 @@ export default function AppBar() {
 
 function SimpleSelect({ id, label, children, ...props }) {
     return (
-        <FormControl style={{ minWidth: 120, paddingLeft: 5 }}>
+        <FormControl style={{ minWidth: 120, paddingLeft: 10 }}>
             <InputLabel shrink id={id}>{label}</InputLabel>
            
             <Select labelId={id} {...props} >

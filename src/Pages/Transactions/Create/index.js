@@ -58,8 +58,7 @@ const formikParams = isBuy => ({
             name: 'UNKNOWN'
         },
         notes: ''
-    },
-    // testing: true
+    }
 });
 
 const CheckoutTab = isBuy => ({

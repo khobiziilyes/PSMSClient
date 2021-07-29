@@ -88,8 +88,4 @@ const TheDialog = ({
     );
 }
 
-function onKeyDown(keyEvent) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.preventDefault();
-}
-
 export default TheDialog;

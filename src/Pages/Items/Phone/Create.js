@@ -2,7 +2,6 @@ import React from 'react';
 import * as Yup from 'yup';
 
 import Grid from '@material-ui/core/Grid';
-import Autocomplete from '@Components/Inputs/Autocomplete';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
@@ -11,7 +10,8 @@ const formikParams = {
     initialValues: {
         name: '',
         brand: '',
-        notes: ''
+        notes: '',
+        is_public: false
     },
     validationSchema: Yup.object({
         name: Yup.string().min(8).required('Required'),
@@ -24,11 +24,7 @@ function TheForm({ isSubmitting }) {
 	return (
         <Grid container spacing={3}>
             <Grid item xs={6}>
-				<Autocomplete
-                    name="brand"
-					label="Brand name"
-					options={['Redmi', 'Samsung', 'Nokia']}
-				/>
+				<Text name="brand" label="Phone brand" />
             </Grid>
 
             <Grid item xs={6}>

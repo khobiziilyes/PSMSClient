@@ -23,7 +23,7 @@ export default function FormikDialog() {
 
     if (!formDialogName) return null;
     
-    const { formikParams, TheForm } = Pages['Create' + formDialogName];
+    const { formikParams, TheForm } = Pages[formDialogName + 'Form'];
 
 	const closeFormDialog = () => setFormDialogParams({ isOpened: false });
     const showNotification = (child, variant = 'success') => enqueueSnackbar(child, { variant });

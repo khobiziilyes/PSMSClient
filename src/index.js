@@ -20,11 +20,10 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
 	- Open table with initId for details (eg: redirect from item details to product details).
-	- In transaction dialog, if there is no items & add item is closed, close main dialog too.
-	
-	- You should distinct between Select and autocomplete.
+	- 403 Unauthorized should be handeled.
 	
 	- Table go to first page button.
+	- You should distinct between Select and autocomplete.
 	- You should use Tabs everywhere.
 	
 	- win tl9a axios ma tnsach .catch();

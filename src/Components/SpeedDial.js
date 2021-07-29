@@ -13,7 +13,7 @@ import {
     EmojiObjects as IconEmojiObjects,
     AttachMoney as AttachMoneyIcon,
     MoneyOff as MoneyOffIcon,
-    // PhoneAndroid as IconPhoneAndroid,
+    PhoneAndroid as IconPhoneAndroid,
     LocalShipping as IconLocalShipping
 } from '@material-ui/icons';
 
@@ -29,6 +29,7 @@ const actions = [
     {icon: <IconShoppingCart />, name: 'Customer'},
     {icon: <IconLocalShipping />, name: 'Vendor'},
     {icon: <IconEmojiObjects />, name: 'Accessory'},
+    {icon: <IconPhoneAndroid />, name: 'Phone'},
     {icon: <IconApps />, name: 'Item'},
     {icon: <MoneyOffIcon />, name: 'Buy'},
     {icon: <AttachMoneyIcon />, name: 'Sell'}
