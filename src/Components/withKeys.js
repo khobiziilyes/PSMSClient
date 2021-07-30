@@ -1,12 +1,29 @@
 import React from 'react';
 import { hotkeys } from 'react-keyboard-shortcuts';
 
-const withKeys = (OriginalComp, hotKeys) => {
+const withKeys = (OriginalComp, hotKey, handler, customRefName = 'withRef') => {
     class WrapperComp extends React.PureComponent {
-        hot_keys = hotKeys;
+        elementRef = null;
+
+        hot_keys = {
+        	[hotKey]: {
+        		priority: 1,
+        		handler: event => {
+        			if (this.elementRef) {
+	        			event.preventDefault();
+	        			handler({ event, element: this.elementRef });
+	        		}
+        		}
+        	}
+        }
 
         render() {
-            return <OriginalComp {...this.props} />;
+        	const newProps = {
+        		...this.props,
+        		[customRefName]: _ => this.elementRef = _
+        	}
+
+            return <OriginalComp {...newProps} />;
         }
     }
 

@@ -10,9 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import FormikAutoComplete from './Autocomplete';
 
-let inputRef;
-
-const BuildInputComponentProps = (loading, placeholder, performSearchOnDemand) => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
+const BuildInputComponentProps = (withRef = null, loading, placeholder, performSearchOnDemand) => ({ InputProps: { startAdornment, endAdornment, ...InputProps }, ...params }) => ({
     ...params,
     variant: 'outlined',
     placeholder,
@@ -22,7 +20,7 @@ const BuildInputComponentProps = (loading, placeholder, performSearchOnDemand) =
             performSearchOnDemand(e.target.value);
         }
     },
-    inputRef: input => inputRef = input,
+    ...(withRef ? { inputRef: withRef } : {}),
     InputProps: {
         ...InputProps,
         startAdornment: (
@@ -42,7 +40,7 @@ const BuildInputComponentProps = (loading, placeholder, performSearchOnDemand) =
     }
 });
 
-export default function LiveSearch({ formatURL, placeholder = 'Redmi Mi 9T', minLength = 3, defaultOptions = [], withItems = false, formatQuery = null, formatData = null, component = null, ...props }) {
+export default function LiveSearch({ withRef = null, formatURL, placeholder = 'Redmi Mi 9T', minLength = 3, defaultOptions = [], withItems = false, formatQuery = null, formatData = null, component = null, ...props }) {
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState(defaultOptions);
     const [loading, setLoading] = useState(false);
@@ -62,7 +60,7 @@ export default function LiveSearch({ formatURL, placeholder = 'Redmi Mi 9T', min
     }
 
     const performSearchOnDemand = query => query && (query.length >= minLength) && performSearch(query);
-    const inputComponentProps = BuildInputComponentProps(loading, placeholder, performSearchOnDemand);
+    const inputComponentProps = BuildInputComponentProps(withRef, loading, placeholder, performSearchOnDemand);
 
     return React.createElement(component || Autocomplete, {
         open,
@@ -91,9 +89,4 @@ export const FormikLiveSearch = (props) => {
     );
 }
 
-export const LiveSearchWithKeys = withKeys(LiveSearch, {
-    'ctrl+,': {
-        priority: 1,
-        handler: event => inputRef.focus()
-    }
-});
+export const LiveSearchWithKeys = withKeys(LiveSearch, 'ctrl+,', ({ element }) => element.focus());

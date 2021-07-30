@@ -3,29 +3,23 @@ import { Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import withKeys from '@Components/withKeys';
 
-let buttonRef = null;
-
 export const CancelButton = ({ closeFormDialog, ...props }) => 
     <Button onClick={closeFormDialog} {...props}>
         Cancel
     </Button>
 
-export const SubmitButton = ({ submitForm, ...props }) => 
-    <Button onClick={submitForm} ref={theidk => buttonRef = theidk} {...props}>
+export const SubmitButton = ({ withRef, submitForm, ...props }) => 
+    <Button onClick={submitForm} ref={withRef} {...props}>
         Submit
     </Button>
 
-export const SubmitButtonWithKeys = withKeys(SubmitButton, {
-    'ctrl+enter': {
-        priority: 1,
-        handler: event => {
-            const noSubmit = ['TEXTAREA'];
-            const tagName = event.target.tagName;
+export const SubmitButtonWithKeys = withKeys(SubmitButton, 'ctrl+enter', ({ event, element }) => {
+        const noSubmit = ['TEXTAREA'];
+        const tagName = event.target.tagName;
 
-            if (buttonRef && !noSubmit.includes(tagName)) buttonRef.click();
-        }
+        if (!noSubmit.includes(tagName)) element.click();
     }
-});
+);
 
 export const DefaultActions = ({ ButtonsProps, closeFormDialog, submitForm }) => {
     return (
