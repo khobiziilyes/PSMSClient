@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { Assessment } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+
 import {
 	Typography,
 	Grid,
@@ -12,6 +16,7 @@ import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 import ShowNotes from '@Components/ShowResource/Notes';
 
+import { ModalWrapper } from '@Components';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 const StatsContent = ( {
@@ -164,7 +169,7 @@ const MainContent = ({ id, name, brand, delta, isPhone, currentQuantity, default
 	);
 }
 
-export default function ShowItem({ rowData, viewStats }) {
+function ShowItem({ rowData, viewStats }) {
 	const {
 		id,
 		itemable: {
@@ -190,4 +195,30 @@ export default function ShowItem({ rowData, viewStats }) {
 			{viewStats ? <StatsContent {...Stats} /> : <MainContent {...MainContentProps} />}
 		</Grid>
 	);
+}
+
+export default function Show({ rowData, isPhone, ...injected }) {
+	const [viewStats, setViewStats] = React.useState(false);
+
+	return ModalWrapper(<ShowItem rowData={rowData} viewStats={viewStats} />, {
+		...injected,
+		title: (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name,
+		extraButtons: [<ViewStatsButton setViewStats={setViewStats} viewStats={viewStats} rowData={rowData} />]
+	});
+}
+
+const ViewStatsButton = ({ viewStats, setViewStats, rowData: { itemable: { id: itemable_id } } }) => {
+    const highlightItemable = () => {};
+
+    return (
+        <>
+            <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
+                {(viewStats ? 'Hide ' : 'View') + ' Stats'}
+            </Button>
+
+            <Button startIcon={<Assessment />} onClick={highlightItemable} color="primary" variant="outlined">
+                Got to Item
+            </Button>
+        </>
+    );
 }

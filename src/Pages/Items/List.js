@@ -1,9 +1,7 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import ShowItem from './Show';
+import Show from './Show';
 
-import { Assessment } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
 import { accessoriesTypes, phonesTypes } from '@src/Consts'
 
 const columns = isPhone => [
@@ -38,35 +36,15 @@ const columns = isPhone => [
     }
 ];
 
-const ViewStatsButton = ({ viewStats, setViewStats, rowData: { itemable: {id: itemable_id} } }) => {
-    const highlightItemable = () => {};
-
-    return (
-        <>
-            <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
-                {(viewStats ? 'Hide ' : 'View') + ' Stats'}
-            </Button>
-
-            <Button startIcon={<Assessment />} onClick={highlightItemable} color="primary" variant="outlined">
-                Got to Item
-            </Button>
-        </>
-    );
-}
-
 export default function ItemsList({ isPhone }) {
-    const [viewStats, setViewStats] = React.useState(false);
-
     return (
         <MuiTable
             title="Items list"
             URL="/items"
             columns={columns(isPhone)}
-            getNameFromData={rowData => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
-            DetailsContent={<ShowItem viewStats={viewStats} />}
+            DetailsModal={<Show isPhone={isPhone} />}
             formName='Item'
             initialFilters={{ isPhone: isPhone ? 1 : 0 }}
-            ExtraDetailsDialogButtons={<ViewStatsButton setViewStats={setViewStats} viewStats={viewStats} />}
         />
     );
 }

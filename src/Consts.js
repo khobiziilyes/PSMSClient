@@ -1,4 +1,6 @@
+import React from 'react';
 import moment from 'moment';
+
 import {
 	CheckCircleOutline as CheckCircleOutlineIcon,
 	Error as ErrorIcon,
@@ -52,3 +54,5 @@ export const accessoriesNames = {
 	3: 'AirPods',
 	4: 'IDK'
 }
+
+export const injectProps = (element, newProps) => React.isValidElement(element) ? React.cloneElement(element, newProps) : null;

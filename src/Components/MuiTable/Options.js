@@ -63,7 +63,7 @@ const makeOptions = ({
     moreOptions,
     dependingRowColor,
     classes,
-    DetailsContent,
+    DetailsModal,
     openDetailsDialog,
 
     setSelectedRowData,
@@ -86,7 +86,7 @@ const makeOptions = ({
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
     onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     
-    onRowClick: DetailsContent && BuildOnRowClick({ data, setSelectedRowData, openDetailsDialog }),
+    onRowClick: DetailsModal && BuildOnRowClick({ data, setSelectedRowData, openDetailsDialog }),
     setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightId, classes }),
     ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
 });

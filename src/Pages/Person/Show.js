@@ -16,10 +16,12 @@ import {
 import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
-import ShowNotes from '@Components/ShowResource/Notes';
 
-export default function ShowCustomer({ rowData }) {
-	const {
+import ShowNotes from '@Components/ShowResource/Notes';
+import { ModalWrapper } from '@Components';
+
+function ShowPerson({
+	rowData: {
 		id,
 		name,
 		address,
@@ -31,8 +33,8 @@ export default function ShowCustomer({ rowData }) {
 		updated_by,
 		updated_at,
 		notes,
-	} = rowData;
-
+	}
+}) {
 	return (
 	    <Grid container spacing={5}>
 			<Grid item xs={6}>
@@ -79,4 +81,11 @@ export default function ShowCustomer({ rowData }) {
 			</Grid>
 		</Grid>
 	);
+}
+
+export default function Show({ rowData, ...injected }) {
+	return ModalWrapper(<ShowPerson rowData={rowData} />, {
+		...injected,
+		title: rowData.name
+	});
 }

@@ -5,20 +5,20 @@ import { useQueryClient } from 'react-query'
 
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@material-ui/core';
 
-const DeleteDialog = ({ URL, id, open, closeDeleteDialog, closeDetailsDialog }) => {
+const DeleteDialog = ({ URL, open, closeDeleteDialog, closeDetailsDialog }) => {
     const { enqueueSnackbar } = useSnackbar();
     const queryClient = useQueryClient();
 
-    const handleContinue = () => axios.delete(URL + '/' + id).then(response => {
+    const handleContinue = () => axios.delete(URL).then(response => {
         closeDeleteDialog();
         
         if (response.data && response.data.deleted) {
             closeDetailsDialog();
 
             queryClient.invalidateQueries(URL);
-            enqueueSnackbar('The customer has been deleted successfully.', { variant: 'success' });
+            enqueueSnackbar('The resource has been deleted successfully.', { variant: 'success' });
         } else {
-            enqueueSnackbar('The customer could not be deleted.', { variant: 'error' });
+            enqueueSnackbar('The resource could not be deleted.', { variant: 'error' });
         }
     });
 

@@ -33,15 +33,9 @@ function MuiTable({
     dependingRowColor = null,
     moreOptions = [],
     
-    getNameFromData = null,
     initialFilters = [],
     
-    DetailsContent = null,
-    ShowEditButton = true,
-    ShowDeleteButton = true,
-    ExtraDetailsDialogButtons = null,
-
-    DialogSize = 'md',
+    DetailsModal = null,
     ...props 
 }) {
     const classes = useStyles();
@@ -92,7 +86,7 @@ function MuiTable({
         moreOptions,
         dependingRowColor,
         classes,
-        DetailsContent,
+        DetailsModal,
         openDetailsDialog,
 
         setSelectedRowData,
@@ -102,27 +96,18 @@ function MuiTable({
     });
 
     const DetailsDialogProps = {
-        title: (selectedRowData && getNameFromData && getNameFromData(selectedRowData)) || title,
-        URL,
-
-        closeDetailsDialog,
-        openDetailsDialog,
+        open: detailsDialogIsOpened,
         
+        URL,
+        closeDetailsDialog,
         selectedRowData,
         formName,
-        
-        DetailsContent,
-        ShowDeleteButton,
-        ShowEditButton,
-        ExtraDetailsDialogButtons,
-
-        maxWidth: DialogSize,
-        open: detailsDialogIsOpened
+        DetailsModal
     }
 
     return (
         <>
-            {DetailsContent && selectedRowData && <DetailsDialog {...DetailsDialogProps} />}
+            <DetailsDialog {...DetailsDialogProps} />
            
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <MUIDataTables

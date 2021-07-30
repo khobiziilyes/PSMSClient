@@ -1,16 +1,9 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import { List, ListItem, ListItemText, ListItemIcon, Button } from '@material-ui/core';
+import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { EmojiObjects, PhoneAndroid } from '@material-ui/icons';
-import ShowTransaction from './Show';
+import Show from './Show';
 import { makeStyles } from '@material-ui/core/styles';
-
-import {
-    ArrowLeft,
-    ArrowRight,
-    Print
-} from '@material-ui/icons';
-
 
 const columns = [
 	{
@@ -22,7 +15,7 @@ const columns = [
 		name: 'deleted_at',
 		label: 'Delete time',
         options: {
-            customBodyRender: (value) => value || 'N/A'
+            customBodyRender: value => value || 'N/A'
         }
 	},
     {
@@ -30,7 +23,7 @@ const columns = [
         label: 'List',
         options: {
             filter: false,
-            customBodyRender: (itemsList) => (
+            customBodyRender: itemsList => (
                 <List dense>
                     {itemsList.map((item, i) => {
                         const colorProp = {
@@ -64,27 +57,8 @@ const useStyles = makeStyles({
     }
 });
 
-function ExtraDetailsDialogButtons({ viewCart, setViewCart, rowData }) {
-    return (
-        <>
-            <Button startIcon={<Print />} onClick={() => {}} color="primary" variant="outlined">
-                Receipt
-            </Button>
-
-            <Button startIcon={<ArrowLeft />} onClick={() => setViewCart(viewCart - 1)} color="primary" variant="outlined" disabled={viewCart === 0}>
-                Previous Cart
-            </Button>
-
-            <Button endIcon={<ArrowRight />} onClick={() => setViewCart(viewCart + 1)} color="primary" variant="outlined" disabled={viewCart === rowData.carts.length}>
-                Next Cart
-            </Button>
-        </>
-    );
-}
-
 export default function TransactionsList({ isBuy }) {
     const classes = useStyles();
-    const [viewCart, setViewCart] = React.useState(0);
 
     return (
         <MuiTable
@@ -93,12 +67,9 @@ export default function TransactionsList({ isBuy }) {
         	columns={columns}
         	includeUpdateColumns={false}
             initialFilters={{ withTrashed: 1 }}
-        	dependingRowColor={(row) => row.deleted_at && classes.redRow}
-            getNameFromData={() => 'Transaction Details'}
+        	dependingRowColor={rowData => rowData.deleted_at && classes.redRow}
             
-            DetailsContent={<ShowTransaction viewCart={viewCart} />}
-            ShowEditButton={true}
-            ExtraDetailsDialogButtons={<ExtraDetailsDialogButtons viewCart={viewCart} setViewCart={setViewCart} />}
+            DetailsModal={<Show />}
         />
     );
 }

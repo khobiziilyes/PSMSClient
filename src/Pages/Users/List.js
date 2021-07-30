@@ -47,7 +47,7 @@ export default function UsersList() {
         	title="Users list"
         	URL='/owner/users'
         	columns={columns}
-            DetailsContent={<ShowUser />}
+            DetailsModal={<ShowUser />}
             DialogSize='sm'
             getNameFromData={rowData => rowData.name}
             ExtraDetailsDialogButtons={<PermissionsButton />}

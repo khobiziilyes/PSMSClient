@@ -14,9 +14,10 @@ import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 import ShowNotes from '@Components/ShowResource/Notes';
+import { ModalWrapper } from '@Components';
 
-export default function ShowCustomer({ rowData }) {
-	const {
+function ShowPhone({
+	rowData: {
 		id,
 		name,
 		brand,
@@ -25,8 +26,8 @@ export default function ShowCustomer({ rowData }) {
 		updated_by,
 		updated_at,
 		notes,
-	} = rowData;
-
+	}
+ }) {
 	return (
 	    <Grid container spacing={5}>
 			<Grid item xs={6}>
@@ -55,4 +56,11 @@ export default function ShowCustomer({ rowData }) {
 			</Grid>
 		</Grid>
 	);
+}
+
+export default function Show({ rowData, ...injected }) {
+	return ModalWrapper(<ShowPhone rowData={rowData} />, {
+		...injected,
+		title: 'Phones | ' + rowData.brand + ' | ' + rowData.name
+	});
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
 import { accessoriesNames } from '@src/Consts';
-import ShowAccessory from './Show';
+import Show from './Show';
 import { getIdFromText } from '@src/Consts';
 
 const columns = [
@@ -31,9 +31,8 @@ export default function AccessoriesList() {
             title="Accessories list"
             URL="/accessories"
             columns={columns}
-            getNameFromData={rowData => 'Accessories | ' + rowData.brand + ' | ' + rowData.name}
-            DetailsContent={<ShowAccessory />}
-            formName={'Accessory'}
+            DetailsModal={<Show />}
+            formName="Accessory"
         />
     );
 }

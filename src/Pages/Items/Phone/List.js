@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiTable from '@Components/MuiTable';
-import ShowPhone from './Show';
+import Show from './Show';
 
 const columns = [
     {
@@ -19,8 +19,7 @@ export default function PhonesList() {
             title="Phones list"
             URL="/phones"
             columns={columns}
-            getNameFromData={(rowData) => 'Phones | ' + rowData.brand + ' | ' + rowData.name}
-            DetailsContent={<ShowPhone />}
+            DetailsModal={<Show />}
         />
     );
 }

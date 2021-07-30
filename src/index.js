@@ -19,9 +19,10 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Edit item not working.
 	- View person, item, product ... Buttons
 	- Use highOrderComponent for withKeys ... eg: SubmitButton, DeleteButton
-	
+
 	- You should use Tabs everywhere.
 	- You should distinct between Select and autocomplete.
 	

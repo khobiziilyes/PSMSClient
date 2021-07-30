@@ -2,7 +2,8 @@ import React from 'react';
 import {
 	Typography,
 	Grid,
-	List
+	List,
+	Button
 } from '@material-ui/core';
 
 import {
@@ -15,6 +16,13 @@ import ListItem from '@Components/ShowResource/ListItem';
 import { IDListItem } from '@Components/ShowResource/CommonListItem';
 import { UserTimeList } from '@Components/ShowResource/CommonLists';
 import ShowNotes from '@Components/ShowResource/Notes';
+import { ModalWrapper } from '@Components';
+
+import {
+    ArrowLeft,
+    ArrowRight,
+    Print
+} from '@material-ui/icons';
 
 const CartsContent = ({ Cart }) => {
 	return (
@@ -111,7 +119,7 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 	);
 }
 
-export default function ShowTransaction({ viewCart, rowData: {carts, ...rowData} }) {
+function ShowTransaction({ viewCart, rowData: {carts, ...rowData} }) {
 	const totalCost = carts.reduce((a, cart) => a + (cart.Quantity * cart.costPerItem), 0);
 
 	return (
@@ -119,4 +127,33 @@ export default function ShowTransaction({ viewCart, rowData: {carts, ...rowData}
 			{viewCart ? <CartsContent Cart={carts[viewCart - 1]} /> : <MainContent {...rowData} totalCost={totalCost} />}
 		</Grid>
 	);
+}
+
+export default function Show({ rowData, isPhone, ...injected }) {
+	const [viewCart, setViewCart] = React.useState(0);
+
+	return ModalWrapper(<ShowTransaction rowData={rowData} viewCart={viewCart} />, {
+		...injected,
+		title: 'Transaction Details',
+		extraButtons: [<ExtraDetailsDialogButtons rowData={rowData} viewCart={viewCart} setViewCart={setViewCart} />],
+		ShowEditButton: false
+	});
+}
+
+function ExtraDetailsDialogButtons({ viewCart, setViewCart, rowData }) {
+    return (
+        <>
+            <Button startIcon={<Print />} onClick={() => {}} color="primary" variant="outlined">
+                Receipt
+            </Button>
+
+            <Button startIcon={<ArrowLeft />} onClick={() => setViewCart(viewCart - 1)} color="primary" variant="outlined" disabled={viewCart === 0}>
+                Previous Cart
+            </Button>
+
+            <Button endIcon={<ArrowRight />} onClick={() => setViewCart(viewCart + 1)} color="primary" variant="outlined" disabled={viewCart === rowData.carts.length}>
+                Next Cart
+            </Button>
+        </>
+    );
 }
