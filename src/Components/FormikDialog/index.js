@@ -36,7 +36,7 @@ export default function FormikDialog() {
     const invalidateQueries = URL => queryClient.invalidateQueries();
     
     const { id, ...initialValues } = formDialogInitialValues || formikParams.initialValues;
-
+    
     const isCreate = !id;
 
     const buildOnSubmitProps = {
@@ -53,15 +53,19 @@ export default function FormikDialog() {
         formikParams
     });
 
+    const { validationSchema, formatInitialValues } = formikParams;
+
     const formikProps = {
         enableReinitialize: true,
         onSubmit: formikParams.onSubmit || onSubmit,
-        validationSchema: formikParams.validationSchema,
-        initialValues: initialValues
+        validationSchema,
+        initialValues: isCreate ? initialValues : ( formatInitialValues ? formatInitialValues(initialValues) : initialValues )
     }
     
     const DialogComponent = formikBag => {
         const dialogProps = {
+            isCreate,
+            formikBag,
             title: formikParams.title || (isCreate ? 'Create' : 'Edit'),
             isOpened,
             closeFormDialog,
@@ -71,7 +75,7 @@ export default function FormikDialog() {
         if (formikParams.selfDialog) return <TheForm {...injectedProps} isCreate={isCreate} formikBag={formikBag} dialogProps={dialogProps} />;
 
         return (
-            <TheDialog {...dialogProps} formikBag={formikBag} >
+            <TheDialog {...dialogProps} >
                 <TheForm {...injectedProps} isCreate={isCreate} />
             </TheDialog>
         );

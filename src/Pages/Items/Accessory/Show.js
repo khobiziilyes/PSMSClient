@@ -13,10 +13,7 @@ import {
 	List as ListIcon
 } from '@material-ui/icons';
 
-import ListItem from '@Components/ShowResource/ListItem';
-import { IDListItem } from '@Components/ShowResource/CommonListItem';
-import { UserTimeList } from '@Components/ShowResource/CommonLists';
-import ShowNotes from '@Components/ShowResource/Notes';
+import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 import { ModalWrapper } from '@Components';
 
 function ShowAccessory({
@@ -56,7 +53,7 @@ function ShowAccessory({
 					</ListItem>
 				</List>
 
-				<ShowNotes notes={notes} />
+				<Notes notes={notes} />
 			</Grid>
 
 			<Grid item xs={6}>

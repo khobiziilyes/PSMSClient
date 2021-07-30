@@ -19,11 +19,9 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- Use highOrderComponent for withKeys ... eg: SubmitButton, DeleteButton
-	- Edit item not working.
-	- View person, item, product ... Buttons
-
 	- You should use Tabs everywhere.
+	- Redirect to person, item, product ...
+
 	- You should distinct between Select and autocomplete.
 	
 	- 403 Unauthorized should be handeled.
@@ -39,7 +37,7 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 // eslint-disable-next-line
 function FullApp() {
 	const user = useRecoilValue(userAtom);
-	return <Redirect to={user ? '/' : "/Signin"} />;
+	return <Redirect to={user ? '/' : '/Signin'} />;
 }
 
 ReactDOM.render(

@@ -3,7 +3,7 @@ import { AccountCircle, AccessAlarm, AttachFile } from '@material-ui/icons';
 import ListItem from './ListItem';
 import { formatTimestamp } from '@src/Consts';
 
-function IDListItem({ ID }){
+export function IDListItem({ ID }){
 	return (
 		<ListItem primary="ID" secondary={ID}>
 			<AttachFile />
@@ -11,7 +11,7 @@ function IDListItem({ ID }){
 	);
 }
 
-function UserListItem({ userName }){
+export function UserListItem({ userName }){
 	return (
 		<ListItem primary="User" secondary={userName}>
 			<AccountCircle />
@@ -19,16 +19,10 @@ function UserListItem({ userName }){
 	);
 }
 
-function TimeListItem({ time }){
+export function TimeListItem({ time }){
 	return (
 		<ListItem primary="Time" secondary={formatTimestamp(time)}>
 			<AccessAlarm />
 		</ListItem>
 	);
-}
-
-export {
-	IDListItem,
-	UserListItem,
-	TimeListItem
 }

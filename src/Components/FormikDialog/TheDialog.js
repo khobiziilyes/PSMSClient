@@ -34,14 +34,16 @@ const TheDialog = ({
     formikBag: {
         submitForm,
         isSubmitting,
-        setFieldValue
+        setFieldValue,
+        values
     },
     title,
     isOpened,
     closeFormDialog,
     formSize,
     children,
-    CustomActions = null
+    CustomActions = null,
+    isCreate
 }) => {
     const dialogProps = {
         open: isOpened,
@@ -71,7 +73,7 @@ const TheDialog = ({
 
             <DialogContent>
                 <Form>
-                    { React.cloneElement(children, { setFieldValue, isSubmitting }) }
+                    { React.cloneElement(children, { setFieldValue, isSubmitting, values, isCreate }) }
                 </Form>
             </DialogContent>
             

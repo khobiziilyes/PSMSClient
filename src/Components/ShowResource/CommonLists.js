@@ -6,7 +6,7 @@ import {
 
 import { UserListItem, TimeListItem } from './CommonListItem';
 
-function UserTimeList({ title, userName, time }) {
+export function UserTimeList({ title, userName, time }) {
 	return (
 		<>
 			<Typography variant="h6">{title}</Typography>
@@ -17,8 +17,4 @@ function UserTimeList({ title, userName, time }) {
 			</List>
 		</>
 	);
-}
-
-export {
-	UserTimeList
 }

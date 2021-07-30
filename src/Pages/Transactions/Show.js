@@ -12,10 +12,7 @@ import {
 	Person
 } from '@material-ui/icons';
 
-import ListItem from '@Components/ShowResource/ListItem';
-import { IDListItem } from '@Components/ShowResource/CommonListItem';
-import { UserTimeList } from '@Components/ShowResource/CommonLists';
-import ShowNotes from '@Components/ShowResource/Notes';
+import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 import { ModalWrapper } from '@Components';
 
 import {
@@ -113,7 +110,7 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 				<UserTimeList title="Creations" userName={created_by} time={created_at} />
 				<UserTimeList title="Deletion" userName={deleted_at && updated_by} time={deleted_at} />
 
-				<ShowNotes notes={notes} />
+				<Notes notes={notes} />
 			</Grid>
 		</>
 	);

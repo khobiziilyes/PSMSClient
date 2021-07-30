@@ -80,7 +80,7 @@ export default function LiveSearch({ withRef = null, formatURL, placeholder = 'R
     });
 }
 
-export const FormikLiveSearch = (props) => {
+export const FormikLiveSearch = props => {
     return (
         <LiveSearch
             {...props}

@@ -22,7 +22,8 @@ const formikParams = {
         brand: Yup.string().min(5),
         type_id: Yup.number('Required').required('Required'),
         notes: Yup.string().min(8)
-    })
+    }),
+    testing: true
 }
 
 function TheForm({ isSubmitting, isCreate }) {

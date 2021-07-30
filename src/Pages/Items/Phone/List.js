@@ -20,6 +20,7 @@ export default function PhonesList() {
             URL="/phones"
             columns={columns}
             DetailsModal={<Show />}
+            formName="Phone"
         />
     );
 }

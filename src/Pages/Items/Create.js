@@ -17,7 +17,7 @@ const formikParams = {
     },
     tableRoute: ({ product: { isPhone } }) => 'items' + (isPhone ? 'Phones' : 'Accessories'),
     initialValues: {
-        product: {},
+        product: null,
         delta: 0,
         currentQuantity: 0,
         defaultPrice: 1000,
@@ -28,12 +28,21 @@ const formikParams = {
         delta: Yup.number().required('Required'),
         currentQuantity: Yup.number().min(0).required('Required'),
         defaultPrice: Yup.number().min(0).required('Required')
+    }),
+    formatInitialValues: ({ itemable, isPhone, delta, currentQuantity, defaultPrice, notes }) => ({
+        product: { ...itemable, isPhone },
+        delta,
+        currentQuantity,
+        defaultPrice,
+        notes
     })
 }
 
-function TheForm({ isSubmitting }) {
-	const [selectedItem, setSelectedItem] = React.useState(null);
-    const deltaList = selectedItem ? (selectedItem.isPhone ? phonesTypes : accessoriesTypes) : [];
+function TheForm({ isCreate, isSubmitting, values: { product } }) {
+    const [selectedProduct, setSelectedProduct] = React.useState(product ?? null);
+    const { isPhone } = selectedProduct || {};
+
+    const deltaList = isPhone ? phonesTypes : accessoriesTypes;
 
 	return (
         <Grid container spacing={3}>
@@ -42,23 +51,26 @@ function TheForm({ isSubmitting }) {
                     name="product"
                     formatURL={query => '/search/products/all'}
                     getOptionLabel={option => option.name ?? ''}
-                    getOptionSelected={(option, value) => option.id === value.id}
-                    onItemChange={setSelectedItem}
+                    getOptionSelected={(a, b) => a.id === b.id}
+                    onItemChange={setSelectedProduct}
+                    defaultOptions={selectedProduct ? [selectedProduct] : []}
                 />
             </Grid>
-            {selectedItem &&
+
+            {selectedProduct &&
                 <>
                     <Grid item xs={4}>
                     	<Autocomplete
                             name="delta"
-                            label={"Select the " + (selectedItem.isPhone ? 'version' : 'quality')}
+                            label={"Select the " + (isPhone ? 'version' : 'quality')}
                             options={Object.keys(deltaList)}
                             getOptionLabel={option => deltaList[option]}
+                            disabled={!isCreate}
                         />
                     </Grid>
                     
         			<Grid item xs={4}>
-                    	<Text name="currentQuantity" label="Current quantity" />
+                    	<Text name="currentQuantity" label="Current quantity" disabled={!isCreate} />
                     </Grid>
 
                     <Grid item xs={4}>

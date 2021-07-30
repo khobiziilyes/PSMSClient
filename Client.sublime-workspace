@@ -4,12 +4,64 @@
 		"selected_items":
 		[
 			[
-				"rows",
-				"rowsPerPage\twarning"
+				"default",
+				"defaultPrice\tvar"
+			],
+			[
+				"defa",
+				"defaultPrice\twarning"
 			],
 			[
 				"init",
-				"initiallyDetailed\tconst"
+				"initialValues\tparameter"
+			],
+			[
+				"formik",
+				"formikParams\tconst"
+			],
+			[
+				"item",
+				"itemable\tvar"
+			],
+			[
+				"ID",
+				"IDListItem"
+			],
+			[
+				"Comm",
+				"CommonListItem\tscript"
+			],
+			[
+				"eleme",
+				"elementRef\tproperty"
+			],
+			[
+				"new",
+				"newProps\tconst"
+			],
+			[
+				"cus",
+				"customRefName\tparameter"
+			],
+			[
+				"input",
+				"inputRef"
+			],
+			[
+				"Show",
+				"ShowItem\tfunction"
+			],
+			[
+				"handl",
+				"handleDialogClose\tvar"
+			],
+			[
+				"person",
+				"personType\tconst"
+			],
+			[
+				"rows",
+				"rowsPerPage\twarning"
 			],
 			[
 				"high",
@@ -90,10 +142,6 @@
 			[
 				"cout",
 				"counter\tlet"
-			],
-			[
-				"new",
-				"newArrs\tconst"
 			],
 			[
 				"ala",
@@ -396,20 +444,12 @@
 				"customBodyRender"
 			],
 			[
-				"cus",
-				"customBodyRender"
-			],
-			[
 				"column",
 				"columnIndex"
 			],
 			[
 				"incl",
 				"includeCreateColumns"
-			],
-			[
-				"input",
-				"InputProps"
 			],
 			[
 				"inpu",
@@ -448,10 +488,6 @@
 				"selectedProduct"
 			],
 			[
-				"item",
-				"itemId"
-			],
-			[
 				"def",
 				"defaultPrice"
 			],
@@ -478,42 +514,6 @@
 			[
 				"F",
 				"FieldArray"
-			],
-			[
-				"AddItemDialog",
-				"addItemDialogOpened"
-			],
-			[
-				"Fiel",
-				"fieldArrayHOC"
-			],
-			[
-				"setT",
-				"setSubmiting"
-			],
-			[
-				"addite",
-				"addItemToList"
-			],
-			[
-				"formik",
-				"formikBag"
-			],
-			[
-				"buil",
-				"buildOnSubmitProps"
-			],
-			[
-				"b",
-				"buildOnSubmitProps"
-			],
-			[
-				"val",
-				"validationSchema"
-			],
-			[
-				"is",
-				"isBuy"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "src/index.js",
 			"settings":
 			{
-				"buffer_size": 1596,
+				"buffer_size": 1555,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -630,28 +630,50 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog"
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items"
 	],
 	"file_history":
 	[
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Footer.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Options.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/Buttons.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Consts.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonLists.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonListItem.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/Buttons.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/withKeys.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/MaskedInput.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Options.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Footer.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/Buttons.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Columns.js",
@@ -661,9 +683,6 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Signin/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/withKeys.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Phone.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Accessory.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Transaction/ItemsPanel.js",
@@ -743,26 +762,7 @@
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/index.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/index.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/MuiTable/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/withKeys.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Tables/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Details/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/structure.txt",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src2/Details/Show.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Inputs/LiveSearch.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Inputs/Autocomplete.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Items/Accessory/Create.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/MuiTable/options.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Signin/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/App/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Show.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Routes.js"
+		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/withKeys.js"
 	],
 	"find":
 	{
@@ -781,6 +781,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"selectedItem",
+			"ShowNotes",
+			"ShowResource",
+			"var ",
+			"let ",
+			"lef ",
+			"inputRef",
+			"submitButton",
+			"ref",
+			"ref:",
+			"ref=",
+			"inputRef",
+			"withKeys(",
+			"SubmitButtonW",
+			"UserTimeList",
+			".carts",
+			"brand",
+			"rowData",
+			"getNameFromData",
+			"ShowEditButton",
+			"ShowDeleteButton",
+			"rowData",
+			"dialogProps",
+			"backdrop",
+			"DetailsModal",
+			"props",
+			"getNameFromData",
+			"openDetailsDialog",
+			"ExtraDetailsDialogButtons",
+			"id",
+			"getNameFromData",
+			"ExtraDetailsDialogButtons",
+			"title",
+			"detailsContent",
+			"DetailsContent",
+			"injectProps",
+			"closeDetailsDialog",
+			"openDetailsDialog",
+			"/Buttons",
 			"useStyles2",
 			"customFooter",
 			"submitButton",
@@ -843,15 +882,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1596,
+						"buffer_size": 1555,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								723,
-								723
+								621,
+								621
 							]
 						],
 						"settings":
@@ -874,63 +913,70 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
 							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -999,6 +1045,102 @@
 				"src/index.js"
 			],
 			[
+				"form",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"formik",
+				"src/Components/FormikDialog/TheDialog.js"
+			],
+			[
+				"auto",
+				"src/Components/Inputs/Autocomplete.js"
+			],
+			[
+				"formi",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"the",
+				"src/Components/FormikDialog/TheDialog.js"
+			],
+			[
+				"aut",
+				"src/Components/Inputs/Autocomplete.js"
+			],
+			[
+				"live",
+				"src/Components/Inputs/LiveSearch.js"
+			],
+			[
+				"liveS",
+				"src/Components/Inputs/LiveSearch.js"
+			],
+			[
+				"create item",
+				"src/Pages/Items/Create.js"
+			],
+			[
+				"button",
+				"src/Components/ModalWrapper/Buttons.js"
+			],
+			[
+				"with",
+				"src/Components/withKeys.js"
+			],
+			[
+				"wit",
+				"src/Components/withKeys.js"
+			],
+			[
+				"con",
+				"src/Consts.js"
+			],
+			[
+				"commonl",
+				"src/Components/ShowResource/CommonListItem.js"
+			],
+			[
+				"commo",
+				"src/Components/ShowResource/CommonLists.js"
+			],
+			[
+				"details",
+				"src/Components/MuiTable/DetailsDialog/index.js"
+			],
+			[
+				"show acces",
+				"src/Pages/Items/Accessory/Show.js"
+			],
+			[
+				"delete",
+				"src/Components/MuiTable/DetailsDialog/DeleteDialog.js"
+			],
+			[
+				"wrap",
+				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"wrapper",
+				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"mui",
+				"src/Components/MuiTable/index.js"
+			],
+			[
+				"show  person",
+				"src/Pages/Person/Show.js"
+			],
+			[
+				"modalwrapper",
+				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"consts",
+				"src/Consts.js"
+			],
+			[
 				"optio",
 				"src/Components/MuiTable/Options.js"
 			],
@@ -1007,24 +1149,8 @@
 				"src/Components/MuiTable/index.js"
 			],
 			[
-				"aut",
-				"src/Components/Inputs/Autocomplete.js"
-			],
-			[
-				"consts",
-				"src/Consts.js"
-			],
-			[
 				"create acces",
 				"src/Pages/Items/Accessory/Create.js"
-			],
-			[
-				"formik",
-				"src/Components/FormikDialog/onSubmit.js"
-			],
-			[
-				"form",
-				"src/Components/FormikDialog/index.js"
 			],
 			[
 				"mui index",
@@ -1083,28 +1209,12 @@
 				"src/Pages/Items/Accessory/Create.js"
 			],
 			[
-				"auto",
-				"src/Components/Inputs/Autocomplete.js"
-			],
-			[
 				"onS",
 				"src/Components/FormikDialog/onSubmit.js"
 			],
 			[
 				"appbar",
 				"src/Components/AppBar/index.js"
-			],
-			[
-				"the",
-				"src/Components/FormikDialog/TheDialog.js"
-			],
-			[
-				"live",
-				"src/Components/Inputs/LiveSearch.js"
-			],
-			[
-				"wit",
-				"src/Components/withKeys.js"
 			],
 			[
 				"sp",
@@ -1255,10 +1365,6 @@
 				".gitignore"
 			],
 			[
-				"con",
-				"console"
-			],
-			[
 				"p",
 				"package.json"
 			],
@@ -1293,10 +1399,6 @@
 			[
 				"details acc",
 				"src/Pages/Details/Accessory.js"
-			],
-			[
-				"commonl",
-				"src/Components/MuiTable/DetailsDialog/Common/CommonListItem.js"
 			],
 			[
 				"user tables",
@@ -1411,14 +1513,6 @@
 				"src/Components/AppBar/index.js"
 			],
 			[
-				"mui",
-				"src/Components/MuiTable/index.js"
-			],
-			[
-				"liveS",
-				"src/Components/Inputs/LiveSearch.js"
-			],
-			[
 				"appb",
 				"src/Components/AppBar/index.js"
 			],
@@ -1457,54 +1551,6 @@
 			[
 				"person",
 				"src/Pages/Person/Create.js"
-			],
-			[
-				"conf",
-				"config.php"
-			],
-			[
-				"confi",
-				"config.php"
-			],
-			[
-				"conv",
-				"Conv.php"
-			],
-			[
-				"item",
-				"app/Models/Item.php"
-			],
-			[
-				"api",
-				"routes/api.php"
-			],
-			[
-				"produc",
-				"app/Models/Product.php"
-			],
-			[
-				"mig",
-				"database/migrations/2014_10_12_100000_create_password_resets_table.php"
-			],
-			[
-				"product",
-				"app/Http/Controllers/ProductsController.php"
-			],
-			[
-				"group",
-				"app/Scopes/GroupScope.php"
-			],
-			[
-				"per",
-				"app/Models/Person.php"
-			],
-			[
-				"datab",
-				"database/seeders/DatabaseSeeder.php"
-			],
-			[
-				"searc",
-				"app/Http/Controllers/SearchController.php"
 			]
 		],
 		"width": 0.0

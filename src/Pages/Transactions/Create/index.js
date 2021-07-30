@@ -11,7 +11,7 @@ import CustomActions from './Actions';
 import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
 
 function groupBy(collection, property) {
-    var i = 0, val, index,
+    let i = 0, val, index,
         values = [], result = [];
     for (; i < collection.length; i++) {
         val = collection[i][property];

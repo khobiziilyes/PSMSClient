@@ -13,11 +13,7 @@ import {
 	Phone
 } from '@material-ui/icons';
 
-import ListItem from '@Components/ShowResource/ListItem';
-import { IDListItem } from '@Components/ShowResource/CommonListItem';
-import { UserTimeList } from '@Components/ShowResource/CommonLists';
-
-import ShowNotes from '@Components/ShowResource/Notes';
+import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 import { ModalWrapper } from '@Components';
 
 function ShowPerson({
@@ -77,7 +73,7 @@ function ShowPerson({
 				<UserTimeList title="Creations" userName={created_by} time={created_at}/>
 				<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
 
-				<ShowNotes notes={notes} />
+				<Notes notes={notes} />
 			</Grid>
 		</Grid>
 	);
