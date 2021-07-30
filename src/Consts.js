@@ -13,7 +13,7 @@ export function getIdFromText(value) {
 }
 
 export function formatTimestamp(value, time = true) {
-    return moment.unix(value).format('DD/MM/YYYY' + (time ? ' HH:mm:ss' : ''));
+    return value ? moment.unix(value).format('DD/MM/YYYY' + (time ? ' HH:mm:ss' : '')) : '';
 }
 
 export const queryClientOptions = {
