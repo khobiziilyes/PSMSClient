@@ -57,6 +57,7 @@ function BuildAutocompleteProps({ onItemChange = null, label, renderInputExtraPr
             />
         ),
         value: fieldValue ?? '',
+        getOptionSelected: (curr, id) => parseInt(curr) === parseInt(id),
         ...fieldSubselection,
         ...props
     };

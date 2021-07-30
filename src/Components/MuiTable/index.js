@@ -15,7 +15,6 @@ import { makeTotalColumns } from './Columns';
 
 import makeOptions from './Options';
 import DetailsDialog from './DetailsDialog';
-import DeleteDialog from './DeleteDialog';
 
 const useStyles = makeStyles({
     highlightedRow: {
@@ -49,22 +48,19 @@ function MuiTable({
     const queryClient = useQueryClient();
     const totalColumns = makeTotalColumns(columns, includeCreateColumns, includeUpdateColumns);
     
-    const { totalRows } = useLocation().state || {};
-    
+    const { highlightId } = useLocation().state || {};
+
     const [currentPage, setCurrentPage] = useState(1);
 
     const fetchQueryFunc = BuildFetchQueryFunc(totalColumns, setCurrentPage);
 
     const [rowsPerPage, setRowsPerPage] = useState(initRowsPerPage);
     const [searchFilter, setSearchFilter] = useState('');
-    const [filterList, setFilterList] = useState([]);
+    const [filterList, setFilterList] = useState(highlightId ? [ [highlightId] ] : []);
+
     const [columnSort, setColumnSort] = useState({ columnName: 'id', direction: 'desc' });
 
     const [selectedRowData, setSelectedRowData] = React.useState(null);
-
-    const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-    const openDeleteDialog = () => setDeleteDialogOpen(true);
-    const closeDeleteDialog = () => setDeleteDialogOpen(false);
 
     const [detailsDialogIsOpened, setDetailsDialogIsOpened] = React.useState(false);
     const closeDetailsDialog = () => setDetailsDialogIsOpened(false);
@@ -81,7 +77,6 @@ function MuiTable({
         return () => queryClient.cancelQueries(URL);
     // eslint-disable-next-line
     }, [dataUpdatedAt]);
-    
 
     if (isError) setTimeout(() => queryClient.invalidateQueries(URL), 10000);
 
@@ -93,10 +88,9 @@ function MuiTable({
         setRowsPerPage,
 
         data,
-        totalRows,
+        highlightId: highlightId || null,
         moreOptions,
         dependingRowColor,
-        highlightFirst: totalRows !== undefined,
         classes,
         DetailsContent,
         openDetailsDialog,
@@ -109,10 +103,10 @@ function MuiTable({
 
     const DetailsDialogProps = {
         title: (selectedRowData && getNameFromData && getNameFromData(selectedRowData)) || title,
+        URL,
 
         closeDetailsDialog,
         openDetailsDialog,
-        openDeleteDialog,
         
         selectedRowData,
         formName,
@@ -126,20 +120,10 @@ function MuiTable({
         open: detailsDialogIsOpened
     }
 
-    const deleteDialogProps = {
-        URL: URL,
-        id: selectedRowData && selectedRowData.id,
-        open: deleteDialogOpen,
-        closeDeleteDialog,
-        closeDetailsDialog
-    }
-
     return (
         <>
             {DetailsContent && selectedRowData && <DetailsDialog {...DetailsDialogProps} />}
-
-            <DeleteDialog {...deleteDialogProps} />
-            
+           
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <MUIDataTables
                     title={<Title title={title} isFetching={isFetching} />}

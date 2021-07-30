@@ -76,7 +76,7 @@ const buildOnSubmit = ({
             closeFormDialog();
 
             if (isCreate)
-                redirectTo((tableRoute || URL), { totalRows: response.data.totalRows, highlightId: resourceId });
+                redirectTo((tableRoute || URL), { highlightId: resourceId });
         } else {
             return Promise.reject({ request: response });
         }

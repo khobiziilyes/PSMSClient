@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { Button } from '@material-ui/core';
+import Footer from './Footer';
 
 const FilterDialogFooter = ({ applyNewFilters }) => (
     <div style={{ marginTop: '40px' }}>
@@ -15,22 +16,22 @@ const defaultOptions = {
     selectableRows: 'none',
     responsive: 'vertical',
     serverSide: true,
-    rowsPerPageOptions: [5, 7, 10, 30],
     sortThirdClickReset: true,
     enableNestedDataAccess: '.',
     download: false,
 
     customFilterDialogFooter: (currentFilterList, applyNewFilters) => <FilterDialogFooter applyNewFilters={applyNewFilters} />,
+    customFooter: (...args) => Footer(...args, [5, 7, 10, 30])
 }
 
-const BuildSetRowProps = ({ data, dependingRowColor, highlightFirst, classes }) => {
+const BuildSetRowProps = ({ data, dependingRowColor, highlightId, classes }) => {
     return (row, dataIndex, rowIndex) => {
         const rowData = data.data[rowIndex];
 
         return {
             className: clsx([
                 dependingRowColor && dependingRowColor(rowData),
-                highlightFirst && (dataIndex === 0) && classes.highlightedRow
+                highlightId && (row[0] === "#" + highlightId) && classes.highlightedRow
             ])
         }
     }
@@ -41,7 +42,7 @@ const BuildOnRowClick = ({ data, setSelectedRowData, openDetailsDialog }) => {
         const realRowData = data.data[dataIndex];
 
         const nullToEmpty = Object.keys(realRowData).reduce((Obj, key) => {
-            Obj[key] = realRowData[key] === null ? '' : realRowData[key];
+            Obj[key] = realRowData[key] ?? '';
             return Obj;
         }, {});
 
@@ -58,10 +59,9 @@ const makeOptions = ({
     setRowsPerPage,
 
     data,
-    totalRows,
+    highlightId,
     moreOptions,
     dependingRowColor,
-    highlightFirst,
     classes,
     DetailsContent,
     openDetailsDialog,
@@ -75,7 +75,7 @@ const makeOptions = ({
 
     page: currentPage - 1,
     rowsPerPage: rowsPerPage,
-    count: data ? data.total : (totalRows || 0),
+    count: data ? data.total : 0,
     
     onChangePage: newPage => setCurrentPage(parseInt(newPage) + 1),
     onChangeRowsPerPage: numberOfRows => setRowsPerPage(numberOfRows),
@@ -86,8 +86,8 @@ const makeOptions = ({
     onFilterChange: (changedColumn, newFilterList) => setFilterList(newFilterList),
     onColumnSortChange: (columnName, direction) => setColumnSort({ columnName, direction }),
     
-    onRowClick: DetailsContent && BuildOnRowClick({ data, highlightFirst, setSelectedRowData, openDetailsDialog }),
-    setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightFirst, classes }),
+    onRowClick: DetailsContent && BuildOnRowClick({ data, setSelectedRowData, openDetailsDialog }),
+    setRowProps: BuildSetRowProps({ data, dependingRowColor, highlightId, classes }),
     ...(moreOptions ? ((moreOptions instanceof Function) ? moreOptions(data) : moreOptions) : [])
 });
 

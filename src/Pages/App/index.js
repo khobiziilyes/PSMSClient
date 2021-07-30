@@ -44,8 +44,8 @@ export default function App ({ drawerWidth }) {
                                 <FormikDialog />
                                 
                                 <Switch>
-                                    {Object.values(RoutesList).map(value =>
-                                        <Route exact key={value.URL + "-route"} path={value.URL} component={value.Component} />
+                                    {Object.values(RoutesList).map(({ Component, URL }) =>
+                                        <Route exact key={URL + "-route"} path={URL} render={props => <Component {...props} key={Date.now() + URL} />}  />
                                     )}
                                 </Switch>
                             </SnackbarProvider>

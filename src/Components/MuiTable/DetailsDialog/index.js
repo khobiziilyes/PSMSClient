@@ -4,16 +4,17 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/
 import { useSetRecoilState } from 'recoil';
 import { formDialogParamsAtom } from '@src/Atoms';
 
-import { EditButton, DeleteButton, CloseButton } from './Buttons';
+import { EditButton, DeleteButtonWithKeys, CloseButton } from './Buttons';
+import DeleteDialog from './DeleteDialog';
 
 const injectProps = (element, newProps) => React.isValidElement(element) ? React.cloneElement(element, newProps) : null;
 
 export default function DetailsDialog({
     title,
+    URL,
 
     closeDetailsDialog,
     openDetailsDialog,
-    openDeleteDialog,
     
     selectedRowData,
     formName,
@@ -40,24 +41,40 @@ export default function DetailsDialog({
 
     const standardProps = { rowData: selectedRowData, handleDialogClose: closeDetailsDialog };
     const detailsContent = selectedRowData && injectProps(DetailsContent, standardProps)
-    const { isWritable } = selectedRowData;
+    const { isWritable, id } = selectedRowData;
     
-    return (
-        detailsContent && <Dialog onClose={closeDetailsDialog} fullWidth {...props}>
-            <DialogTitle>{title}</DialogTitle>
-    
-            <DialogContent>
-                {detailsContent}
-            </DialogContent>
+    const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+    const openDeleteDialog = () => setDeleteDialogOpen(true);
+    const closeDeleteDialog = () => setDeleteDialogOpen(false);
 
-            <DialogActions>
-                <CloseButton handleDialogClose={closeDetailsDialog} />
-                
-                { isWritable && ShowDeleteButton && <DeleteButton handleDeleteButton={openDeleteDialog} /> }
-                { isWritable && ShowEditButton && formName && <EditButton handleEditButton={openEditForm} /> }
-                
-                { React.Children.map(ExtraDetailsDialogButtons, ExtraButton => injectProps(ExtraButton, standardProps) || null) }
-            </DialogActions>
-        </Dialog>
+    const deleteDialogProps = {
+        URL,
+        id,
+        open: deleteDialogOpen,
+        closeDeleteDialog,
+        closeDetailsDialog
+    }
+
+    return (
+        detailsContent && <>
+            <Dialog onClose={closeDetailsDialog} fullWidth {...props}>
+                <DialogTitle>{title}</DialogTitle>
+        
+                <DialogContent>
+                    {detailsContent}
+                </DialogContent>
+
+                <DialogActions>
+                    <CloseButton handleDialogClose={closeDetailsDialog} />
+                    
+                    { isWritable && ShowDeleteButton && <DeleteButtonWithKeys handleDeleteButton={openDeleteDialog} /> }
+                    { isWritable && ShowEditButton && formName && <EditButton handleEditButton={openEditForm} /> }
+                    
+                    { React.Children.map(ExtraDetailsDialogButtons, ExtraButton => injectProps(ExtraButton, standardProps) || null) }
+                </DialogActions>
+            </Dialog>
+
+            <DeleteDialog {...deleteDialogProps} />
+        </>
     );
 }

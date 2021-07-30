@@ -19,13 +19,13 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- Open table with initId for details (eg: redirect from item details to product details).
-	- 403 Unauthorized should be handeled.
+	- View person, item, product ... Buttons
+	- Use highOrderComponent for withKeys ... eg: SubmitButton, DeleteButton
 	
-	- Table go to first page button.
-	- You should distinct between Select and autocomplete.
 	- You should use Tabs everywhere.
+	- You should distinct between Select and autocomplete.
 	
+	- 403 Unauthorized should be handeled.
 	- win tl9a axios ma tnsach .catch();
 
 	- Hide components dependings on permissions.

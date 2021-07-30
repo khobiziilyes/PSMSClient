@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"rows",
+				"rowsPerPage\twarning"
+			],
+			[
+				"init",
+				"initiallyDetailed\tconst"
+			],
+			[
+				"high",
+				"highlightId\tconst"
+			],
+			[
 				"le",
 				"length\tproperty"
 			],
@@ -130,10 +142,6 @@
 			[
 				"DataT",
 				"DataTypes\talias"
-			],
-			[
-				"init",
-				"initModel\tfunction"
 			],
 			[
 				"crack",
@@ -506,14 +514,6 @@
 			[
 				"is",
 				"isBuy"
-			],
-			[
-				"The",
-				"TheForm"
-			],
-			[
-				"_on",
-				"_onChange"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "src/index.js",
 			"settings":
 			{
-				"buffer_size": 1605,
+				"buffer_size": 1596,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -628,33 +628,37 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Signin",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create"
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog"
 	],
 	"file_history":
 	[
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Footer.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Options.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/Buttons.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Columns.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Signin/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
@@ -758,22 +762,11 @@
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/index.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Show.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Routes.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Items/Accessory/List.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Consts.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/MuiTable/Consts.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Person/List.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Person/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/index.html",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/config.php",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/OLD/M1-ELM.json",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/OLD/L3-HSI.json",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/OLD/L3-GI.json",
-		"/home/th3m1n1c0d34/Documents/Projects/MG/Conv.php"
+		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Routes.js"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 55.0
 	},
 	"find_in_files":
 	{
@@ -788,6 +781,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"useStyles2",
+			"customFooter",
+			"submitButton",
+			"enter",
+			"deleteButton",
+			"axios",
+			"id",
+			"delete",
+			"Autocomplete",
+			"<Route",
+			"detailsId",
+			"highlightId",
+			"console",
+			"first",
+			"totalRows",
+			"highlightFirst",
+			"dependingRowColor",
+			"First",
+			"totalRows",
+			"<Route",
+			"Route",
 			"Create",
 			"CREATE",
 			"testing",
@@ -829,15 +843,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1605,
+						"buffer_size": 1596,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								588,
-								588
+								723,
+								723
 							]
 						],
 						"settings":
@@ -860,26 +874,21 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -890,40 +899,38 @@
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
+								"bh_angle_content"
 							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"typescript_plugin_format_options":
-							{
-								"convertTabsToSpaces": false,
-								"indentSize": 4,
-								"tabSize": 4
-							},
-							"use_tab_stops": false
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -988,6 +995,58 @@
 		"selected_items":
 		[
 			[
+				"inde",
+				"src/index.js"
+			],
+			[
+				"optio",
+				"src/Components/MuiTable/Options.js"
+			],
+			[
+				"muitab",
+				"src/Components/MuiTable/index.js"
+			],
+			[
+				"aut",
+				"src/Components/Inputs/Autocomplete.js"
+			],
+			[
+				"consts",
+				"src/Consts.js"
+			],
+			[
+				"create acces",
+				"src/Pages/Items/Accessory/Create.js"
+			],
+			[
+				"formik",
+				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"form",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"mui index",
+				"src/Components/MuiTable/index.js"
+			],
+			[
+				"show",
+				"src/Pages/Items/Show.js"
+			],
+			[
+				"draw",
+				"src/Components/Drawer/DrawerItems.js"
+			],
+			[
+				"roue",
+				"src/Pages/Routes.js"
+			],
+			[
+				"muita",
+				"src/Components/MuiTable/Columns.js"
+			],
+			[
 				"phone crea",
 				"src/Pages/Items/Phone/Create.js"
 			],
@@ -1004,16 +1063,8 @@
 				"src/Components/SpeedDial.js"
 			],
 			[
-				"inde",
-				"src/index.js"
-			],
-			[
 				"opt",
 				"src/Components/MuiTable/options.js"
-			],
-			[
-				"form",
-				"src/Components/FormikDialog/index.js"
 			],
 			[
 				"route",
@@ -1054,10 +1105,6 @@
 			[
 				"wit",
 				"src/Components/withKeys.js"
-			],
-			[
-				"formik",
-				"src/Components/FormikDialog/TheDialog.js"
 			],
 			[
 				"sp",
@@ -1308,10 +1355,6 @@
 				"src/Pages/Tables/User.js"
 			],
 			[
-				"draw",
-				"src/Components/Drawer/DrawerItems.js"
-			],
-			[
 				"Drawer",
 				"src/Components/Drawer/index.js"
 			],
@@ -1380,10 +1423,6 @@
 				"src/Components/AppBar/index.js"
 			],
 			[
-				"aut",
-				"src/Components/Inputs/Autocomplete.js"
-			],
-			[
 				"create access",
 				"src/Pages/Items/Accessory/Create.js"
 			],
@@ -1402,10 +1441,6 @@
 			[
 				"transa",
 				"src/Pages/Transactions/Create/Actions.js"
-			],
-			[
-				"consts",
-				"src/Consts.js"
 			],
 			[
 				"column",
@@ -1470,34 +1505,6 @@
 			[
 				"searc",
 				"app/Http/Controllers/SearchController.php"
-			],
-			[
-				"part",
-				"tests/Feature/partTest.php"
-			],
-			[
-				"trans",
-				"app/Http/Controllers/TransactionsController.php"
-			],
-			[
-				"itemsC",
-				"app/Http/Controllers/ItemsController.php"
-			],
-			[
-				"transac",
-				"app/Http/Controllers/TransactionsController.php"
-			],
-			[
-				"producC",
-				"app/Http/Controllers/ProductsController.php"
-			],
-			[
-				"appser",
-				"app/Providers/AppServiceProvider.php"
-			],
-			[
-				"peop",
-				"app/Http/Controllers/PeopleController.php"
 			]
 		],
 		"width": 0.0

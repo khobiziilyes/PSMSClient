@@ -19,7 +19,7 @@ const columns = isPhone => [
     	name: 'delta',
     	label: 'Type',
         options: {
-            customBodyRender: (value, tableMeta, updateValue) => (isPhone ? phonesTypes : accessoriesTypes)[value]
+            customBodyRender: value => (isPhone ? phonesTypes : accessoriesTypes)[value]
         }
     },
     {
@@ -62,7 +62,7 @@ export default function ItemsList({ isPhone }) {
             title="Items list"
             URL="/items"
             columns={columns(isPhone)}
-            getNameFromData={(rowData) => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
+            getNameFromData={rowData => (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name}
             DetailsContent={<ShowItem viewStats={viewStats} />}
             formName='Item'
             initialFilters={{ isPhone: isPhone ? 1 : 0 }}
