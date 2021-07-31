@@ -4,6 +4,7 @@ import SpeedDial from '@Components/SpeedDial';
 import Copyright from '@Components/Copyright';
 import FormikDialog from '@Components/FormikDialog';
 import ModalWrapper from '@Components/ModalWrapper';
+import Tabs from '@Components/Tabs';
 
 export {
 	AppBar,
@@ -11,5 +12,6 @@ export {
 	SpeedDial,
 	Copyright,
 	FormikDialog,
-	ModalWrapper
+	ModalWrapper,
+	Tabs
 }

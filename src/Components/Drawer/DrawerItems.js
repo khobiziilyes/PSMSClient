@@ -87,7 +87,7 @@ function ListItems(props) {
                 <Divider />
                 
                 <List component="div" disablePadding>
-                    {React.cloneElement(props.children, {className: inset})}
+                    { injectProps(props.children, { className: inset }) }
                </List>
             </Collapse>
         </>

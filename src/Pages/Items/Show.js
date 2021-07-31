@@ -13,7 +13,7 @@ import { Phone, AttachMoney, EmojiEmotions, ViewModule } from '@material-ui/icon
 
 import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 
-import { ModalWrapper } from '@Components';
+import { Tabs, ModalWrapper } from '@Components';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 const StatsContent = ( {
@@ -37,7 +37,7 @@ const StatsContent = ( {
 	requiredMinimumPrice
 } ) => {
 	return (
-		<>
+		<Grid container spacing={5}>
 			<Grid item xs={4}>
 				<Typography variant="h6" gutterBottom>
 	                Totality
@@ -117,7 +117,7 @@ const StatsContent = ( {
 					</ListItem>
 				</List>
 			</Grid>	
-		</>
+		</Grid>
 	);
 }
 
@@ -125,48 +125,48 @@ const MainContent = ({ id, name, brand, delta, isPhone, currentQuantity, default
 	const deltaText = (isPhone ? phonesTypes : accessoriesTypes)[delta];
 
 	return (
-		<>
-			<Grid item xs={6}>
-				<Typography variant="h6" gutterBottom>
-	                Basic informations
-	            </Typography>
+			<Grid container spacing={5}>
+				<Grid item xs={6}>
+					<Typography variant="h6" gutterBottom>
+		                Basic informations
+		            </Typography>
 
-				<List>
-					<IDListItem ID={id} />
-					
-					<ListItem primary="Name" secondary={name}>
-						<Phone />
-					</ListItem>
+					<List>
+						<IDListItem ID={id} />
+						
+						<ListItem primary="Name" secondary={name}>
+							<Phone />
+						</ListItem>
 
-					<ListItem primary="Brand" secondary={brand}>
-						<Phone />
-					</ListItem>
+						<ListItem primary="Brand" secondary={brand}>
+							<Phone />
+						</ListItem>
 
-					<ListItem primary="Version" secondary={deltaText}>
-						<Phone />
-					</ListItem>
+						<ListItem primary="Version" secondary={deltaText}>
+							<Phone />
+						</ListItem>
 
-					<ListItem primary="Quantity" secondary={currentQuantity}>
-						<Phone />
-					</ListItem>
+						<ListItem primary="Quantity" secondary={currentQuantity}>
+							<Phone />
+						</ListItem>
 
-					<ListItem primary="Price" secondary={defaultPrice}>
-						<Phone />
-					</ListItem>
-				</List>
+						<ListItem primary="Default price" secondary={defaultPrice}>
+							<Phone />
+						</ListItem>
+					</List>
+				</Grid>
+
+				<Grid item xs={6}>
+					<UserTimeList title="Creations" userName={created_by} time={created_at}/>
+					<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
+
+					<Notes notes={notes} />
+				</Grid>
 			</Grid>
-
-			<Grid item xs={6}>
-				<UserTimeList title="Creations" userName={created_by} time={created_at}/>
-				<UserTimeList title="Updates" userName={updated_by} time={updated_at} />
-
-				<Notes notes={notes} />
-			</Grid>
-		</>
 	);
 }
 
-function ShowItem({ rowData, viewStats }) {
+function ShowItem({ rowData }) {
 	const {
 		id,
 		itemable: {
@@ -186,36 +186,48 @@ function ShowItem({ rowData, viewStats }) {
 	} = rowData;
 
 	const MainContentProps = { id, name, brand, delta, isPhone, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes };
+	const [currentTab, setCurrentTab] = React.useState(0);
+
+	const tabsList = [
+		{
+            Title: 'Details',
+            Icon: null,
+            Content: <MainContent {...MainContentProps} />
+        },
+        {
+            Title: 'Stats',
+            Icon: null,
+            Content: <StatsContent {...Stats} />
+        }
+	]
 	
+	const itemsPanelProps = {
+        tabsList,
+        currentTab,
+        setCurrentTab
+    }
+
 	return (
-        <Grid container spacing={5}>
-			{viewStats ? <StatsContent {...Stats} /> : <MainContent {...MainContentProps} />}
-		</Grid>
+		<Tabs {...itemsPanelProps} />
 	);
 }
 
 export default function Show({ rowData, isPhone, ...injected }) {
-	const [viewStats, setViewStats] = React.useState(false);
-
-	return ModalWrapper(<ShowItem rowData={rowData} viewStats={viewStats} />, {
+	return ModalWrapper(<ShowItem rowData={rowData} />, {
 		...injected,
 		title: (isPhone ? 'Phones' : 'Accessories') + ' | ' + rowData.itemable.brand + ' | ' + rowData.itemable.name,
-		extraButtons: [<ViewStatsButton setViewStats={setViewStats} viewStats={viewStats} rowData={rowData} />]
+		extraButtons: [<ViewStatsButton rowData={rowData} />],
+		maxWidth: 'lg',
+		height: '83%'
 	});
 }
 
-const ViewStatsButton = ({ viewStats, setViewStats, rowData: { itemable: { id: itemable_id } } }) => {
-    const highlightItemable = () => {};
+const ViewStatsButton = ({rowData: { itemable: { id: itemable_id } } }) => {
+    const highlightProduct = () => {};
 
     return (
-        <>
-            <Button startIcon={<Assessment />} onClick={() => setViewStats(oldVal => !oldVal)} color="primary" variant="outlined">
-                {(viewStats ? 'Hide ' : 'View') + ' Stats'}
-            </Button>
-
-            <Button startIcon={<Assessment />} onClick={highlightItemable} color="primary" variant="outlined">
-                Got to Item
-            </Button>
-        </>
+        <Button startIcon={<Assessment />} onClick={highlightProduct} color="primary" variant="outlined">
+            Got to Product
+        </Button>
     );
 }

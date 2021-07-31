@@ -19,15 +19,13 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- You should use Tabs everywhere.
+	- Use Tabs in ItemsDetails && TransactionsDetails.
+	- Use Select instead of Autocomplete in obvious cases.
+	- Transaction needs huge fixes.
+	- Hide components dependings on permissions.
 	- Redirect to person, item, product ...
-
-	- You should distinct between Select and autocomplete.
-	
 	- 403 Unauthorized should be handeled.
 	- win tl9a axios ma tnsach .catch();
-
-	- Hide components dependings on permissions.
 
 	- Main page containing quick actions & Infos.
 	

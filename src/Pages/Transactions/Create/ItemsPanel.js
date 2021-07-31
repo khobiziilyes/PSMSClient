@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Tabs, Tab, Typography, Grid, List, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Grid, List, Button } from '@material-ui/core';
 
 import MaskedInput from '@Components/Inputs/MaskedInput';
 import Text from '@Components/Inputs/Text';
@@ -29,7 +28,7 @@ export function CheckoutTabContent({ isBuy, items }) {
                             withItems
                             getOptionLabel={option => option.name}
                             getOptionSelected={(option, value) => option.id === value.id}
-                            defaultOptions={[ { id: 0, name: 'UNKNOWN' } ]}
+                            defaultOptions={[ { id: isBuy ? 2 : 1, name: 'UNKNOWN' } ]}
                         />
                     </Grid>
 
@@ -110,48 +109,4 @@ export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, 
             </Grid>
         </Grid>
     );
-}
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        display: 'flex',
-        height: 300
-    },
-    tabs: {
-        borderRight: `1px solid ${theme.palette.divider}`,
-        width: '50%'
-    },
-    typo: {
-        padding: theme.spacing(3, 2),
-        height: 200,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center"
-    }
-}));
-
-export default function ItemsPanel({ currentTab, setCurrentTab, items, tabsList = [] }) {
-    const classes = useStyles();
-
-    const handleChange = (event, newValue) => setCurrentTab(newValue);
-
-    return (tabsList.length > 0) ? (
-        <div className={classes.root}>
-            <Tabs orientation="vertical" variant="scrollable" value={currentTab} onChange={handleChange} className={classes.tabs}>
-                {tabsList.map((tabItem, i) => <Tab icon={tabItem.Icon} label={tabItem.Title} key={'vertical-tab-' + i} />)};
-            </Tabs>
-
-            {tabsList.map((tabItem, i) =>
-                <div role="tabpanel" hidden={currentTab !== i} style={{ padding: 20, width: '100%' }} key={'vertical-tabpanel-' + i}>
-                    {
-                        React.cloneElement(tabItem.Content, { index: i, setCurrentTab, items })
-                    }
-                </div>
-            )}
-        </div>
-    ) :
-    <div className={classes.typo}>
-        <Typography variant="h1" color="secondary" align="center">Add items first</Typography>
-    </div>
 }

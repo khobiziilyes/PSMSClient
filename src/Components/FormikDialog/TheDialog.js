@@ -2,6 +2,7 @@ import React from 'react';
 import { Form } from 'formik';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import withKeys from '@Components/withKeys';
+import { injectProps } from '@src/Consts';
 
 export const CancelButton = ({ closeFormDialog, ...props }) => 
     <Button onClick={closeFormDialog} {...props}>
@@ -73,12 +74,12 @@ const TheDialog = ({
 
             <DialogContent>
                 <Form>
-                    { React.cloneElement(children, { setFieldValue, isSubmitting, values, isCreate }) }
+                    { injectProps(children, { setFieldValue, isSubmitting, values, isCreate }) }
                 </Form>
             </DialogContent>
             
             <DialogActions>
-                { React.cloneElement(CustomActions ?? <DefaultActions />, actionsProps) }
+                { injectProps(CustomActions ?? <DefaultActions />, actionsProps) }
             </DialogActions>
         </Dialog>
     );

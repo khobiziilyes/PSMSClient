@@ -5,8 +5,9 @@ import { useFormikContext, FieldArray } from 'formik';
 import TheDialog from '@Components/FormikDialog/TheDialog';
 
 import AddItemDialog from './AddItemDialog';
-import ItemsPanel, { ProductItemTabContent, CheckoutTabContent } from './ItemsPanel';
+import { ProductItemTabContent, CheckoutTabContent } from './ItemsPanel';
 import CustomActions from './Actions';
+import { Tabs } from '@Components';
 
 import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
 
@@ -54,7 +55,7 @@ const formikParams = isBuy => ({
     initialValues: {
         items: [],
         person: {
-            id: 0,
+            id: isBuy ? 2 : 1,
             name: 'UNKNOWN'
         },
         notes: ''
@@ -108,13 +109,13 @@ const FieldArrayChild = ({ defaultSelectedProduct, closeAddItemDialog, isBuy, ad
         tabsList,
         currentTab,
         setCurrentTab,
-        items: values.items
+        additionalProps: { items: values.items}
     }
 
     return (
         <>
             <AddItemDialog {...AddItemDialogProps} />
-            <ItemsPanel {...itemsPanelProps} />
+            <Tabs {...itemsPanelProps} />
         </>
     );
 }
