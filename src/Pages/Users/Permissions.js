@@ -10,7 +10,7 @@ import { formDialogParamsAtom } from '@src/Atoms';
 const resourcesList = ['Accessory', 'Item', 'Customer', 'Vendor', 'Phone', 'Buy', 'Sell'];
 
 const formikParams = {
-    URL: (id, isCreate) => '/owner/users/' + id + '/permissions',
+    URL: '/owner/users/permissions',
     dataURL: '/owner/users',
     formSize: 'md'
 }

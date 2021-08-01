@@ -5,6 +5,7 @@ import Copyright from '@Components/Copyright';
 import FormikDialog from '@Components/FormikDialog';
 import ModalWrapper from '@Components/ModalWrapper';
 import Tabs from '@Components/Tabs';
+import Select, { FormikSelect } from '@Components/Select';
 
 export {
 	AppBar,
@@ -13,5 +14,7 @@ export {
 	Copyright,
 	FormikDialog,
 	ModalWrapper,
-	Tabs
+	Tabs,
+	Select,
+	FormikSelect
 }

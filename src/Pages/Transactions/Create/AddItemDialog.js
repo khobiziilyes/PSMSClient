@@ -18,7 +18,8 @@ export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog
             ...theItem,
             productId: selectedProduct.id
         });
-    
+    const deltaLabel = 'Select the ' + (isPhone ? 'version' : 'quality');
+
     return (
         <Dialog onClose={closeAddItemDialog} fullWidth maxWidth='sm' {...props}>
             <DialogTitle>Add new item</DialogTitle>
@@ -39,11 +40,11 @@ export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog
                     <Grid item xs={12}>
                         { 
                             selectedProduct && <Autocomplete
-                                label={"Select the " + (isPhone ? 'version' : 'quality')}
+                                label={deltaLabel}
                                 options={items}
                                 getOptionLabel={option => deltaList[option.delta]}
                                 onChange={(event, value) => setFormatedSelectedItem(value)}
-                                renderInput={params => <TextField {...params} variant="outlined" placeholder={'Something'} />}
+                                renderInput={params => <TextField {...params} variant="outlined" placeholder={deltaLabel} />}
                             />
                         }
                     </Grid>

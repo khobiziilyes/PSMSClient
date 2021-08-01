@@ -10,11 +10,10 @@ import {
     Typography,
     IconButton,
     Badge,
-    Select,
-    FormControl,
-    MenuItem,
-    InputLabel
+    MenuItem
 } from '@material-ui/core';
+
+import { Select } from '@Components';
 
 import {
     ExitToApp,
@@ -75,11 +74,17 @@ export default function AppBar() {
                     />
                 </div>
                 
-                <SimpleSelect id="searchType" label="Type" onChange={event => setSearchType(event.target.value)} value={searchType}>
+                <Select
+                    id="searchType"
+                    label="Type"
+                    onChange={event => setSearchType(event.target.value)}
+                    value={searchType}
+                    controlStyle={{ minWidth: 120, paddingLeft: 10 }}
+                >
                     <MenuItem value="all">All</MenuItem>
                     <MenuItem value="phone">Phone</MenuItem>
                     <MenuItem value="accessory">Accessory</MenuItem>
-                </SimpleSelect>
+                </Select>
 
                 <div className={classes.grow} />
                 
@@ -95,16 +100,4 @@ export default function AppBar() {
             </Toolbar>
         </MuiAppBar>
     );
-}
-
-function SimpleSelect({ id, label, children, ...props }) {
-    return (
-        <FormControl style={{ minWidth: 120, paddingLeft: 10 }}>
-            <InputLabel shrink id={id}>{label}</InputLabel>
-           
-            <Select labelId={id} {...props} >
-                {children}
-            </Select>
-        </FormControl>
-    )
 }

@@ -45,7 +45,7 @@ export default function UsersList() {
     return (
         <MuiTable
         	title="Users list"
-        	URL='/owner/users'
+        	URL='/users'
         	columns={columns}
             DetailsModal={<ShowUser />}
             DialogSize='sm'

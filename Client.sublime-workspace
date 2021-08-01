@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"label",
+				"labelId\twarning"
+			],
+			[
+				"create",
+				"createElement\tfunction"
+			],
+			[
+				"For",
+				"FormikSelect"
+			],
+			[
+				"access",
+				"accessoriesNames\talias"
+			],
+			[
+				"delta",
+				"deltaLabel"
+			],
+			[
+				"Default",
+				"defaultPrice"
+			],
+			[
+				"dialo",
+				"dialogProps\tconst"
+			],
+			[
+				"fu",
+				"fullWidth\twarning"
+			],
+			[
+				"viewS",
+				"ViewStatsButton\tconst"
+			],
+			[
 				"init",
 				"initialValues\tconst"
 			],
@@ -478,42 +514,6 @@
 			[
 				"gro",
 				"groupedItems"
-			],
-			[
-				"form",
-				"formatedURL"
-			],
-			[
-				"sele",
-				"selectedProduct"
-			],
-			[
-				"def",
-				"defaultPrice"
-			],
-			[
-				"delt",
-				"delta"
-			],
-			[
-				"items",
-				"itemsPanelProps"
-			],
-			[
-				"set",
-				"setCurrentTab"
-			],
-			[
-				"curre",
-				"currentTab"
-			],
-			[
-				"Check",
-				"Checkout"
-			],
-			[
-				"F",
-				"FieldArray"
 			]
 		]
 	},
@@ -523,19 +523,9 @@
 			"file": "src/index.js",
 			"settings":
 			{
-				"buffer_size": 1566,
+				"buffer_size": 1458,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 79 files for \"autoSelect\"\n\n/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js:\n   36      const newProps = {\n   37          freeSolo,\n   38:         autoSelect: true,\n   39          disableClearable: true,\n   40          onBlur: onBlur ?? function (event) {\n\n1 match in 1 file\n",
-			"settings":
-			{
-				"buffer_size": 324,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
 			}
 		}
 	],
@@ -638,40 +628,50 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create"
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users"
 	],
 	"file_history":
 	[
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Select.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/package.json",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Tabs.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/.gitignore",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Show.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonLists.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonListItem.js",
@@ -683,11 +683,9 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Options.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Footer.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/Buttons.js",
@@ -697,7 +695,6 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Columns.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Signin/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Phone.js",
@@ -773,15 +770,11 @@
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/SpeedDial.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Main/Dashboard/index.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Inputs/Text.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Main/Signin/Styles.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Inputs/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/MuiTable/index.js"
+		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Main/Signin/Styles.js"
 	],
 	"find":
 	{
-		"height": 55.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -796,6 +789,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<Select",
+			"Autocomplete",
+			"<Auto",
+			"eslint",
 			"autoSelect",
 			"React.",
 			"React.clone",
@@ -903,15 +900,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1566,
+						"buffer_size": 1458,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								893,
-								893
+								583,
+								583
 							]
 						],
 						"settings":
@@ -934,61 +931,61 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"typescript_plugin_format_options":
@@ -1004,126 +1001,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 324,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										196,
-										206
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1182,8 +1059,36 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"src/Components/AppBar/index.js"
+			],
+			[
+				"appbar",
+				"src/Components/AppBar/index.js"
+			],
+			[
+				"components inde",
+				"src/Components/index.js"
+			],
+			[
+				"comonents index",
+				"src/Components/index.js"
+			],
+			[
 				"inde",
 				"src/index.js"
+			],
+			[
+				"show item",
+				"src/Pages/Items/Show.js"
+			],
+			[
+				"modalwra",
+				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"TA",
+				"src/Components/Tabs.js"
 			],
 			[
 				"tabs",
@@ -1384,10 +1289,6 @@
 			[
 				"onS",
 				"src/Components/FormikDialog/onSubmit.js"
-			],
-			[
-				"appbar",
-				"src/Components/AppBar/index.js"
 			],
 			[
 				"sp",
@@ -1668,30 +1569,6 @@
 			[
 				"detailsDialog",
 				"src/Components/MuiTable/DetailsDialog/index.js"
-			],
-			[
-				"appba",
-				"src/Components/AppBar/index.js"
-			],
-			[
-				"Tex",
-				"src/Components/Inputs/Text.js"
-			],
-			[
-				"create acc",
-				"src/Pages/Items/Accessory/Create.js"
-			],
-			[
-				"app",
-				"src/Components/AppBar/index.js"
-			],
-			[
-				"appb",
-				"src/Components/AppBar/index.js"
-			],
-			[
-				"create access",
-				"src/Pages/Items/Accessory/Create.js"
 			]
 		],
 		"width": 0.0

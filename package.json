@@ -56,9 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "_moduleAliases": {
-    "@idk": "./Components/Table.js",
-    "@idc": "./src/Components/Table.js"
   }
 }

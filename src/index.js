@@ -19,8 +19,6 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
-	- Use Tabs in ItemsDetails && TransactionsDetails.
-	- Use Select instead of Autocomplete in obvious cases.
 	- Transaction needs huge fixes.
 	- Hide components dependings on permissions.
 	- Redirect to person, item, product ...
