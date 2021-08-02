@@ -10,23 +10,7 @@ import CustomActions from './Actions';
 import { Tabs } from '@Components';
 
 import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
-
-function groupBy(collection, property) {
-    let i = 0, val, index,
-        values = [], result = [];
-    for (; i < collection.length; i++) {
-        val = collection[i][property];
-        index = values.indexOf(val);
-        if (index > -1)
-            result[index].push(collection[i]);
-        else {
-            values.push(val);
-            result.push([collection[i]]);
-        }
-    }
-
-    return result;
-}
+import { groupBy } from '@src/Consts';
 
 const formikParams = isBuy => ({
     formatData: values => {

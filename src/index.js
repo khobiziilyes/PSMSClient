@@ -19,6 +19,7 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Add Stats pages.
 	- Transaction needs huge fixes.
 	- Hide components dependings on permissions.
 	- Redirect to person, item, product ...

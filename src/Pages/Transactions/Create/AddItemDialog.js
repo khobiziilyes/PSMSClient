@@ -1,16 +1,34 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Grid, TextField } from '@material-ui/core';
+import { Button, Grid, TextField } from '@material-ui/core';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import LiveSearch from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
+import { LiveSearch, ModalWrapper } from '@Components';
+
 export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog, defaultSelectedProduct = null, ...props }) {
-    const [selectedProduct, setSelectedProduct] = React.useState(defaultSelectedProduct);
     const [selectedItem, setSelectedItem] = React.useState(null);
-    
-    const { isPhone, items } = selectedProduct || {};
-    const deltaList = isPhone ? phonesTypes : accessoriesTypes;
+
+    const extraButtons = [
+        <Button onClick={() => addItemToList(selectedItem)} color="primary" variant="outlined" disabled={selectedItem === null}>
+            Continue
+        </Button>
+    ];
+
+    const contentProps = { defaultSelectedProduct, setSelectedItem }
+
+    return ModalWrapper(<DialogContent {...contentProps} />, {
+		title: 'Add new item',
+		handleDialogClose: closeAddItemDialog,
+		ShowBaseButtons: false,
+		maxWidth: 'sm',
+		extraButtons,
+		...props
+	});
+}
+
+function DialogContent({ defaultSelectedProduct, setSelectedItem }) {
+    const [selectedProduct, setSelectedProduct] = React.useState(defaultSelectedProduct);
 
     const setFormatedSelectedItem = theItem => 
         setSelectedItem({
@@ -18,48 +36,36 @@ export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog
             ...theItem,
             productId: selectedProduct.id
         });
+
+    const { isPhone, items } = selectedProduct || {};
+    
+    const deltaList = isPhone ? phonesTypes : accessoriesTypes;
     const deltaLabel = 'Select the ' + (isPhone ? 'version' : 'quality');
 
     return (
-        <Dialog onClose={closeAddItemDialog} fullWidth maxWidth='sm' {...props}>
-            <DialogTitle>Add new item</DialogTitle>
-            
-            <DialogContent>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <LiveSearch
-                            formatURL={query => '/search/items/all'}
-                            withItems
-                            getOptionLabel={option => option.name}
-                            getOptionSelected={(option, value) => option.id === value.id}
-                            onChange={(event, value) => setSelectedProduct(value)}
-                            defaultValue={defaultSelectedProduct}
-                        />
-                    </Grid>
+   		<Grid container spacing={3}>
+            <Grid item xs={12}>
+                <LiveSearch
+                    formatURL={query => '/search/items/all'}
+                    withItems
+                    getOptionLabel={option => option.name}
+                    getOptionSelected={(option, value) => option.id === value.id}
+                    onChange={(event, value) => setSelectedProduct(value)}
+                    defaultValue={defaultSelectedProduct}
+                />
+            </Grid>
 
-                    <Grid item xs={12}>
-                        { 
-                            selectedProduct && <Autocomplete
-                                label={deltaLabel}
-                                options={items}
-                                getOptionLabel={option => deltaList[option.delta]}
-                                onChange={(event, value) => setFormatedSelectedItem(value)}
-                                renderInput={params => <TextField {...params} variant="outlined" placeholder={deltaLabel} />}
-                            />
-                        }
-                    </Grid>
-                </Grid>
-            </DialogContent>
-            
-            <DialogActions>
-                <Button onClick={closeAddItemDialog} color="primary">
-                    Cancel
-                </Button>
-                
-                <Button onClick={() => addItemToList(selectedItem)} color="primary" disabled={selectedItem === null}>
-                    Continue
-                </Button>
-            </DialogActions>
-        </Dialog>
+            <Grid item xs={12}>
+                { 
+                    selectedProduct && <Autocomplete
+                        label={deltaLabel}
+                        options={items}
+                        getOptionLabel={option => deltaList[option.delta]}
+                        onChange={(event, value) => setFormatedSelectedItem(value)}
+                        renderInput={params => <TextField {...params} variant="outlined" placeholder={deltaLabel} />}
+                    />
+                }
+            </Grid>
+        </Grid>
     );
 }

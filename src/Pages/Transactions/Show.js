@@ -77,7 +77,7 @@ const CartsContent = ({ Cart }) => {
 	);
 }
 
-const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, updated_by, person, totalCost } ) => {
+const MainContent = ({ id, isBuy, notes, created_by, created_at, deleted_at, updated_by, person, totalCost }) => {
 	return (
 		<Grid container spacing={5}>
 			<Grid item xs={6}>
@@ -112,7 +112,7 @@ const MainContent = ( { id, isBuy, notes, created_by, created_at, deleted_at, up
 	);
 }
 
-function ShowTransaction({ currentTab, setCurrentTab, rowData: {carts, ...rowData} }) {
+function ShowTransaction({ currentTab, setCurrentTab, rowData: { carts, ...rowData } }) {
 	const totalCost = carts.reduce((a, cart) => a + (cart.Quantity * cart.costPerItem), 0);
 	
 	const tabsList = [

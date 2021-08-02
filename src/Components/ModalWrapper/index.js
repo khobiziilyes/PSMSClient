@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
-import { injectProps } from '@src/Consts';
 import { EditButton, DeleteButtonWithKeys, CloseButton } from './Buttons';
 import { makeStyles } from '@material-ui/styles';
+import { injectProps } from '@src/Consts';
 
 const useStyles = makeStyles({
     dialogPaper: {
@@ -12,9 +12,9 @@ const useStyles = makeStyles({
 
 export default function ModalWrapper(children, {
     title, extraButtons = [],
-    handleDialogClose, handleEditButton, handleDeleteButton,
-    ShowDeleteButton = true, ShowEditButton = true,
-    height = null,
+    handleDialogClose, handleEditButton = null, handleDeleteButton = null,
+    ShowBaseButtons = true, ShowDeleteButton = true, ShowEditButton = true,
+    buttonsProps = {}, height = null,
     ...props
 }) {
     const classes = useStyles({ height });
@@ -36,12 +36,12 @@ export default function ModalWrapper(children, {
             </DialogContent>
 
             <DialogActions>
-                <CloseButton handleDialogClose={handleDialogClose} />
+                <CloseButton handleDialogClose={handleDialogClose} {...buttonsProps} variant="text" />
                 
-                { ShowDeleteButton && <DeleteButtonWithKeys handleDeleteButton={handleDeleteButton} /> }
-                { ShowEditButton && <EditButton handleEditButton={handleEditButton} /> }
+                { ShowBaseButtons && handleDeleteButton && ShowDeleteButton && <DeleteButtonWithKeys handleDeleteButton={handleDeleteButton} {...buttonsProps} /> }
+                { ShowBaseButtons && handleEditButton && ShowEditButton && <EditButton handleEditButton={handleEditButton} {...buttonsProps} /> }
                 
-                { React.Children.map(extraButtons, ExtraButton => injectProps(ExtraButton, { handleDialogClose })) }
+                { React.Children.map(extraButtons, extraButton => injectProps(extraButton, buttonsProps)) }
             </DialogActions>
         </Dialog>
 	) : null;

@@ -64,7 +64,7 @@ const buildOnSubmit = ({
     axios({
         url: formatedURL,
         data: formatedData,
-        method: isCreate ? 'POST' : 'PATCH'
+        method: isCreate ? 'POST' : 'PUT'
     }).then(response => {
         if (response.data) {
             const resourceId = isCreate ? response.data.data.id : initialId;
