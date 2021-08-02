@@ -36,10 +36,10 @@ export default function ModalWrapper(children, {
             </DialogContent>
 
             <DialogActions>
-                <CloseButton handleDialogClose={handleDialogClose} {...buttonsProps} variant="text" />
+                <CloseButton onClick={handleDialogClose} {...buttonsProps} />
                 
-                { ShowBaseButtons && handleDeleteButton && ShowDeleteButton && <DeleteButtonWithKeys handleDeleteButton={handleDeleteButton} {...buttonsProps} /> }
-                { ShowBaseButtons && handleEditButton && ShowEditButton && <EditButton handleEditButton={handleEditButton} {...buttonsProps} /> }
+                { ShowBaseButtons && handleDeleteButton && ShowDeleteButton && <DeleteButtonWithKeys onClick={handleDeleteButton} {...buttonsProps} /> }
+                { ShowBaseButtons && handleEditButton && ShowEditButton && <EditButton onClick={handleEditButton} {...buttonsProps} /> }
                 
                 { React.Children.map(extraButtons, extraButton => injectProps(extraButton, buttonsProps)) }
             </DialogActions>

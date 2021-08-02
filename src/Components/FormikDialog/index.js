@@ -3,17 +3,16 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useSnackbar } from 'notistack';
 import { useQueryClient } from 'react-query'
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 
 import { useRecoilState } from 'recoil';
 import { formDialogParamsAtom } from '@src/Atoms';
 
 import * as Pages from '@src/Pages';
-
-import TheDialog from './TheDialog';
 import buildOnSubmit from './onSubmit';
+import TheDialog from './TheDialog';
 
-export default function FormikDialog() {
+export default function FormikWrapper() {
 	const history = useHistory();
 	const queryClient = useQueryClient();
 	const { enqueueSnackbar } = useSnackbar();
@@ -57,30 +56,32 @@ export default function FormikDialog() {
 		initialValues: isCreate ? initialValues : ( formatInitialValues ? formatInitialValues(initialValues) : initialValues )
 	}
 	
-	const DialogComponent = formikBag => {
-		const dialogProps = {
-			isCreate,
-			formikBag,
-			title: formikParams.title || (isCreate ? 'Create' : 'Edit'),
-			isOpened,
-			closeFormDialog,
-			formSize: formikParams.formSize,
-		}
-
-		if (formikParams.selfDialog) return (
-			<TheForm {...injectedProps} isCreate={isCreate} formikBag={formikBag} dialogProps={dialogProps} />
-		);
-
-		return (
-			<TheDialog {...dialogProps} >
-				<TheForm {...injectedProps} isCreate={isCreate} />
-			</TheDialog>
-		);
+	const dialogProps = {
+		title: formikParams.title || ((isCreate ? 'Create' : 'Edit') + ' - ' + formDialogName),
+		open: isOpened,
+		handleDialogClose: closeFormDialog,
+		formSize: formikParams.formSize,
 	}
 
 	return (
 		<Formik {...formikProps}>
-			{ DialogComponent }
+			{
+				formikBag => 
+					<TheForm
+						dialogProps={{ ...dialogProps, formikBag }}
+						isCreate={isCreate}
+						formikBag={formikBag}
+						{...injectedProps}
+					/>
+			}
 		</Formik>
 	);
 }
+
+export const TheFormWrapper = Content => ({ dialogProps, ...props }) => (
+	<TheDialog {...dialogProps}>
+		<Form>
+			<Content {...props} />
+		</Form>
+	</TheDialog>
+);

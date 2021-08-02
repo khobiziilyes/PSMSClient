@@ -8,6 +8,7 @@ import TextField from '@Components/Inputs/Text';
 
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { TheFormWrapper } from '@Components/FormikDialog';
 
 const formikParams = {
     URL: '/users',
@@ -19,7 +20,7 @@ const formikParams = {
     })
 }
 
-function TheForm() {
+function FormContent() {
     const [userisAdmin, handleUserisAdminChange] = React.useState('0');
 
     return (
@@ -73,6 +74,8 @@ function TheForm() {
         </Grid>
     );
 }
+
+const TheForm = TheFormWrapper(FormContent);
 
 export {
     formikParams,

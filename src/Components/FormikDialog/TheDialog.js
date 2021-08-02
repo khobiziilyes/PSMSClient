@@ -1,78 +1,32 @@
 import React from 'react';
-import { Form } from 'formik';
-import { Button } from '@material-ui/core';
-import { ModalWrapper, withKeys } from '@Components/index';
-import { injectProps } from '@src/Consts';
-
-export const SubmitButton = ({ withRef, submitForm, ...props }) => (
-    <Button onClick={submitForm} ref={withRef} {...props}>
-        Submit
-    </Button>
-);
-
-export const SubmitButtonWithKeys = withKeys(SubmitButton, 'enter', ({ event, element }) => {
-        const noSubmit = ['TEXTAREA'];
-        const tagName = event.target.tagName;
-
-        if (!noSubmit.includes(tagName)) element.click();
-    }
-);
-
-export const DefaultActions = ({ buttonsProps, submitForm }) => {
-    return (
-        <>
-            <SubmitButtonWithKeys submitForm={submitForm} {...buttonsProps} />
-        </>
-    );
-}
+import { ModalWrapper } from '@Components/index';
+import { SubmitButtonWithKeys } from '@Components/ModalWrapper/Buttons';
 
 const TheDialog = ({
-    formikBag: {
-        submitForm,
-        isSubmitting,
-        setFieldValue,
-        values
-    },
-    title,
-    isOpened,
-    closeFormDialog,
     formSize,
     children,
-    CustomActions = null,
-    isCreate
+
+    formikBag: {
+        submitForm,
+        isSubmitting
+    },
+    CustomActions = [],
+    ...props
 }) => {
-    const buttonsProps = {
-        color: 'primary',
-        variant: 'outlined',
-        disabled: isSubmitting
-    }
-
-    const actionsProps = {
-        buttonsProps,
-        submitForm
-    }
-
-    const dialogProps = {
-        title,
-        open: isOpened,
-        handleDialogClose: closeFormDialog,
-        extraButtons: injectProps(CustomActions ?? <DefaultActions />, actionsProps),
-        buttonsProps,
+    const wrapperProps = {
+        extraButtons: [...CustomActions, <SubmitButtonWithKeys onClick={submitForm} /> ],
+        buttonsProps: { disabled: isSubmitting },
         
         disableRestoreFocus: true,
         maxWidth: formSize || 'sm',
 
         disableBackdropClick: isSubmitting,
-        disableEscapeKeyDown: isSubmitting
+        disableEscapeKeyDown: isSubmitting,
+
+        ...props
     }
 
-    const content = (
-        <Form>
-        	{ injectProps(children, { setFieldValue, isSubmitting, values, isCreate }) }
-        </Form>
-    );
-
-    return ModalWrapper(content, dialogProps);
+    return ModalWrapper(children, wrapperProps);
 }
 
 export default TheDialog;

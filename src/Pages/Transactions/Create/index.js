@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
+
 import { useFormikContext, FieldArray } from 'formik';
 // import * as Yup from 'yup';
 
@@ -6,11 +8,16 @@ import TheDialog from '@Components/FormikDialog/TheDialog';
 
 import AddItemDialog from './AddItemDialog';
 import { ProductItemTabContent, CheckoutTabContent } from './ItemsPanel';
-import CustomActions from './Actions';
 import { Tabs } from '@Components';
 
 import { Phone as PhoneIcon, AttachMoney } from '@material-ui/icons';
 import { groupBy } from '@src/Consts';
+
+const AddItemButton = ({ openAddItemDialog, ...props }) => (
+    <Button onClick={openAddItemDialog} {...props}>
+        Item
+    </Button>
+);
 
 const formikParams = isBuy => ({
     formatData: values => {
@@ -104,12 +111,12 @@ const FieldArrayChild = ({ defaultSelectedProduct, closeAddItemDialog, isBuy, ad
     );
 }
 
-function TheForm({ formikBag, dialogProps, isBuy, isCreate, defaultSelectedProduct = null }) {
+function TheForm({ dialogProps, formikBag, isBuy, isCreate, defaultSelectedProduct = null }) {
     const [addItemDialogOpened, setAddItemDialogOpened] = React.useState(true);
     const closeAddItemDialog = () => setAddItemDialogOpened(false);
     
     return (
-        <TheDialog formikBag={formikBag} {...dialogProps} CustomActions={<CustomActions openAddItemDialog={() => setAddItemDialogOpened(true)} />}>
+        <TheDialog {...dialogProps} CustomActions={[<AddItemButton openAddItemDialog={() => setAddItemDialogOpened(true)} />]}>
             <FieldArray name="items">
                 {
                     arrayHelpers => {

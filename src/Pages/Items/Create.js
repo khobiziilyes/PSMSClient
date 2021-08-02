@@ -9,6 +9,7 @@ import MaskedInput from '@Components/Inputs/MaskedInput';
 
 import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
+import { TheFormWrapper } from '@Components/FormikDialog';
 
 const formikParams = {
     URL: (initialId, isCreate, { product: { isPhone, id } }) => '/items/' + (isPhone ? 'phone' : 'accessory') + '/' + id,
@@ -38,7 +39,7 @@ const formikParams = {
     })
 }
 
-function TheForm({ isCreate, isSubmitting, values: { product } }) {
+function FormContent({ isCreate, isSubmitting, values: { product } }) {
     const [selectedProduct, setSelectedProduct] = React.useState(product ?? null);
     const { isPhone } = selectedProduct || {};
 
@@ -85,6 +86,8 @@ function TheForm({ isCreate, isSubmitting, values: { product } }) {
         </Grid>
 	);
 }
+
+const TheForm = TheFormWrapper(FormContent);
 
 export {
     formikParams,

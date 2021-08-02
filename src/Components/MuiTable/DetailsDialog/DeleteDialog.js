@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useQueryClient } from 'react-query'
 
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import { CloseButton, SubmitButton } from '@Components/ModalWrapper/Buttons';
 
 const DeleteDialog = ({ URL, open, closeDeleteDialog, closeDetailsDialog }) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -33,13 +34,13 @@ const DeleteDialog = ({ URL, open, closeDeleteDialog, closeDetailsDialog }) => {
             </DialogContent>
             
             <DialogActions>
-                <Button onClick={closeDeleteDialog} color="primary">
+                <CloseButton onClick={closeDeleteDialog}>
                     Cancel
-                </Button>
+                </CloseButton>
                 
-                <Button onClick={handleContinue} color="primary" autoFocus>
+                <SubmitButton onClick={handleContinue} autoFocus>
                     Continue
-                </Button>
+                </SubmitButton>
             </DialogActions>
         </Dialog>
     );

@@ -7,6 +7,7 @@ import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
 
 import { accessoriesNames } from '@src/Consts';
+import { TheFormWrapper } from '@Components/FormikDialog';
 
 const formikParams = {
     URL: '/accessories',
@@ -26,7 +27,7 @@ const formikParams = {
     testing: true
 }
 
-function TheForm({ isSubmitting, isCreate }) {
+function FormContent({ isSubmitting, isCreate }) {
     return (
 	   <Grid container spacing={3}>
             <Grid item xs={4}>
@@ -59,6 +60,8 @@ function TheForm({ isSubmitting, isCreate }) {
         </Grid>
 	);
 }
+
+const TheForm = TheFormWrapper(FormContent);
 
 export {
     formikParams,

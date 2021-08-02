@@ -89,4 +89,4 @@ export const FormikLiveSearch = props => {
     );
 }
 
-export const LiveSearchWithKeys = withKeys(LiveSearch, 'ctrl+,', ({ element }) => element.focus());
+export const LiveSearchWithKeys = withKeys(LiveSearch, '/', ({ element }) => element.focus() || true);

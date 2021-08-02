@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
+import { TheFormWrapper } from '@Components/FormikDialog';
 
 const formikParams = {
     URL: '/phones',
@@ -20,7 +21,7 @@ const formikParams = {
     })
 }
 
-function TheForm({ isSubmitting }) {
+function FormContent({ isSubmitting }) {
 	return (
         <Grid container spacing={3}>
             <Grid item xs={6}>
@@ -37,6 +38,8 @@ function TheForm({ isSubmitting }) {
         </Grid>
 	);
 }
+
+const TheForm = TheFormWrapper(FormContent);
 
 export {
     formikParams,

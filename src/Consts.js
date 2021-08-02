@@ -73,3 +73,5 @@ export const accessoriesNames = {
 }
 
 export const injectProps = (element, newProps) => React.isValidElement(element) ? React.cloneElement(element, newProps) : null;
+
+export const noSubmit = ['TEXTAREA'];
