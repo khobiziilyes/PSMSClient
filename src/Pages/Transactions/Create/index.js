@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { useFormikContext, FieldArray } from 'formik';
 // import * as Yup from 'yup';
 
-import TheDialog from '@Components/FormikDialog/TheDialog';
+import { DialogWrapper } from '@Components/FormikDialog';
 
 import AddItemDialog from './AddItemDialog';
 import { ProductItemTabContent, CheckoutTabContent } from './ItemsPanel';
@@ -116,7 +116,7 @@ function TheForm({ dialogProps, formikBag, isBuy, isCreate, defaultSelectedProdu
     const closeAddItemDialog = () => setAddItemDialogOpened(false);
     
     return (
-        <TheDialog {...dialogProps} CustomActions={[<AddItemButton openAddItemDialog={() => setAddItemDialogOpened(true)} />]}>
+        <DialogWrapper {...dialogProps} CustomActions={[<AddItemButton openAddItemDialog={() => setAddItemDialogOpened(true)} />]}>
             <FieldArray name="items">
                 {
                     arrayHelpers => {
@@ -132,7 +132,7 @@ function TheForm({ dialogProps, formikBag, isBuy, isCreate, defaultSelectedProdu
                     }
                 }
             </FieldArray>
-        </TheDialog>
+        </DialogWrapper>
     );
 }
 

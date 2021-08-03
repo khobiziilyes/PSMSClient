@@ -8,9 +8,10 @@ import { Formik, Form } from 'formik';
 import { useRecoilState } from 'recoil';
 import { formDialogParamsAtom } from '@src/Atoms';
 
-import * as Pages from '@src/Pages';
+import { ModalWrapper } from '@Components/index';
+
 import buildOnSubmit from './onSubmit';
-import TheDialog from './TheDialog';
+import * as Pages from '@src/Pages';
 
 export default function FormikWrapper() {
 	const history = useHistory();
@@ -26,13 +27,8 @@ export default function FormikWrapper() {
 
 	const closeFormDialog = () => setFormDialogParams({ isOpened: false });
 	const showNotification = (child, variant = 'success') => enqueueSnackbar(child, { variant });
-	const redirectTo = (pathname, state) => 
-		history.push({
-			pathname,
-			state,
-		});
-
 	const invalidateQueries = URL => queryClient.invalidateQueries();
+	const redirectTo = history.push;
 	
 	const { id, ...initialValues } = formDialogInitialValues || formikParams.initialValues;
 	
@@ -78,10 +74,21 @@ export default function FormikWrapper() {
 	);
 }
 
+export const DialogWrapper = ({ formSize, children, formikBag: { submitForm, isSubmitting }, CustomActions = [], ...props }) => {
+    const wrapperProps = {
+    	disabled: isSubmitting,
+    	handleSubmitButton: submitForm,
+        extraButtons: CustomActions,
+        maxWidth: formSize || 'sm',
+
+        ...props
+    }
+
+    return ModalWrapper(<Form>{ children }</Form>, wrapperProps);
+}
+
 export const TheFormWrapper = Content => ({ dialogProps, ...props }) => (
-	<TheDialog {...dialogProps}>
-		<Form>
-			<Content {...props} />
-		</Form>
-	</TheDialog>
+	<DialogWrapper {...dialogProps}>
+		<Content {...props} />
+	</DialogWrapper>
 );
