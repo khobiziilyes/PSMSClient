@@ -25,8 +25,7 @@ const useStyles = makeStyles({
 function MuiTable({
     URL, title, columns,
     
-    includeCreateColumns = true,
-    includeUpdateColumns = true,
+    includeCreateColumns = true, includeUpdateColumns = true,
     
     initRowsPerPage = 5,
     formName = null,

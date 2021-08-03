@@ -16,7 +16,7 @@ const DeleteDialog = ({ URL, open, closeDeleteDialog, closeDetailsDialog }) => {
         if (response.data && response.data.deleted) {
             closeDetailsDialog();
 
-            queryClient.invalidateQueries(URL);
+            queryClient.invalidateQueries();
             enqueueSnackbar('The resource has been deleted successfully.', { variant: 'success' });
         } else {
             enqueueSnackbar('The resource could not be deleted.', { variant: 'error' });
@@ -24,7 +24,7 @@ const DeleteDialog = ({ URL, open, closeDeleteDialog, closeDetailsDialog }) => {
     });
 
     return (
-        <Dialog open={open} onClose={closeDeleteDialog}>
+        <Dialog open={open} onClose={closeDeleteDialog} fullWidth maxWidth="sm">
             <DialogTitle>Delete ?</DialogTitle>
             
             <DialogContent>

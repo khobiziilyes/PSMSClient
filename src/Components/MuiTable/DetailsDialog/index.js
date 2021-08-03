@@ -6,15 +6,7 @@ import { formDialogParamsAtom } from '@src/Atoms';
 
 import DeleteDialog from './DeleteDialog';
 
-export default function DetailsDialog({
-    URL,
-    closeDetailsDialog,
-    selectedRowData,
-    formName,
-    DetailsModal,
-
-    ...props
-}) {
+export default function DetailsDialog({ URL, closeDetailsDialog, selectedRowData, formName, DetailsModal, ...props }) {
     const setFormDialogParams = useSetRecoilState(formDialogParamsAtom);
 
     const openEditForm = () => {
@@ -58,11 +50,4 @@ export default function DetailsDialog({
             <DeleteDialog {...deleteDialogProps} />
         </>
     ) : null;
-
-    /*
-        ExtraDetailsDialogButtons
-        ShowEditButton
-        getNameFromData
-        maxWidth: DialogSize
-    */
 }
