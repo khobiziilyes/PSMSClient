@@ -13,7 +13,9 @@ import {
 } from '@material-ui/icons';
 
 import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
-import { Tabs, ModalWrapper } from '@Components';
+
+import { Tabs } from '@Components';
+import ModalWrapper from '@Components/ModalWrapper';
 
 import { Print } from '@material-ui/icons';
 

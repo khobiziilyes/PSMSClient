@@ -25,7 +25,8 @@ const PermissionsButton = ({ handleDialogClose, rowData: { permissions, ...rowDa
         setFormDialogParams({
             isOpened: true,
             name,
-            initialValues
+            initialValues,
+            injectedProps: {}
         });
     }
 

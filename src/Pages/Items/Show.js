@@ -13,7 +13,9 @@ import { Phone, AttachMoney, EmojiEmotions, ViewModule } from '@material-ui/icon
 
 import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 
-import { Tabs, ModalWrapper } from '@Components';
+import { Tabs } from '@Components';
+import ModalWrapper from '@Components/ModalWrapper';
+
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
 const StatsContent = ( {

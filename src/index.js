@@ -19,6 +19,7 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Tabs errors should change tab.
 	- Use priority.
 	- Add Stats pages.
 	- Transaction needs huge fixes.

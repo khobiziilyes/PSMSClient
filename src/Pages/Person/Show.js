@@ -14,7 +14,7 @@ import {
 } from '@material-ui/icons';
 
 import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
-import { ModalWrapper } from '@Components';
+import ModalWrapper from '@Components/ModalWrapper';
 
 function ShowPerson({
 	rowData: {

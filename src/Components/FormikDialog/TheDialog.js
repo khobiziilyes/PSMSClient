@@ -10,11 +10,11 @@ const TheDialog = ({
         submitForm,
         isSubmitting
     },
-    CustomActions = [],
+    extraButtons = [],
     ...props
 }) => {
     const wrapperProps = {
-        extraButtons: [...CustomActions, <SubmitButtonWithKeys onClick={submitForm} /> ],
+        extraButtons: [...extraButtons, <SubmitButtonWithKeys onClick={submitForm} /> ], //////////////////
         buttonsProps: { disabled: isSubmitting },
         
         disableRestoreFocus: true,

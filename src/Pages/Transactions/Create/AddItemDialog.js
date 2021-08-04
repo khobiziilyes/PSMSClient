@@ -4,7 +4,8 @@ import { Button, Grid, TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
 
-import { LiveSearch, ModalWrapper } from '@Components';
+import { LiveSearch } from '@Components';
+import ModalWrapper from '@Components/ModalWrapper';
 
 export default function AddItemDialog({ isBuy, addItemToList, closeAddItemDialog, defaultSelectedProduct = null, ...props }) {
     const [selectedItem, setSelectedItem] = React.useState(null);

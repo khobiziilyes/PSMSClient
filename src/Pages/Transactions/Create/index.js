@@ -116,7 +116,7 @@ function TheForm({ dialogProps, formikBag, isBuy, isCreate, defaultSelectedProdu
     const closeAddItemDialog = () => setAddItemDialogOpened(false);
     
     return (
-        <DialogWrapper {...dialogProps} CustomActions={[<AddItemButton openAddItemDialog={() => setAddItemDialogOpened(true)} />]}>
+        <DialogWrapper {...dialogProps} extraButtons={[<AddItemButton openAddItemDialog={() => setAddItemDialogOpened(true)} />]}>
             <FieldArray name="items">
                 {
                     arrayHelpers => {

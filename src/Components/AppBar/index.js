@@ -13,14 +13,13 @@ import {
     MenuItem
 } from '@material-ui/core';
 
-import { Select } from '@Components';
-
 import {
     ExitToApp,
     Menu as MenuIcon,
     Notifications as NotificationsIcon
 } from '@material-ui/icons';
 
+import Select from '@Components/Select';
 import { LiveSearchWithKeys } from '@Components/Inputs/LiveSearch';
 
 import useStyles from './Styles';
@@ -40,7 +39,7 @@ export default function AppBar() {
         setFormDialogParams({
             isOpened: true,
             name: 'Sell',
-            initialValues: null,
+            initialValues: {},
             injectedProps: {
                 defaultSelectedProduct: value
             }

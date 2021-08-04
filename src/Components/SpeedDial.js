@@ -51,7 +51,8 @@ export default function SpeedDial() {
         setFormDialogParams({
             isOpened: true,
             name,
-            initialValues: null
+            initialValues: {},
+            injectedProps: {}
         });
     }
 

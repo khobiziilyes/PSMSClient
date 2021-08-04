@@ -11,13 +11,14 @@ const formDialogParamsAtom = atom({
 	default: {
 		isOpened: false,
 		name: 'Customer',
-		initialValues: null
+		initialValues: {},
+		injectedProps: {}
 	}
 })
 
 const userAtom = atom({
     key: 'user',
-    default: {name: 'A', email: 'B'}
+    default: { name: 'A', email: 'B' }
 });
 
 export {

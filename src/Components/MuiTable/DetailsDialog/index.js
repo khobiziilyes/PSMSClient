@@ -16,7 +16,8 @@ export default function DetailsDialog({ URL, closeDetailsDialog, selectedRowData
         setFormDialogParams({
             isOpened: true,
             name: formName,
-            initialValues
+            initialValues,
+            injectedProps: {}
         });
     }
 
