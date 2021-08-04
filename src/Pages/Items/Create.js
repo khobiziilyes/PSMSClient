@@ -9,37 +9,32 @@ import MaskedInput from '@Components/Inputs/MaskedInput';
 
 import { FormikLiveSearch } from '@Components/Inputs/LiveSearch';
 import { accessoriesTypes, phonesTypes } from '@src/Consts';
-import { TheFormWrapper } from '@Components/FormikDialog';
 
-const formikParams = {
-    URL: (initialId, isCreate, { product: { isPhone, id } }) => '/items/' + (isPhone ? 'phone' : 'accessory') + '/' + id,
-    formatData: ({ product, ...data }) => {
-        return data
-    },
-    tableRoute: ({ product: { isPhone } }) => 'items' + (isPhone ? 'Phones' : 'Accessories'),
-    initialValues: {
-        product: null,
-        delta: 0,
-        currentQuantity: 0,
-        defaultPrice: 1000,
-        notes: ''
-    },
-    validationSchema: Yup.object({
-        product: Yup.object().required('Required Nigga'),
-        delta: Yup.number().required('Required'),
-        currentQuantity: Yup.number().min(0).required('Required'),
-        defaultPrice: Yup.number().min(0).required('Required')
-    }),
-    formatInitialValues: ({ itemable, isPhone, delta, currentQuantity, defaultPrice, notes }) => ({
-        product: { ...itemable, isPhone },
-        delta,
-        currentQuantity,
-        defaultPrice,
-        notes
-    })
+import { FinalWrapper } from '@Components/FormikDialog/Wrappers';
+
+const formatParams = () => ({ values: { product: { isPhone, id }, ...data } }) => ({
+    method: 'POST',
+    URL: '/items/' + (isPhone ? 'phone' : 'accessory') + '/' + id,
+    tableRoute: 'items' + (isPhone ? 'Phones' : 'Accessories'),
+    data
+});
+
+const initialValues = {
+    product: null,
+    delta: 0,
+    currentQuantity: 0,
+    defaultPrice: 1000,
+    notes: ''
 }
 
-function FormContent({ isCreate, isSubmitting, values: { product } }) {
+const validationSchema = Yup.object({
+    product: Yup.object().required('Required Nigga'),
+    delta: Yup.number().required('Required'),
+    currentQuantity: Yup.number().min(0).required('Required'),
+    defaultPrice: Yup.number().min(0).required('Required')
+});
+
+function FormContent({ isCreate, formikBag: { values: { product }, isSubmitting } }) {
     const [selectedProduct, setSelectedProduct] = React.useState(product ?? null);
     const { isPhone } = selectedProduct || {};
 
@@ -71,7 +66,7 @@ function FormContent({ isCreate, isSubmitting, values: { product } }) {
                     </Grid>
                     
         			<Grid item xs={4}>
-                    	<Text name="currentQuantity" label="Current quantity" disabled={!isCreate} />
+                    	<Text name="currentQuantity" label="Current quantity" />
                     </Grid>
 
                     <Grid item xs={4}>
@@ -87,9 +82,13 @@ function FormContent({ isCreate, isSubmitting, values: { product } }) {
 	);
 }
 
-const TheForm = TheFormWrapper(FormContent);
+const formatInitialValues = ({ itemable, isPhone, delta, currentQuantity, defaultPrice, notes }) => ({
+    product: { ...itemable, isPhone },
+    delta,
+    currentQuantity,
+    defaultPrice,
+    notes
+});
 
-export {
-    formikParams,
-    TheForm
-}
+const ItemForm = FinalWrapper(FormContent, validationSchema, initialValues, formatParams, {}, formatInitialValues);
+export default ItemForm;

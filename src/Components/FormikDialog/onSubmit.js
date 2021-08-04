@@ -38,18 +38,21 @@ const buildCatchError = ({ showNotification, setFieldError }) => error => {
 
 const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog, redirectTo, showNotification, formatParams }) => 
 	(values, formikBag) => {
-		const { finalURL, finalValues, finalTableRoute, finalTesting } = formatParams({ URL, values, isCreate, initialId });
-		const { setSubmitting, resetForm, setFieldError } = formikBag;
+		const { URL, data, tableRoute, testing, baseURL, method } = formatParams({ values, isCreate, initialId });
+		const { setSubmitting, setFieldError } = formikBag;
 
-		if (finalTesting) {
+		const finalURL = URL ?? (baseURL + (isCreate ? '' : `/${initialId}`));
+		const finalTableRoute = tableRoute ?? baseURL;
+
+		if (testing) {
 			setTimeout(() => setSubmitting(false), 5000);
 			return;
 		}
 
 		axios({
 			url: finalURL,
-			data: finalValues,
-			method: isCreate ? 'POST' : 'PUT'
+			data: data ?? values,
+			method: method ?? (isCreate ? 'POST' : 'PUT')
 		}).then(response => {
 			if (response.data) {
 				const resourceId = isCreate ? response.data.data.id : initialId;
@@ -57,7 +60,6 @@ const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog
 				showNotification((isCreate ? 'Created' : 'Updated') + ' successfully, ID: #' + resourceId);
 				invalidateQueries();
 
-				resetForm(); // Zyada f denya? Now each time it's a new instance so ...
 				closeFormDialog();
 
 				if (isCreate)

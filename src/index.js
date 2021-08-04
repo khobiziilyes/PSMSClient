@@ -19,8 +19,11 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Server: Cannot update item.
+	- Server: PSMS is included in Users list.
+
 	- Tabs errors should change tab.
-	- Use priority.
+	- Use priority in submit Button.
 	- Add Stats pages.
 	- Transaction needs huge fixes.
 	- Hide components dependings on permissions.

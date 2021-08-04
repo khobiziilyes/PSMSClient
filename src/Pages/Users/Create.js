@@ -8,17 +8,18 @@ import TextField from '@Components/Inputs/Text';
 
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { TheFormWrapper } from '@Components/FormikDialog';
 
-const formikParams = {
-    URL: '/users',
-    initialValues: {
+import { FinalWrapper } from '@Components/FormikDialog/Wrappers';
 
-    },
-    validationSchema: Yup.object({
-        
-    })
-}
+const formatParams = () => () => ({
+    baseURL: '/phones'
+});
+
+const initialValues = {}
+
+const validationSchema = Yup.object({
+    
+});
 
 function FormContent() {
     const [userisAdmin, handleUserisAdminChange] = React.useState('0');
@@ -75,9 +76,5 @@ function FormContent() {
     );
 }
 
-const TheForm = TheFormWrapper(FormContent);
-
-export {
-    formikParams,
-    TheForm
-}
+const UserForm = FinalWrapper(FormContent, validationSchema, initialValues, formatParams);
+export default UserForm;

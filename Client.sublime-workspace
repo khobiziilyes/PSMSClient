@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"init",
+				"initialValues\tconst"
+			],
+			[
+				"format",
+				"formatData"
+			],
+			[
+				"The",
+				"TheForm\tvar"
+			],
+			[
+				"formik",
+				"formikBag\tvar"
+			],
+			[
+				"table",
+				"tableRoute\tconst"
+			],
+			[
+				"data",
+				"dataURL\twarning"
+			],
+			[
+				"Form",
+				"Formik\talias"
+			],
+			[
+				"formikP",
+				"formikProps\twarning"
+			],
+			[
 				"Sub",
 				"SubmitButton\talias"
 			],
@@ -12,16 +44,8 @@
 				"withRef\tvar"
 			],
 			[
-				"The",
-				"TheFormWrapper\talias"
-			],
-			[
 				"for",
 				"formikBag\tvar"
-			],
-			[
-				"Form",
-				"FormContent"
 			],
 			[
 				"form",
@@ -96,16 +120,8 @@
 				"ViewStatsButton\tconst"
 			],
 			[
-				"init",
-				"initialValues\tconst"
-			],
-			[
 				"default",
 				"defaultPrice\tvar"
-			],
-			[
-				"formik",
-				"formikParams\tconst"
 			],
 			[
 				"item",
@@ -158,10 +174,6 @@
 			[
 				"le",
 				"length\tproperty"
-			],
-			[
-				"format",
-				"formatMessage\talias"
 			],
 			[
 				"NUM",
@@ -502,23 +514,20 @@
 			[
 				"req",
 				"request"
-			],
-			[
-				"abi",
-				"abilities"
-			],
-			[
-				"abili",
-				"abilitiesBool"
-			],
-			[
-				"type",
-				"type_id"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "src/index.js",
+			"settings":
+			{
+				"buffer_size": 1621,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -532,11 +541,15 @@
 		"selected_items":
 		[
 			[
-				"convert tab",
+				"c",
 				"Indentation: Convert to Tabs"
 			],
 			[
 				"convert",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"convert tab",
 				"Indentation: Convert to Tabs"
 			],
 			[
@@ -626,68 +639,78 @@
 	[
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App"
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users"
 	],
 	"file_history":
 	[
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Permissions.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/Wrappers.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Atoms.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/Buttons.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/Client.sublime-project",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/withKeys.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Text.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Show.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Permissions.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Select.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/package.json",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Tabs.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/.gitignore",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonLists.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonListItem.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/MaskedInput.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/List.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/List.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Options.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Footer.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/Buttons.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Consts.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/Columns.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Signin/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Phone.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms/Accessory.js",
@@ -754,11 +777,7 @@
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Item.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Transaction/ItemsPanel.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Accessory.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Person.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/FormikDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/MuiTable/Columns.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/SpeedDial.js"
+		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Accessory.js"
 	],
 	"find":
 	{
@@ -774,9 +793,46 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"formatParams",
+			"formDialogInitialValues",
+			"custom",
+			"RoutesList",
+			"TheFormikWrapper",
+			"/customers",
+			"URL",
+			"'Formik'",
+			"RoutesList",
+			"Routes",
+			"'@Components'",
+			"TheFormikWrapper",
+			"CustomActions",
+			"formikParams",
+			"TheFormikWrapper",
+			"initialValues",
+			"dataURL",
+			"formikParams",
+			"URL:",
+			"dataURL",
+			"formikParams",
+			"closeFormDialog",
+			"isOpened: true",
+			"initialValues",
+			"TheForm",
+			"DialogSize",
+			"maxWidth: DialogSize",
+			"getNameFromData",
+			"ShowEditButton",
+			"ExtraDetailsDialogButtons",
+			"DetailsModal",
+			"TheForm",
+			"</Form>",
+			"<Form",
+			"useEffect",
+			"SubmitButtonWithKeys",
+			"TheDialog",
 			"remove",
 			"withKeys(",
 			"console.log",
@@ -867,44 +923,7 @@
 			"DetailsModal",
 			"props",
 			"getNameFromData",
-			"openDetailsDialog",
-			"ExtraDetailsDialogButtons",
-			"id",
-			"getNameFromData",
-			"ExtraDetailsDialogButtons",
-			"title",
-			"detailsContent",
-			"DetailsContent",
-			"injectProps",
-			"closeDetailsDialog",
-			"openDetailsDialog",
-			"/Buttons",
-			"useStyles2",
-			"customFooter",
-			"submitButton",
-			"enter",
-			"deleteButton",
-			"axios",
-			"id",
-			"delete",
-			"Autocomplete",
-			"<Route",
-			"detailsId",
-			"highlightId",
-			"console",
-			"first",
-			"totalRows",
-			"highlightFirst",
-			"dependingRowColor",
-			"First",
-			"totalRows",
-			"<Route",
-			"Route",
-			"Create",
-			"CREATE",
-			"testing",
-			"10",
-			"timer"
+			"openDetailsDialog"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -922,8 +941,118 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								782,
+								782
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -980,12 +1109,192 @@
 		"selected_items":
 		[
 			[
-				"client.",
-				"Client.sublime-project"
+				"inde",
+				"src/index.js"
+			],
+			[
+				"wrappers",
+				"src/Components/FormikDialog/Wrappers.js"
+			],
+			[
+				"onS",
+				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"wrapper",
+				"src/Components/FormikDialog/Wrappers.js"
+			],
+			[
+				"person ",
+				"src/Pages/Person/Create.js"
+			],
+			[
+				"forms",
+				"src/Pages/Forms.js"
+			],
+			[
+				"atom",
+				"src/Atoms.js"
+			],
+			[
+				"cons",
+				"src/Consts.js"
+			],
+			[
+				"formikd",
+				"src/Components/FormikDialog/index.js"
 			],
 			[
 				"wrapp",
+				"src/Components/FormikDialog/Wrappers.js"
+			],
+			[
+				"person c",
+				"src/Pages/Person/Create.js"
+			],
+			[
+				"draw",
+				"src/Components/Drawer/DrawerItems.js"
+			],
+			[
+				"route",
+				"src/Pages/Routes.js"
+			],
+			[
+				"formiik",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"components inde",
+				"src/Components/index.js"
+			],
+			[
+				"routes",
+				"src/Pages/Routes.js"
+			],
+			[
+				"items",
+				"src/Components/Drawer/DrawerItems.js"
+			],
+			[
+				"drw",
+				"src/Components/Drawer/index.js"
+			],
+			[
+				"drawer",
+				"src/Components/Drawer/index.js"
+			],
+			[
+				"pages index",
+				"src/Pages/index.js"
+			],
+			[
+				"formik",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"app index",
+				"src/Pages/App/index.js"
+			],
+			[
+				"pages ind",
+				"src/Pages/index.js"
+			],
+			[
+				"onsu",
+				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"in",
+				"src/index.js"
+			],
+			[
+				"components index",
+				"src/Components/index.js"
+			],
+			[
+				"pages/index",
+				"src/Pages/index.js"
+			],
+			[
+				"create person",
+				"src/Pages/Person/Create.js"
+			],
+			[
+				"addi",
+				"src/Pages/Transactions/Create/AddItemDialog.js"
+			],
+			[
+				"transaction show",
+				"src/Pages/Transactions/Show.js"
+			],
+			[
+				"person show",
+				"src/Pages/Person/Show.js"
+			],
+			[
+				"items show",
+				"src/Pages/Items/Show.js"
+			],
+			[
+				"accessory",
+				"src/Pages/Items/Accessory/Show.js"
+			],
+			[
+				"phone",
+				"src/Pages/Items/Phone/Show.js"
+			],
+			[
+				"FormikDialog",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"appbar",
+				"src/Components/AppBar/index.js"
+			],
+			[
+				"app/",
+				"src/Pages/App/index.js"
+			],
+			[
+				"compon",
+				"src/Components/index.js"
+			],
+			[
+				"ons",
+				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"person crea",
+				"src/Pages/Person/Create.js"
+			],
+			[
+				"atoms",
+				"src/Atoms.js"
+			],
+			[
+				"delete",
+				"src/Components/MuiTable/DetailsDialog/DeleteDialog.js"
+			],
+			[
+				"component",
+				"src/Components/index.js"
+			],
+			[
+				"create transac",
+				"src/Pages/Transactions/Create/index.js"
+			],
+			[
+				"modalwrapp",
 				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"transaction create",
+				"src/Pages/Transactions/Create/index.js"
+			],
+			[
+				"client.",
+				"Client.sublime-project"
 			],
 			[
 				"wit",
@@ -1024,10 +1333,6 @@
 				"src/Components/Inputs/Text.js"
 			],
 			[
-				"create person",
-				"src/Pages/Person/Create.js"
-			],
-			[
 				"modalwra",
 				"src/Components/ModalWrapper/index.js"
 			],
@@ -1041,10 +1346,6 @@
 			],
 			[
 				"componen",
-				"src/Components/index.js"
-			],
-			[
-				"components index",
 				"src/Components/index.js"
 			],
 			[
@@ -1076,28 +1377,12 @@
 				"src/Components/FormikDialog/TheDialog.js"
 			],
 			[
-				"cons",
-				"src/Consts.js"
-			],
-			[
 				"app",
 				"src/Components/AppBar/index.js"
 			],
 			[
-				"appbar",
-				"src/Components/AppBar/index.js"
-			],
-			[
-				"components inde",
-				"src/Components/index.js"
-			],
-			[
 				"comonents index",
 				"src/Components/index.js"
-			],
-			[
-				"inde",
-				"src/index.js"
 			],
 			[
 				"show item",
@@ -1112,14 +1397,6 @@
 				"src/Components/Tabs.js"
 			],
 			[
-				"in",
-				"src/index.js"
-			],
-			[
-				"items",
-				"src/Pages/Transactions/Create/ItemsPanel.js"
-			],
-			[
 				"show phone",
 				"src/Pages/Items/Phone/Show.js"
 			],
@@ -1130,10 +1407,6 @@
 			[
 				"auto",
 				"src/Components/Inputs/Autocomplete.js"
-			],
-			[
-				"formik",
-				"src/Components/FormikDialog/index.js"
 			],
 			[
 				"create item",
@@ -1192,15 +1465,7 @@
 				"src/Pages/Items/Accessory/Show.js"
 			],
 			[
-				"delete",
-				"src/Components/MuiTable/DetailsDialog/DeleteDialog.js"
-			],
-			[
 				"wrap",
-				"src/Components/ModalWrapper/index.js"
-			],
-			[
-				"wrapper",
 				"src/Components/ModalWrapper/index.js"
 			],
 			[
@@ -1236,10 +1501,6 @@
 				"src/Pages/Items/Show.js"
 			],
 			[
-				"draw",
-				"src/Components/Drawer/DrawerItems.js"
-			],
-			[
 				"roue",
 				"src/Pages/Routes.js"
 			],
@@ -1256,10 +1517,6 @@
 				"src/Pages/Items/Accessory/Create.js"
 			],
 			[
-				"phone",
-				"src/Pages/Items/Phone/Create.js"
-			],
-			[
 				"spee",
 				"src/Components/SpeedDial.js"
 			],
@@ -1268,24 +1525,12 @@
 				"src/Components/MuiTable/options.js"
 			],
 			[
-				"route",
-				"src/Pages/Routes.js"
-			],
-			[
 				"signin",
 				"src/Pages/Signin/index.js"
 			],
 			[
 				"tran",
 				"src/Pages/Transactions/Create/Actions.js"
-			],
-			[
-				"accessory",
-				"src/Pages/Items/Accessory/Create.js"
-			],
-			[
-				"onS",
-				"src/Components/FormikDialog/onSubmit.js"
 			],
 			[
 				"sp",
@@ -1374,122 +1619,6 @@
 			[
 				"te",
 				"API/test.js"
-			],
-			[
-				"usage",
-				"usage.js"
-			],
-			[
-				"ran",
-				"API/Range.js"
-			],
-			[
-				"usa",
-				"usage.js"
-			],
-			[
-				"rang",
-				"API/Range.js"
-			],
-			[
-				"ra",
-				"API/Range.js"
-			],
-			[
-				"nu",
-				"API/NUM.js"
-			],
-			[
-				"pak",
-				"package.json"
-			],
-			[
-				"sequelize",
-				"sequelize.js"
-			],
-			[
-				"tes",
-				"API/test.js"
-			],
-			[
-				"ejs",
-				"public/views/index.ejs"
-			],
-			[
-				"poa",
-				"package.json"
-			],
-			[
-				"sock",
-				"public/js/socket.js"
-			],
-			[
-				"no",
-				"nodemon.json"
-			],
-			[
-				"gitignore",
-				".gitignore"
-			],
-			[
-				"p",
-				"package.json"
-			],
-			[
-				"pac",
-				"package.json"
-			],
-			[
-				"840",
-				"REQUESTS/840"
-			],
-			[
-				"routes",
-				"src/General/Routes.js"
-			],
-			[
-				"app index",
-				"src/Pages/Main/App/index.js"
-			],
-			[
-				"tables item",
-				"src/Pages/Tables/Item.js"
-			],
-			[
-				"tables acc",
-				"src/Pages/Tables/Accessory.js"
-			],
-			[
-				"details ite",
-				"src/Pages/Details/Item.js"
-			],
-			[
-				"details acc",
-				"src/Pages/Details/Accessory.js"
-			],
-			[
-				"user tables",
-				"src/Pages/Tables/User.js"
-			],
-			[
-				"main index",
-				"src/Pages/Main/index.js"
-			],
-			[
-				"details uer",
-				"src/Pages/Details/User.js"
-			],
-			[
-				"details tra",
-				"src/Pages/Details/Transaction.js"
-			],
-			[
-				"details phn",
-				"src/Pages/Details/Phone.js"
-			],
-			[
-				"details person",
-				"src/Pages/Details/Person.js"
 			]
 		],
 		"width": 0.0

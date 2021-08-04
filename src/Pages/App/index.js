@@ -10,18 +10,17 @@ import {
 	snackBarOptions
 } from '@src/Consts.js';
 
-
 import {
 	AppBar,
 	SpeedDial,
 	Copyright,
 } from '@Components';
 
-import Drawer from '@Components/Drawer';
+import { RoutesList } from '@src/Pages/Routes';
 
+import Drawer from '@Components/Drawer';
 import FormikDialog from '@Components/FormikDialog';
 
-import { RoutesList } from '@src/Pages/Routes';
 import useStyles from './Styles';
 
 const queryClient = new QueryClient(queryClientOptions);

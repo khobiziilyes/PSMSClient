@@ -1,19 +1,20 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
 import { Field } from 'formik';
 
 import { Switch } from 'formik-material-ui';
 import { Grid, FormControlLabel, Typography } from '@material-ui/core';
 
-import { formDialogParamsAtom } from '@src/Atoms';
+import { FinalWrapper } from '@Components/FormikDialog/Wrappers';
 
 const resourcesList = ['Accessory', 'Item', 'Customer', 'Vendor', 'Phone', 'Buy', 'Sell'];
 
-const formikParams = {
-    URL: '/owner/users/permissions',
-    dataURL: '/owner/users',
-    formSize: 'md'
-}
+const formatParams = () => () => ({
+    baseURL: '/users/permissions'
+});
+
+const initialValues = {}
+
+// formSize: 'md'
 
 const SwitchWithLabel = ({label, ...props}) => {
     return (
@@ -44,9 +45,7 @@ const PermissionSwitch = ({ method, name, defaultVal, setFieldValue }) => {
     );
 }
 
-function TheForm({ setFieldValue }) {
-    const {id, ...initialValues} = useRecoilValue(formDialogParamsAtom).initialValues;
-
+function FormContent({ initialValues, formikBag: { setFieldValue } }) {
     return (
         <Grid container spacing={3} justify="center">
             {resourcesList.map(resourceName => 
@@ -74,7 +73,5 @@ function TheForm({ setFieldValue }) {
     );
 }
 
-export {
-    formikParams,
-    TheForm
-}
+const PermissionsForm = FinalWrapper(FormContent, {}, initialValues, formatParams);
+export default PermissionsForm;

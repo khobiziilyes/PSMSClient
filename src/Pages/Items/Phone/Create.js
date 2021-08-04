@@ -4,22 +4,25 @@ import * as Yup from 'yup';
 import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
-import { TheFormWrapper } from '@Components/FormikDialog';
 
-const formikParams = {
-    URL: '/phones',
-    initialValues: {
-        name: '',
-        brand: '',
-        notes: '',
-        is_public: false
-    },
-    validationSchema: Yup.object({
-        name: Yup.string().min(8).required('Required'),
-        brand: Yup.string().required('Required'),
-        notes: Yup.string().min(8)
-    })
+import { FinalWrapper } from '@Components/FormikDialog/Wrappers';
+
+const formatParams = () => () => ({
+    baseURL: '/phones'
+});
+
+const initialValues = {
+    name: '',
+    brand: '',
+    notes: '',
+    is_public: false
 }
+
+const validationSchema = Yup.object({
+    name: Yup.string().min(1).required('Required'),
+    brand: Yup.string().required('Required'),
+    notes: Yup.string().min(8)
+});
 
 function FormContent({ isSubmitting }) {
 	return (
@@ -39,9 +42,5 @@ function FormContent({ isSubmitting }) {
 	);
 }
 
-const TheForm = TheFormWrapper(FormContent);
-
-export {
-    formikParams,
-    TheForm
-}
+const PhoneForm = FinalWrapper(FormContent, validationSchema, initialValues, formatParams);
+export default PhoneForm;

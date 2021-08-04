@@ -73,5 +73,6 @@ export const accessoriesNames = {
 }
 
 export const injectProps = (element, newProps) => React.isValidElement(element) ? React.cloneElement(element, newProps) : null;
+export const isFuncExec = (func, data) => func ? func(data) : data;
 
 export const noSubmit = ['TEXTAREA'];

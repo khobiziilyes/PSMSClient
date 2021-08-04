@@ -4,16 +4,12 @@ import * as Yup from 'yup';
 import Grid from '@material-ui/core/Grid';
 import Notes from '@Components/Inputs/Notes';
 import Text from '@Components/Inputs/Text';
-import { TheFormWrapper, TheFormikWrapper } from '@Components/FormikDialog';
 
-const formatParams = isVendor => ({ URL, values, isCreate, initialId }) => {
-	return {
-		finalURL: '/customers/' + (isCreate ? '' : initialId),
-		finalValues: values,
-		finalTableRoute: '/customers',
-		finalTesting: false
-	}
-}
+import { FinalWrapper } from '@Components/FormikDialog/Wrappers';
+
+const formatParams = ({ isVendor }) => () => ({
+	baseURL: '/' + (isVendor ? 'vendors' : 'customers')
+});
 
 const validationSchema = Yup.object({
 	name: Yup.string().required('Must be not empty'),
@@ -32,7 +28,7 @@ const initialValues = {
 	notes: ''
 }
 
-function FormContent({ isVendor, formikBag, isCreate, initialValues, onSubmitParams }) {
+function FormContent({ isVendor }) {
 	return (	
 		<Grid container spacing={3}>
 			<input type="hidden" value={isVendor ? '1' : '0'} />
@@ -64,13 +60,7 @@ function FormContent({ isVendor, formikBag, isCreate, initialValues, onSubmitPar
 	);
 }
 
-const TheForm = isVendor =>
-	TheFormikWrapper(
-		TheFormWrapper(<FormContent isVendor={isVendor} />),
-		validationSchema,
-		initialValues,
-		formatParams(isVendor)
-	);
+const TheForm = isVendor => FinalWrapper(FormContent, validationSchema, initialValues, formatParams, { isVendor });
 
 export const VendorForm = TheForm(true);
 export const CustomerForm = TheForm(false);

@@ -10,7 +10,7 @@ const formDialogParamsAtom = atom({
 	key: 'formDialogParams',
 	default: {
 		isOpened: false,
-		name: 'Customer',
+		name: null,
 		initialValues: {},
 		injectedProps: {}
 	}
