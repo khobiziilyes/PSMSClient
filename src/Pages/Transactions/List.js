@@ -5,6 +5,29 @@ import { EmojiObjects, PhoneAndroid } from '@material-ui/icons';
 import Show from './Show';
 import { makeStyles } from '@material-ui/core/styles';
 
+const cartBody = itemsList => (
+    <List dense>
+        {itemsList.map((item, i) => {
+            const colorProp = {
+                color: item.priceChanged ? 'error' : 'inherit'
+            };
+
+            return (
+                <ListItem key={'cart' + i + item.costPerItem + item.item.itemable.name}>
+                    <ListItemIcon>
+                        {item.item.isPhone ? <PhoneAndroid {...colorProp} />  : <EmojiObjects {...colorProp} />}
+                    </ListItemIcon>
+
+                    <ListItemText
+                        primary={item.item.itemable.name}
+                        secondary={`${item.Quantity} ✖ ${item.costPerItem}`}
+                    />
+                </ListItem>
+            );
+        })}
+    </List>
+);
+
 const columns = [
 	{
 		name: 'person.name',
@@ -23,28 +46,7 @@ const columns = [
         label: 'List',
         options: {
             filter: false,
-            customBodyRender: itemsList => (
-                <List dense>
-                    {itemsList.map((item, i) => {
-                        const colorProp = {
-                            color: item.priceChanged ? 'error' : 'inherit'
-                        };
-
-                        return (
-                            <ListItem key={'cart' + i + item.costPerItem + item.item.itemable.name}>
-                                <ListItemIcon>
-                                    {item.item.isPhone ? <PhoneAndroid {...colorProp} />  : <EmojiObjects {...colorProp} />}
-                                </ListItemIcon>
-
-                                <ListItemText
-                                    primary={item.item.itemable.name}
-                                    secondary={`${item.Quantity} ✖ ${item.costPerItem}`}
-                                />
-                            </ListItem>
-                        );
-                    })}
-                </List>
-            )
+            customBodyRender: cartBody
         }
     }
 ];

@@ -1,23 +1,12 @@
 import React from 'react';
-import {
-	Typography,
-	Grid,
-	List,
-	Button
-} from '@material-ui/core';
 
-import {
-	AttachMoney,
-	ImportExport,
-	Person
-} from '@material-ui/icons';
+import { Typography, Grid, List, Button } from '@material-ui/core';
+import { AttachMoney, ImportExport, Person, Print } from '@material-ui/icons';
 
 import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResource';
 
 import { Tabs } from '@Components';
 import ModalWrapper from '@Components/ModalWrapper';
-
-import { Print } from '@material-ui/icons';
 
 const CartsContent = ({ Cart }) => {
 	return (

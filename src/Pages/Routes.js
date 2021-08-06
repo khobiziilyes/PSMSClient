@@ -30,11 +30,11 @@ export const RoutesList = {
 		Component: Pages.ItemsPhonesList
 	},
 	SellsList: {
-		URL: '/sells',
+		URL: '/sell',
 		Component: Pages.SellsList
 	},
 	BuysList: {
-		URL: '/buys',
+		URL: '/buy',
 		Component: Pages.BuysList
 	},
 	UsersList: {
