@@ -1,18 +1,19 @@
+
 import React from 'react';
 import { FieldArray } from 'formik';
 
 import { Button } from '@material-ui/core';
 
 import withKeys from '@Components/withKeys';
-import { TheFormikWrapper, DialogWrapper } from '@Components/FormikDialog/Wrappers';
 import { groupBy } from '@src/Consts';
+import { TheFormikWrapper, DialogWrapper } from '@Components/FormikDialog/Wrappers';
 
 import TabsController from './TabsController';
 
 const formatParams = isBuy => ({ values }) => {
 	const { items, person: { id: person_id }, notes } = values;
 	const groupedItems = groupBy(items, 'id');
-			
+	
 	const cart = groupedItems.map(group => ({
 		item_id: group[0].id,
 		list: group.map(item => ({
@@ -80,15 +81,10 @@ const theForm = isBuy => TheFormikWrapper(
 	props => <Content isBuy={isBuy} {...props} />,
 	null,
 	initialValues(isBuy),
-	formatParams(isBuy),
-	null,
-	// redirectToErrorTab
+	formatParams(isBuy)
 );
 
 const BuyForm = theForm(true);
 const SellForm = theForm(false);
 
-export {
-	BuyForm,
-	SellForm
-}
+export { BuyForm, SellForm }

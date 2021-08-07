@@ -40,8 +40,8 @@ export const SubmitButton = props => (
 
 export const DeleteButtonWithKeys = withKeys(DeleteButton, 'ctrl+d', ({ element }) => 
     element.click() || true
-, false);
+, { verifyTypying: false });
 
 export const SubmitButtonWithKeys = withKeys(SubmitButton, 'ctrl+enter', ({ element }) => 
     element.click() || true
-, false);
+, { verifyTypying: false });

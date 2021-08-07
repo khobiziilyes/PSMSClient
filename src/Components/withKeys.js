@@ -2,32 +2,44 @@ import React from 'react';
 import { hotkeys } from 'react-keyboard-shortcuts';
 import { noSubmit } from '@src/Consts';
 
-const withKeys = (OriginalComp, hotKey, handler, verifyTypying = true, refPropName = 'withRef') => {
-    class WrapperComp extends React.PureComponent {
-        elementRef = null;
+const withKeys = (OriginalComp, hotKey, handler, _params) => {
+	const params = {
+		priority: 1,
+		verifyTypying: true,
+		refPropName: 'withRef',
+		..._params
+	}
+	
+	const { priority, verifyTypying, refPropName } = params;
 
-        hot_keys = {
-        	[hotKey]: {
-        		priority: 1,
-        		handler: event =>
-                    (verifyTypying ? !noSubmit.includes(event.target.tagName) : true)
-                    && this.elementRef
-                    && handler({ event, element: this.elementRef })
-                    && event.preventDefault()
-        	}
-        }
+	class WrapperComp extends React.PureComponent {
+		elementRef = null;
 
-        render() {
-        	const newProps = {
-        		...this.props,
-        		[refPropName]: _ => this.elementRef = _
-        	}
+		hot_keys = {
+			[hotKey]: {
+				priority,
+				handler: event => {
+					(verifyTypying ? !noSubmit.includes(event.target.tagName) : true)
+					&& this.elementRef
+					&& handler({ event, element: this.elementRef })
+					&& event.preventDefault();
 
-            return <OriginalComp {...newProps} />;
-        }
-    }
+					return false;
+				}
+			}
+		}
 
-    return hotkeys(WrapperComp);
+		render() {
+			const newProps = {
+				...this.props,
+				[refPropName]: _ => this.elementRef = _
+			}
+
+			return <OriginalComp {...newProps} />;
+		}
+	}
+
+	return hotkeys(WrapperComp);
 }
 
 export default withKeys;

@@ -66,6 +66,7 @@ export default function TransactionsList({ isBuy }) {
         <MuiTable
         	title="Transactions list"
         	URL={"/" + (isBuy ? 'buy' : 'sell')}
+            deleteURL='/transaction'
         	columns={columns}
         	includeUpdateColumns={false}
             initialFilters={{ withTrashed: 1 }}

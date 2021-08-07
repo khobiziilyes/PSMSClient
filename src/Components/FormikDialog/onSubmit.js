@@ -62,7 +62,7 @@ const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog
 			method: method ?? (isCreate ? 'POST' : 'PUT')
 		}).then(response => {
 			if (response.data) {
-				const resourceId = isCreate ? response.data.data.id : initialId;
+				const resourceId = isCreate ? response.data.id : initialId;
 
 				showNotification((isCreate ? 'Created' : 'Updated') + ' successfully, ID: #' + resourceId);
 				invalidateQueries();

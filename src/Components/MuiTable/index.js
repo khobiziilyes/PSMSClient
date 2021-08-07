@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 function MuiTable({
-    URL, title, columns,
+    URL, deleteURL, title, columns,
     
     includeCreateColumns = true, includeUpdateColumns = true,
     
@@ -97,7 +97,7 @@ function MuiTable({
     const DetailsDialogProps = {
         open: detailsDialogIsOpened,
         
-        URL,
+        URL: deleteURL ?? URL,
         closeDetailsDialog,
         selectedRowData,
         formName,
