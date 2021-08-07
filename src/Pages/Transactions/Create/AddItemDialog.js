@@ -59,6 +59,7 @@ function DialogContent({ defaultSelectedProduct, setSelectedItem }) {
             <Grid item xs={12}>
                 { 
                     selectedProduct && <Autocomplete
+                        key={'selectItemAutoComplete-' + selectedProduct.id + (isPhone * 1)}
                         label={deltaLabel}
                         options={items}
                         getOptionLabel={option => deltaList[option.delta]}

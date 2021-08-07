@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormikContext } from 'formik';
 
 import { Typography, Grid, List, Button } from '@material-ui/core';
 
@@ -63,7 +64,8 @@ export function CheckoutTabContent({ isBuy, items }) {
     );
 }
 
-export function ProductItemTabContent({ isSubmitting, removeItem, isBuy, index, setCurrentTab, items }) {
+export function ProductItemTabContent({ removeItem, isBuy, index, setCurrentTab, items }) {
+    const { isSubmitting } = useFormikContext();
     const { Quantity, costPerItem, currentQuantity } = items[index];
 
     return (

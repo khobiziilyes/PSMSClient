@@ -21,14 +21,21 @@ const ErrorTypo = ({ text, title = null }) => {
 	);
 }
 
-const buildCatchError = ({ showNotification, setFieldError }) => error => {
-	console.log(error);
+const buildCatchError = ({ showNotification, setFieldError, extraHandle = null }) => error => {
+	const serverErrors = error?.response?.data?.errors;
 
-	if (error.response && error.response.data && error.response.data.errors) {
-		Object.entries(error.response.data.errors).forEach(([fieldName, fieldError]) => {
+	if (serverErrors) {
+		const formatedErrors = Object.entries(serverErrors).map(([fieldName, fieldError]) => {
 			showNotification(<ErrorTypo title={fieldName} text={fieldError} />, 'error');
 			setFieldError(fieldName, fieldError);
+
+			return {
+				name: fieldName,
+				error: fieldError
+			}
 		});
+
+		if (extraHandle) extraHandle(formatedErrors);
 	} else if (error.request) {
 		showNotification('Server not available.', 'error');
 	} else {
@@ -36,7 +43,7 @@ const buildCatchError = ({ showNotification, setFieldError }) => error => {
 	}
 }
 
-const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog, redirectTo, showNotification, formatParams }) => 
+const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog, redirectTo, showNotification, formatParams, extraHandle }) => 
 	(values, formikBag) => {
 		const { URL, data, tableRoute, testing, baseURL, method } = formatParams({ values, isCreate, initialId });
 		const { setSubmitting, setFieldError } = formikBag;
@@ -67,7 +74,7 @@ const buildOnSubmit = ({ initialId, isCreate, invalidateQueries, closeFormDialog
 			} else {
 				return Promise.reject({ request: response });
 			}
-		}).catch(buildCatchError({ showNotification, setFieldError })).finally(() => setSubmitting(false));
+		}).catch(buildCatchError({ showNotification, setFieldError, extraHandle })).finally(() => setSubmitting(false));
 	}
 
 export default buildOnSubmit;

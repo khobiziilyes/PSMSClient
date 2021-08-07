@@ -2,7 +2,7 @@ import React from 'react';
 import MuiTable from '@Components/MuiTable';
 import Show from './Show';
 
-import { accessoriesTypes, phonesTypes } from '@src/Consts'
+import { translateDelta } from '@src/Consts';
 
 const columns = isPhone => [
     {
@@ -17,7 +17,7 @@ const columns = isPhone => [
     	name: 'delta',
     	label: 'Type',
         options: {
-            customBodyRender: value => (isPhone ? phonesTypes : accessoriesTypes)[value]
+            customBodyRender: value => translateDelta(value, isPhone)
         }
     },
     {

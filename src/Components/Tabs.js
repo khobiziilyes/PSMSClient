@@ -1,3 +1,4 @@
+import React from 'react';
 import { Tabs as MuiTabs, Tab, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { injectProps } from '@src/Consts';
@@ -25,10 +26,17 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Tabs({ currentTab, setCurrentTab, tabsList = [], additionalProps = {}, ...props }) {
+export default function Tabs({ currentTab: _currentTab, setCurrentTab: _setCurrentTab, tabsList = [], additionalProps = {}, minus = -1, ...props }) {
     const classes = useStyles();
+    const currentTabState = React.useState(0);
+
+    const currentTab = _currentTab || currentTabState[0];
+    const setCurrentTab = _setCurrentTab || currentTabState[1];
 
     const handleChange = (event, newValue) => setCurrentTab(newValue);
+
+    // eslint-disable-next-line
+    React.useEffect(() => setCurrentTab(tabsList.length + minus), [tabsList]);
 
     return (tabsList.length > 0) ? (
         <div className={classes.root}>

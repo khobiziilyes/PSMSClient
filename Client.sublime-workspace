@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"tabs",
+				"tabsList\tvar"
+			],
+			[
+				"def",
+				"defaultPrice\twarning"
+			],
+			[
+				"curre",
+				"currentQuantity\twarning"
+			],
+			[
+				"new",
+				"newItem\tparameter"
+			],
+			[
+				"access",
+				"accessoriesTypes\tvar"
+			],
+			[
+				"person",
+				"person_id"
+			],
+			[
+				"is",
+				"isSubmitting\twarning"
+			],
+			[
+				"field",
+				"fieldError\tvar"
+			],
+			[
+				"final",
+				"finalDialogProps\tconst"
+			],
+			[
+				"TheF",
+				"TheFormikWrapper"
+			],
+			[
+				"extra",
+				"extraProps\tparameter"
+			],
+			[
+				"close",
+				"handleDialogClose"
+			],
+			[
 				"init",
 				"initialValues\tconst"
 			],
@@ -96,10 +144,6 @@
 				"FormikSelect"
 			],
 			[
-				"access",
-				"accessoriesNames\talias"
-			],
-			[
 				"delta",
 				"deltaLabel"
 			],
@@ -140,10 +184,6 @@
 				"elementRef\tproperty"
 			],
 			[
-				"new",
-				"newProps\tconst"
-			],
-			[
 				"cus",
 				"customRefName\tparameter"
 			],
@@ -158,10 +198,6 @@
 			[
 				"handl",
 				"handleDialogClose\tvar"
-			],
-			[
-				"person",
-				"personType\tconst"
 			],
 			[
 				"rows",
@@ -400,10 +436,6 @@
 				"tryCredentials"
 			],
 			[
-				"extra",
-				"extraOptions"
-			],
-			[
 				"cookies",
 				"cookiesObj"
 			],
@@ -482,48 +514,34 @@
 			[
 				"vali",
 				"validatedData"
-			],
-			[
-				"extend",
-				"extendImplicit"
-			],
-			[
-				"store",
-				"storeIdRule"
-			],
-			[
-				"res",
-				"resource_id"
-			],
-			[
-				"pass",
-				"password"
-			],
-			[
-				"validate",
-				"validatedData"
-			],
-			[
-				"valida",
-				"validatedData"
-			],
-			[
-				"ex",
-				"excepted_ids"
-			],
-			[
-				"req",
-				"request"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/index.js",
+			"file": "src/Pages/Transactions/Create/TabsController.js",
 			"settings":
 			{
-				"buffer_size": 1621,
+				"buffer_size": 1636,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Components/Tabs.js",
+			"settings":
+			{
+				"buffer_size": 2112,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Pages/Items/List.js",
+			"settings":
+			{
+				"buffer_size": 1025,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -541,11 +559,19 @@
 		"selected_items":
 		[
 			[
-				"c",
+				"key",
+				"Preferences: Key Bindings"
+			],
+			[
+				"conver",
 				"Indentation: Convert to Tabs"
 			],
 			[
 				"convert",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"c",
 				"Indentation: Convert to Tabs"
 			],
 			[
@@ -640,63 +666,68 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users"
 	],
 	"file_history":
 	[
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/Wrappers.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/TabsController.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Create.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/Buttons.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/List.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
+		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
 		"/home/th3m1n1c0d34/Downloads/YiB Inc HIPAA Compliance Agreement_Ilyes Khobizi.txt",
 		"/home/th3m1n1c0d34/Downloads/YiB Inc Consulting Services Agreement_Ilyes Khobizi.txt",
 		"/home/th3m1n1c0d34/Downloads/YiB Inc Non-Disclosure Agreement_Ilyes Khobizi.txt",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Create.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/Permissions.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/Wrappers.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Forms.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/onSubmit.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Create.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Atoms.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Consts.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Routes.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/DrawerItems.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/App/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Drawer/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/AddItemDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/Show.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/Show.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/AppBar/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/FormikDialog/TheDialog.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Users/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/SpeedDial.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/index.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/MuiTable/DetailsDialog/DeleteDialog.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/index.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ModalWrapper/Buttons.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/Client.sublime-project",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/withKeys.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/Actions.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/LiveSearch.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Text.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Select.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/package.json",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Tabs.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/Create/ItemsPanel.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Phone/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/Autocomplete.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/.gitignore",
@@ -704,7 +735,6 @@
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonLists.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/ShowResource/CommonListItem.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Components/Inputs/MaskedInput.js",
-		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Transactions/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Items/Accessory/List.js",
 		"/home/th3m1n1c0d34/Documents/Projects/PSMS/Client/src/Pages/Person/List.js",
@@ -776,12 +806,11 @@
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/craco.config.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Drawer/DrawerItems.js",
 		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Components/Drawer/index.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Transaction/AddItemDialog.js",
-		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Item.js"
+		"/home/th3m1n1c0d34/Documents/PSMS/Client/src/Pages/Forms/Transaction/AddItemDialog.js"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 55.0
 	},
 	"find_in_files":
 	{
@@ -796,6 +825,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"useEffect",
+			"accessoriesTypes",
+			"isSubmitting",
+			"ProductItemTabContent",
+			"remove",
+			"tabsProps",
+			"AttachMoney",
+			"TheFormikWrapper",
+			"onsubmit",
+			"withKeys",
+			"formatParams",
+			"const initialValues",
+			"buttonsProps",
 			"formatParams",
 			"formDialogInitialValues",
 			"custom",
@@ -910,20 +952,7 @@
 			"inputRef",
 			"withKeys(",
 			"SubmitButtonW",
-			"UserTimeList",
-			".carts",
-			"brand",
-			"rowData",
-			"getNameFromData",
-			"ShowEditButton",
-			"ShowDeleteButton",
-			"rowData",
-			"dialogProps",
-			"backdrop",
-			"DetailsModal",
-			"props",
-			"getNameFromData",
-			"openDetailsDialog"
+			"UserTimeList"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -946,19 +975,270 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/index.js",
+					"file": "src/Pages/Transactions/Create/TabsController.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1621,
+						"buffer_size": 1636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								782,
-								782
+								1086,
+								1086
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1170,
+										1171
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										672,
+										673
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 386.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Components/Tabs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2112,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1145,
+								1145
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2111,
+										2112
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										793,
+										794
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 291.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Pages/Items/List.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
 							]
 						],
 						"settings":
@@ -1006,11 +1286,11 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -1021,26 +1301,28 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_square_content"
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
 							"typescript_plugin_format_options":
 							{
-								"convertTabsToSpaces": false,
+								"convertTabsToSpaces": true,
 								"indentSize": 4,
 								"tabSize": 4
 							},
@@ -1050,7 +1332,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1109,16 +1391,60 @@
 		"selected_items":
 		[
 			[
+				"tabs",
+				"src/Components/Tabs.js"
+			],
+			[
+				"consts",
+				"src/Consts.js"
+			],
+			[
+				"speed",
+				"src/Components/SpeedDial.js"
+			],
+			[
 				"inde",
 				"src/index.js"
 			],
 			[
-				"wrappers",
+				"ons",
+				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"wrapp",
 				"src/Components/FormikDialog/Wrappers.js"
+			],
+			[
+				"formik",
+				"src/Components/FormikDialog/index.js"
+			],
+			[
+				"button",
+				"src/Components/ModalWrapper/Buttons.js"
 			],
 			[
 				"onS",
 				"src/Components/FormikDialog/onSubmit.js"
+			],
+			[
+				"forms",
+				"src/Pages/Forms.js"
+			],
+			[
+				"route",
+				"src/Pages/Routes.js"
+			],
+			[
+				"formikwrapper",
+				"src/Components/FormikDialog/Wrappers.js"
+			],
+			[
+				"moda",
+				"src/Components/ModalWrapper/index.js"
+			],
+			[
+				"wrappers",
+				"src/Components/FormikDialog/Wrappers.js"
 			],
 			[
 				"wrapper",
@@ -1127,10 +1453,6 @@
 			[
 				"person ",
 				"src/Pages/Person/Create.js"
-			],
-			[
-				"forms",
-				"src/Pages/Forms.js"
 			],
 			[
 				"atom",
@@ -1145,20 +1467,12 @@
 				"src/Components/FormikDialog/index.js"
 			],
 			[
-				"wrapp",
-				"src/Components/FormikDialog/Wrappers.js"
-			],
-			[
 				"person c",
 				"src/Pages/Person/Create.js"
 			],
 			[
 				"draw",
 				"src/Components/Drawer/DrawerItems.js"
-			],
-			[
-				"route",
-				"src/Pages/Routes.js"
 			],
 			[
 				"formiik",
@@ -1187,10 +1501,6 @@
 			[
 				"pages index",
 				"src/Pages/index.js"
-			],
-			[
-				"formik",
-				"src/Components/FormikDialog/index.js"
 			],
 			[
 				"app index",
@@ -1261,10 +1571,6 @@
 				"src/Components/index.js"
 			],
 			[
-				"ons",
-				"src/Components/FormikDialog/onSubmit.js"
-			],
-			[
 				"person crea",
 				"src/Pages/Person/Create.js"
 			],
@@ -1315,10 +1621,6 @@
 			[
 				"",
 				"src/Components/withKeys.js"
-			],
-			[
-				"consts",
-				"src/Consts.js"
 			],
 			[
 				"actions",
@@ -1393,10 +1695,6 @@
 				"src/Components/Tabs.js"
 			],
 			[
-				"tabs",
-				"src/Components/Tabs.js"
-			],
-			[
 				"show phone",
 				"src/Pages/Items/Phone/Show.js"
 			],
@@ -1435,10 +1733,6 @@
 			[
 				"liveS",
 				"src/Components/Inputs/LiveSearch.js"
-			],
-			[
-				"button",
-				"src/Components/ModalWrapper/Buttons.js"
 			],
 			[
 				"with",
@@ -1607,18 +1901,6 @@
 			[
 				"rag",
 				"API/Range.js"
-			],
-			[
-				"num",
-				"API/NUM.js"
-			],
-			[
-				"pack",
-				"package.json"
-			],
-			[
-				"te",
-				"API/test.js"
 			]
 		],
 		"width": 0.0

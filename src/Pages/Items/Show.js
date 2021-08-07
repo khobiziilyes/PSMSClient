@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { Assessment } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
-
-import {
-	Typography,
-	Grid,
-	List
-} from '@material-ui/core';
+import { Typography, Grid, List, Button } from '@material-ui/core';
 
 import { Phone, AttachMoney, EmojiEmotions, ViewModule } from '@material-ui/icons';
 
@@ -16,7 +10,7 @@ import { ListItem, IDListItem, UserTimeList, Notes } from '@Components/ShowResou
 import { Tabs } from '@Components';
 import ModalWrapper from '@Components/ModalWrapper';
 
-import { accessoriesTypes, phonesTypes } from '@src/Consts';
+import { translateDelta } from '@src/Consts';
 
 const StatsContent = ( {
 	totalBuyCost,
@@ -124,7 +118,7 @@ const StatsContent = ( {
 }
 
 const MainContent = ({ id, name, brand, delta, isPhone, currentQuantity, defaultPrice, created_by, created_at, updated_by, updated_at, notes }) => {
-	const deltaText = (isPhone ? phonesTypes : accessoriesTypes)[delta];
+	const deltaText = translateDelta(delta, isPhone);
 
 	return (
 			<Grid container spacing={5}>

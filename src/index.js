@@ -19,13 +19,13 @@ axios.defaults.responseType = 'json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 /*
+	- Server: Should change Transaction data pattern to fit with Front.
 	- Server: Cannot update item.
 	- Server: PSMS is included in Users list.
 
-	- Tabs errors should change tab.
 	- Use priority in submit Button.
+	- Tabs errors should change tab.
 	- Add Stats pages.
-	- Transaction needs huge fixes.
 	- Hide components dependings on permissions.
 	- Redirect to person, item, product ...
 	- 403 Unauthorized should be handeled.

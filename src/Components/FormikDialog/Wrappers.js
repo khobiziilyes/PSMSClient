@@ -23,14 +23,15 @@ export const TheFormWrapper = Content => ({ dialogProps, formikBag, ...props }) 
 	);
 }
 
-export const TheFormikWrapper = (Content, validationSchema, initialValues, formatParams, formatInitialValues = null) => ({ isCreate, formDialogInitialValues, onSubmitParams, ...props }) => {
+export const TheFormikWrapper = (Content, validationSchema, initialValues, formatParams, formatInitialValues = null, extraHandle = null) => ({ isCreate, formDialogInitialValues, onSubmitParams, ...props }) => {
 	const finalInitialValues = isCreate ? initialValues : isFuncExec(formatInitialValues, formDialogInitialValues);
 
 	const formikProps = {
 		validationSchema,
 		onSubmit: buildOnSubmit({
 			...onSubmitParams,
-			formatParams
+			formatParams,
+			extraHandle
 		}),
 		initialValues: finalInitialValues
 	}

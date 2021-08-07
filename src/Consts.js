@@ -63,7 +63,8 @@ export const snackBarOptions = {
 }
 
 export const accessoriesTypes = Object.fromEntries(['Best', 'Better', 'Good', 'Standard', 'Bad', 'Worse', 'Worst'].map((value, i) => [3 - i, value]));
-export const phonesTypes = Object.fromEntries(['Best', 'Better', 'Good', 'Standard', 'Bad', 'Worse', 'Worst'].map((value, i) => [3 - i, (3 - i).toString()]));
+export const phonesTypes = Object.fromEntries(['Best', 'Better', 'Good', 'Standard', 'Bad', 'Worse', 'Worst'].map((value, i) => [3 - i, value + 'P']));
+export const translateDelta = (delta, isPhone) => (isPhone ? phonesTypes : accessoriesTypes)[delta];
 
 export const accessoriesNames = {
 	1: 'AntiShock',
