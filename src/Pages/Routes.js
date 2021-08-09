@@ -40,5 +40,9 @@ export const RoutesList = {
 	UsersList: {
 		URL: '/users',
 		Component: Pages.UsersList
+	},
+	ItemsStats: {
+		URL: '/items/stats',
+		Component: Pages.ItemsStats
 	}
 }

@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { Box, Typography, colors, makeStyles } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import { ArrowUpward, PeopleOutlined } from '@material-ui/icons';
+
 import BasicCard from './BasicCard';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     differenceIcon: {
         color: colors.green[900]
     },
@@ -18,9 +19,9 @@ const TotalCustomers = () => {
     const classes = useStyles();
 
     return (
-        <BasicCard text='TOTAL CUSTOMERS' value='1,600' icon={PeopleIcon} iconColor={colors.green[600]}>
+        <BasicCard text="TOTAL CUSTOMERS" value="1,600" icon={PeopleOutlined} iconColor={colors.green[600]}>
             <Box mt={2} display="flex" alignItems="center">
-                <ArrowUpwardIcon className={classes.differenceIcon} />
+                <ArrowUpward className={classes.differenceIcon} />
                 
                 <Typography className={classes.differenceValue} variant="body2">
                     16%

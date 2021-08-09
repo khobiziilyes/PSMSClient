@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { Avatar, Card, CardContent, Grid, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -13,20 +12,20 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const BasicCard = (props) => {
+const BasicCard = props => {
     const classes = useStyles(props);
     
     return (
-        <Card className={clsx(classes.root)}>
+        <Card className={classes.root}>
             <CardContent>
                 <Grid container justify="space-between" spacing={3}>
                     <Grid item>
                         <Typography color="textSecondary" gutterBottom variant="h6">
-                            {props.text}
+                            { props.text }
                         </Typography>
                         
                         <Typography color="textPrimary" variant="h3">
-                            {props.value}
+                            { props.value }
                         </Typography>
                     </Grid>
 
@@ -37,7 +36,7 @@ const BasicCard = (props) => {
                     </Grid>
                 </Grid>
 
-                {props.children}
+                { props.children }
             </CardContent>
         </Card>
     );

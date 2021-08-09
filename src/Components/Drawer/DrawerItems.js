@@ -24,6 +24,7 @@ export const DrawerItems = ({ drawerIsOpened }) => {
     return (
         <>
             <ListItem theTo={RoutesList.Dashboard.URL} theIcon={IconDashboard} theText='Dashboard' />
+            <ListItem theTo={RoutesList.ItemsStats.URL} theIcon={IconDashboard} theText='Items Stats' />
             
             <Divider />
 

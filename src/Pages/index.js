@@ -9,6 +9,7 @@ import PeopleList from './Person/List';
 import TransactionsList from './Transactions/List';
 import UsersList from './Users/List';
 
+import ItemsStats from './Stats/Items';
 
 const VendorsList = props => <PeopleList isVendor {...props} />;
 const BuysList = props => <TransactionsList isBuy {...props} />;
@@ -25,5 +26,7 @@ export {
 	ItemsPhonesList,
 	TransactionsList as SellsList,
 	BuysList,
-	UsersList
+	UsersList,
+
+	ItemsStats
 }

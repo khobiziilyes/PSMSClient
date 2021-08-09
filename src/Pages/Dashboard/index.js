@@ -2,9 +2,7 @@ import React from 'react';
 import { HorizontalBar, Line, Doughnut } from 'react-chartjs-2';
 import { Container, Grid, CardContent, Card } from '@material-ui/core';
 
-import Budget from './Cards/Budget';
-import TotalCustomers from './Cards/TotalCustomers';
-import TasksProgress from './Cards/TasksProgress';
+import { Budget, TotalCustomers, TasksProgress } from '@Components/Cards';
 
 const data = {
     labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
